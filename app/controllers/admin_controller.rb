@@ -18,11 +18,11 @@ class AdminController < ApplicationController
         redirect_to :controller => 'admin', :action => 'index'
       else
         flash[:error] = 'Failed to update user role.'
-        redirect_to :controller => 'admin', :action => 'index'
+        render 'index'
       end
     else
       flash[:error] = 'User not found.'
-      redirect_to :controller => 'admin', :action => 'index'
+      render 'index'
     end
   end
 

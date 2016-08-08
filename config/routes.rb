@@ -5,13 +5,13 @@ Rails.application.routes.draw do
   get 'about'    => 'lobby#about'
   get 'admin'    => 'admin#index'
   get 'home'     => 'songs#index'
-  get 'login'    => 'sessions#login'
-  get 'logout'   => 'sessions#logout'
+  get 'login'    => 'sessions#new'
+  get 'logout'   => 'sessions#destroy'
   get 'profile'  => 'users#profile'
   get 'register' => 'users#new'
   get 'settings' => 'users#setting'
 
-  post 'attempt_login' => 'sessions#login_attempt'
+  post 'attempt_login' => 'sessions#create'
   post 'create_user'   => 'users#create'
   post 'admin/reassign_role' => 'admin#reassign_role'
 

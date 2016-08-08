@@ -1,11 +1,11 @@
 class SessionsController < ApplicationController
 
-  before_filter :redirect_if_already_logged_in, :only => [:login, :login_attempt]
+  before_filter :redirect_if_already_logged_in, :except => [:destroy]
 
-  def login
+  def new
   end
 
-  def login_attempt
+  def create
     authorized_user = User.authenticate(params[:username], params[:login_password])
 
     if authorized_user
@@ -13,11 +13,11 @@ class SessionsController < ApplicationController
       redirect_to :controller => 'songs', :action => 'index'
     else
       flash[:error] = 'Username or password incorrect.'
-      render 'login'
+      render 'new'
     end
   end
 
-  def logout
+  def destroy
     reset_session
     flash[:success] = 'You have been logged out.'
     redirect_to :controller => 'lobby', :action => 'index'
