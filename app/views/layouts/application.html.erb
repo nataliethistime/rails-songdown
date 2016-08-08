@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Songdown</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+  <% if @current_user %>
+    <p>
+      Hi
+
+      <%= @current_user.username %> |
+      <%= link_to 'Profile', profile_path %> |
+      <%= link_to 'Settings', settings_path %> |
+      <%= link_to 'Log out', logout_path %>
+    </p>
+  <% end %>
+
+  <% flash.each do |name, message| %>
+    <%= content_tag :div, message, :class => name %>
+  <% end %>
+
+  <%= yield %>
+
+</body>
+</html>

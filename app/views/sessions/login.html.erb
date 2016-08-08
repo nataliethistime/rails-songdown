@@ -1,0 +1,19 @@
+<h1>Log in</h1>
+
+<%= form_tag :controller => 'sessions', :action => 'login_attempt' do %>
+  <p>
+    Username: <br />
+    <%= text_field_tag(:username) %>
+  </p>
+
+  <p>
+    Password: <br  />
+    <%= password_field_tag(:login_password) %>
+  </p>
+
+  <%= submit_tag('Log in') %>
+<% end %>
+
+<p>
+  Don't have an account? <%= link_to 'Register', register_path %>
+</p>

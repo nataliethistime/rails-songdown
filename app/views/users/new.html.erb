@@ -1,0 +1,36 @@
+<h1>Sign Up</h1>
+
+<%= form_for @user, :url => {controller: 'users', action: 'create'} do |f| %>
+  <p>
+    Username:</br>
+    <%= f.text_field :username %>
+  </p>
+
+  <p>
+    Email:</br>
+    <%= f.text_field :email %>
+  </p>
+
+  <p>
+    Confirm email:</br>
+    <%= f.text_field :email_confirmation %>
+  </p>
+
+  <p> Password:</br>
+    <%= f.password_field :password %>
+  </p>
+
+  <p> Confirm password:</br>
+    <%= f.password_field :password_confirmation%>
+  </p>
+
+  <%= f.submit %>
+<% end %>
+
+<% if @user.errors.any? %>
+  <ul>
+    <% for error_message in @user.errors.full_messages %>
+      <li><%= error_message %></li>
+    <% end %>
+  </ul>
+<% end %>

@@ -1,0 +1,35 @@
+<%= form_for @song do |f| %>
+  <p>
+    <%= f.label :artist %>
+    <br />
+    <%= f.text_field :artist %>
+  </p>
+
+  <p>
+    <%= f.label :title %>
+    <br />
+    <%= f.text_field :title %>
+  </p>
+
+  <p>
+    <%= f.label 'Song' %>
+    <br />
+    <%= f.text_area :content %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+<% if @song.errors.any? %>
+  <h1>There are errors afoot!</h1>
+
+  <ul>
+    <% for error_message in @song.errors.full_messages %>
+      <li>
+        <%= error_message %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

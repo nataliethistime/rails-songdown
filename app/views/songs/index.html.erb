@@ -1,0 +1,15 @@
+<h1>Songs</h1>
+
+<p>
+  This is the song index page. It will display some interesting information such as the top 10 most viewed songs as well as the 10 newest songs added to the site. There will also be a link to the all songs page. Bonus points if a search feature can be implemented.
+</p>
+
+<%= link_to 'New Song', new_song_path %>
+
+<ul>
+  <% @songs.each do |song| %>
+    <li>
+      <%= link_to "#{song.artist} - #{song.title}", song %>
+    </li>
+  <% end %>
+</ul>
