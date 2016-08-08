@@ -40,7 +40,7 @@
           :url => {:controller => 'admin', :action => 'reassign_role'},
           :method => 'post' do |f|
         %>
-          <%= f.text_field :role %>
+          <%= f.select :role, [['User', 'user'], ['Editor', 'editor'], ['Admin', 'admin']] %>
           <%= f.hidden_field :id, :value => user.id %>
           <%= f.submit 'Reassign Role' %>
         <% end %>
@@ -49,12 +49,10 @@
   <% end %>
 </table>
 
-<p>
-  The available roles are:
+<h2>Available Roles</h2>
 
-  <ul>
-    <li>user</li>
-    <li>editor</li>
-    <li>admin</li>
-  </ul>
-</p>
+<ul>
+  <li><strong>User:</strong> can only view songs</li>
+  <li><strong>Editor:</strong> can view, edit, and create songs</li>
+  <li><strong>Admin:</strong> has all the powerz!</li>
+</ul>
