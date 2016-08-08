@@ -1,0 +1,60 @@
+<h1>Admin</h1>
+
+<h2>Users</h2>
+
+<table>
+  <tr>
+    <th>
+      ID
+    </th>
+
+    <th>
+      Username
+    </th>
+
+    <th>
+      Email
+    </th>
+
+    <th>
+      Role
+    </th>
+  </tr>
+
+  <% @users.each do |user| %>
+    <tr>
+      <td>
+        <%= user.id %>
+      </td>
+
+      <td>
+        <%= user.username %>
+      </td>
+
+      <td>
+        <%= user.email %>
+      </td>
+
+      <td>
+        <%= form_for user,
+          :url => {:controller => 'admin', :action => 'reassign_role'},
+          :method => 'post' do |f|
+        %>
+          <%= f.text_field :role %>
+          <%= f.hidden_field :id, :value => user.id %>
+          <%= f.submit 'Reassign Role' %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<p>
+  The available roles are:
+
+  <ul>
+    <li>user</li>
+    <li>editor</li>
+    <li>admin</li>
+  </ul>
+</p>

@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
-  before_filter :save_login_state, :only => [:create, :new]
+  before_filter :authenticate_user, :except => [:new]
+  before_filter :redirect_if_already_logged_in, :only => [:create, :new]
 
   def create
     @user = User.new(user_params)
@@ -14,6 +15,12 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+  end
+
+  def profile
+  end
+
+  def setting
   end
 
   private

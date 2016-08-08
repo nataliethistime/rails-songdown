@@ -2,16 +2,18 @@ Rails.application.routes.draw do
 
   resources :songs
 
-  get 'about' => 'lobby#about'
-  get 'home' => 'songs#index'
-  get 'login' => 'sessions#login'
-  get 'logout' => 'sessions#logout'
-  get 'profile' => 'users#profile'
+  get 'about'    => 'lobby#about'
+  get 'admin'    => 'admin#index'
+  get 'home'     => 'songs#index'
+  get 'login'    => 'sessions#login'
+  get 'logout'   => 'sessions#logout'
+  get 'profile'  => 'users#profile'
   get 'register' => 'users#new'
   get 'settings' => 'users#setting'
 
   post 'attempt_login' => 'sessions#login_attempt'
-  post 'create_user' => 'users#create'
+  post 'create_user'   => 'users#create'
+  post 'admin/reassign_role' => 'admin#reassign_role'
 
   root 'lobby#index'
 

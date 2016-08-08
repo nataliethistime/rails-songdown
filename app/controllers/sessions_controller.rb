@@ -1,7 +1,6 @@
 class SessionsController < ApplicationController
 
-  before_filter :authenticate_user, :only => [:home, :profile, :setting]
-  before_filter :save_login_state, :only => [:login, :login_attempt]
+  before_filter :redirect_if_already_logged_in, :only => [:login, :login_attempt]
 
   def login
   end
@@ -19,14 +18,8 @@ class SessionsController < ApplicationController
   end
 
   def logout
-    session[:user_id] = nil
+    reset_session
     flash[:success] = 'You have been logged out.'
-    redirect_to :action => 'login'
-  end
-
-  def profile
-  end
-
-  def setting
+    redirect_to :controller => 'lobby', :action => 'index'
   end
 end

@@ -6,18 +6,30 @@ class ApplicationController < ActionController::Base
   protected
     def authenticate_user
       if session[:user_id]
-        @current_user = User.find session[:user_id]
+        begin
+          @current_user = User.find session[:user_id]
+          return true
+        rescue ActiveRecord::RecordNotFound
+          flash[:error] = 'You need to be logged in to view that page.'
+          reset_session
+          redirect_to root_path
+          return false
+        end
+      end
+    end
+
+    def ensure_user_is_admin
+      if @current_user && @current_user.is_admin
         return true
       else
-        flash[:error] = 'You need to be logged in to view that page.'
-        redirect_to root_path
+        redirect_to :controller => 'songs', :action => 'index'
         return false
       end
     end
 
-    def save_login_state
+    def redirect_if_already_logged_in
       if session[:user_id]
-        redirect_to :controller => 'sessions', :action => 'home'
+        redirect_to :controller => 'songs', :action => 'index'
         return false
       else
         return true

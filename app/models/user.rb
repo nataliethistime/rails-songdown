@@ -34,4 +34,16 @@ class User < ActiveRecord::Base
   def match_password(login_password)
     encrypted_password == BCrypt::Engine.hash_secret(login_password, salt)
   end
+
+  def is_normal_user
+    role == 'user'
+  end
+
+  def is_editor
+    role == 'editor'
+  end
+
+  def is_admin
+    role == 'admin'
+  end
 end
