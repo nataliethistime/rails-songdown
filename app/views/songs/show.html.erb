@@ -6,7 +6,7 @@
   <%= link_to 'Delete Song', song_path(@song),
     :method => :delete,
     :data => {
-      :confirm => 'Are you sure you want to delete \"#{@song.full_name}\"?'
+      :confirm => "Are you sure you want to delete \"#{@song.full_name}\"?"
     }
   %>
 <% else %>

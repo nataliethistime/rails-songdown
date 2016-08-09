@@ -15,6 +15,10 @@ class SongsController < ApplicationController
   end
 
   def destroy
+    @song = Song.find params[:id]
+    @song.destroy
+
+    redirect_to :controller => 'songs', :action => 'index'
   end
 
   def edit
