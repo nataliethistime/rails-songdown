@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
   end
 
   def is_editor
-    role == 'editor'
+    role == 'editor' || role == 'admin'
   end
 
   def is_admin

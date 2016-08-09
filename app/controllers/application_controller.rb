@@ -27,6 +27,15 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    def ensure_user_is_editor
+      if @current_user && @current_user.is_editor
+        return true
+      else
+        redirect_to :controller => 'songs', :action => 'index'
+        return false
+      end
+    end
+
     def redirect_if_already_logged_in
       if session[:user_id]
         redirect_to :controller => 'songs', :action => 'index'

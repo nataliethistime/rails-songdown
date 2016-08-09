@@ -1,13 +1,17 @@
 <h1><%= @song.full_name %></h1>
 
-<%= link_to 'Back to Songs', songs_path %> |
-<%= link_to 'Edit Song', edit_song_path(@song) %> |
-<%= link_to 'Delete Song', song_path(@song),
-  :method => :delete,
-  :data => {
-    :confirm => "Are you sure you want to delete \"#{@song.full_name}\"?"
-  }
-%>
+<% if @current_user.is_editor %>
+  <%= link_to 'Back to Songs', songs_path %> |
+  <%= link_to 'Edit Song', edit_song_path(@song) %> |
+  <%= link_to 'Delete Song', song_path(@song),
+    :method => :delete,
+    :data => {
+      :confirm => 'Are you sure you want to delete \"#{@song.full_name}\"?'
+    }
+  %>
+<% else %>
+  <%= link_to 'Back to Songs', songs_path %>
+<% end %>
 
 <pre>
 <%= @song.content %>
