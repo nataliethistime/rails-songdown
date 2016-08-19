@@ -18,6 +18,7 @@ class UsersController < ApplicationController
   end
 
   def home
+    @top_songs = Song.all.order(:views => :desc).limit(10)
   end
 
   def settings
