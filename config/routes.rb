@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
 
+  resources :setlists do
+    resources :setlist_items
+  end
   resources :songs
 
   get 'about'    => 'lobby#about'
   get 'admin'    => 'admin#index'
-  get 'home'     => 'songs#index'
+  get 'home'     => 'users#home'
   get 'login'    => 'sessions#new'
   get 'logout'   => 'sessions#destroy'
   get 'profile'  => 'users#profile'
@@ -14,6 +17,8 @@ Rails.application.routes.draw do
   post 'attempt_login' => 'sessions#create'
   post 'create_user'   => 'users#create'
   post 'admin/reassign_role' => 'admin#reassign_role'
+
+  post 'api/search_songs' => 'api#search_songs'
 
   root 'lobby#index'
 

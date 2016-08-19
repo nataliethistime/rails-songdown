@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   before_save :encrypt_password
   after_save :clear_password
 
+  has_many :setlists, :dependent => :destroy
+
   def encrypt_password
     if password.present?
       self.salt = BCrypt::Engine.generate_salt
@@ -35,15 +37,15 @@ class User < ActiveRecord::Base
     encrypted_password == BCrypt::Engine.hash_secret(login_password, salt)
   end
 
-  def is_normal_user
+  def is_normal_user?
     role == 'user'
   end
 
-  def is_editor
+  def is_editor?
     role == 'editor' || role == 'admin'
   end
 
-  def is_admin
+  def is_admin?
     role == 'admin'
   end
 end

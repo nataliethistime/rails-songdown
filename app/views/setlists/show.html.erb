@@ -1,0 +1,19 @@
+<h1><%= @setlist.title %> (<%= @setlist.date %>)</h1>
+
+<%= link_to 'Edit Setlist', edit_setlist_path(@setlist) %>
+
+<% if !@setlist.notes.empty? %>
+  <p style="white-space: pre;"><%= @setlist.notes %></p>
+<% end %>
+
+<h2>Songs</h2>
+
+<%= link_to 'Add Song', new_setlist_setlist_item_path(:setlist_id => @setlist.id) %>
+
+<ul>
+  <% @setlist.setlist_items.each do |song| %>
+    <li>
+      <%= song.title %>
+    </li>
+  <% end %>
+</ul>

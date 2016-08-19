@@ -1,6 +1,6 @@
 <h1><%= @song.full_name %></h1>
 
-<% if @current_user.is_editor %>
+<% if @current_user.is_editor? %>
   <%= link_to 'Back to Songs', songs_path %> |
   <%= link_to 'Edit Song', edit_song_path(@song) %> |
   <%= link_to 'Delete Song', song_path(@song),

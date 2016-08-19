@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
     end
 
     def ensure_user_is_admin
-      if @current_user && @current_user.is_admin
+      if @current_user && @current_user.is_admin?
         return true
       else
         redirect_to :controller => 'songs', :action => 'index'
@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
     end
 
     def ensure_user_is_editor
-      if @current_user && @current_user.is_editor
+      if @current_user && @current_user.is_editor?
         return true
       else
         redirect_to :controller => 'songs', :action => 'index'

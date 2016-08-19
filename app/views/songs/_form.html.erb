@@ -23,7 +23,7 @@
 <% end %>
 
 <% if @song.errors.any? %>
-  <h1>There are errors afoot!</h1>
+  <h1>Error</h1>
 
   <ul>
     <% for error_message in @song.errors.full_messages %>

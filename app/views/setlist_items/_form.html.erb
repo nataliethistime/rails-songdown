@@ -1,0 +1,44 @@
+<%= form_for @setlist_item, :url => setlist_setlist_items_path do |f| %>
+
+  <p>
+    <%= f.label 'Song Chosen:' %>
+    <%= f.text_field :title, :readonly => true %>
+  </p>
+
+  <p>
+    <%= f.label 'Key:' %>
+    <%= f.select :key, [
+      ['C major / A minor', 'C']
+      ] %>
+  </p>
+
+  <%= f.hidden_field :song_id %>
+  <%= f.hidden_field :artist %>
+
+  <p>
+    <%= f.submit 'Add Song to Setlist' %>
+  </p>
+<% end %>
+
+<% if @setlist_item.errors.any? %>
+  <h1>Error</h1>
+
+  <ul>
+    <% for error_message in @setlist_item.errors.full_messages %>
+      <li>
+        <%= error_message %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<hr />
+
+<%= form_tag api_search_songs_path, :method => 'post', :remote => true, :id => 'find_song' do %>
+  <%= label_tag :query, 'Find by title:' %>
+  <%= text_field_tag :query, '', :autocomplete => 'off' %>
+  <%= hidden_field_tag :raw, true %>
+  <%= submit_tag 'Search' %>
+<% end %>
+
+<div id="results"></div>

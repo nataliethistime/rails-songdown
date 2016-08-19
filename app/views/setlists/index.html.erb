@@ -1,0 +1,11 @@
+<h1>Setlists</h1>
+
+<%= link_to 'Create Setlist', new_setlist_path %>
+
+<ul>
+  <% @setlists.each do |setlist| %>
+    <li>
+      <%= link_to setlist.title, setlist_path(setlist) %>
+    </li>
+  <% end %>
+</ul>
