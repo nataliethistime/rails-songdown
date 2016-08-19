@@ -4,10 +4,10 @@ class Song < ActiveRecord::Base
   validates :content, :presence => true
 
   def self.search(query)
-    if !query.empty?
-      where 'title LIKE ?', "%#{query}%"
-    else
+    if query.empty?
       all
+    else
+      where 'artist LIKE :query OR title LIKE :query', :query => "%#{query}%"
     end
   end
 

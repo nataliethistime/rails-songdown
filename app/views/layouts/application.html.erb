@@ -1,13 +1,16 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="en">
 <head>
   <title>Songdown</title>
+
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 
 <body>
+
   <% if @current_user %>
     <p>
       Hi
@@ -18,7 +21,6 @@
       <% if @current_user.is_editor? %>
         <%= link_to 'Setlists', setlists_path %> |
       <% end %>
-      <%= link_to 'Profile', profile_path %> |
       <%= link_to 'Settings', settings_path %> |
       <% if @current_user.is_admin? %>
         <%= link_to 'Admin', admin_path %> |

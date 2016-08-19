@@ -20,10 +20,7 @@ class UsersController < ApplicationController
   def home
   end
 
-  def profile
-  end
-
-  def setting
+  def settings
   end
 
   private

@@ -1,4 +1,4 @@
-<h1><%= @setlist.title %> (<%= @setlist.date %>)</h1>
+<h1>[<%= @setlist.date %>] <%= @setlist.title %></h1>
 
 <% if @current_user.is_editor? %>
   <p>

@@ -1,7 +1,10 @@
 <h1>Songs</h1>
 
 <p>
-  This is the song index page. It will display some interesting information such as the top 10 most viewed songs as well as the 10 newest songs added to the site. There will also be a link to the all songs page. Bonus points if a search feature can be implemented.
+  <%= form_tag songs_path, :method => 'get' do %>
+    <%= text_field_tag :query, params[:query] || '', :autocomplete => 'off' %>
+    <%= submit_tag 'Search' %>
+  <% end %>
 </p>
 
 <% if @current_user.is_editor? %>

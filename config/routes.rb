@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get 'logout'   => 'sessions#destroy'
   get 'profile'  => 'users#profile'
   get 'register' => 'users#new'
-  get 'settings' => 'users#setting'
+  get 'settings' => 'users#settings'
 
   post 'attempt_login' => 'sessions#create'
   post 'create_user'   => 'users#create'

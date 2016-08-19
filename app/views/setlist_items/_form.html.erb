@@ -48,7 +48,6 @@
 <%= form_tag api_search_songs_path, :method => 'post', :remote => true, :id => 'find_song' do %>
   <%= label_tag :query, 'Find by title:' %>
   <%= text_field_tag :query, '', :autocomplete => 'off' %>
-  <%= hidden_field_tag :raw, true %>
   <%= submit_tag 'Search' %>
 <% end %>
 

@@ -26,7 +26,11 @@ class SongsController < ApplicationController
   end
 
   def index
-    @songs = Song.all
+    if params[:query].nil?
+      @songs = Song.all
+    else
+      @songs = Song.search params[:query]
+    end
   end
 
   def new

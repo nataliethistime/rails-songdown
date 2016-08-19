@@ -1,12 +1,27 @@
 <h1>Home</h1>
 
 <!-- In this file we want the following:
-  - Search for a song
-  - Create a song
-  - Create a setlist
-  - ???
+  - Top 10 songs
 -->
 
+<% if @current_user.is_editor? %>
+  <p>
+    <%= link_to 'Create Song', new_song_path %> |
+    <%= link_to 'Create Setlist', new_setlist_path %>
+  </p>
+<% end %>
+
 <p>
-  Insert links here...
+  <h2>Find a Song</h2>
+
+  <%= form_tag songs_path, :method => 'get' do %>
+    <%= text_field_tag :query, '', :autocomplete => 'off' %>
+    <%= submit_tag 'Search' %>
+  <% end %>
+</p>
+
+<p>
+  <h2>Top Songs</h2>
+
+  <!-- TODO -->
 </p>
