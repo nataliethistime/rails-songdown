@@ -88,6 +88,12 @@ class SongdownCompiler
   end
 
   def to_html
-    @nodes.map(&:to_html).join "\n"
+    html = @nodes.map(&:to_html).join("\n")
+
+    """
+    <div class='sd-song'>
+      #{html}
+    </div>
+    """
   end
 end

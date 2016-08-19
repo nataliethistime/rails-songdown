@@ -6,9 +6,14 @@ class SongdownCompiler
   class Nodes
     class Goto < SongdownCompiler::Node
       def to_html
-        str = @section.gsub SongdownCompiler::Tokens::GOTO, 'Play'
+        goto_name = @section.gsub(SongdownCompiler::Tokens::GOTO, '').strip
 
-        "<p>#{str}</p>"
+        """
+        <p>
+          Play
+          <span class='sd-goto'>#{goto_name}</span>
+        </p>
+        """
       end
     end
   end

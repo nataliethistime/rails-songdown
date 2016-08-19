@@ -10,7 +10,7 @@ class SongdownCompiler
           SongdownCompiler::Tokens::VERSE_START
         )
 
-        '<span class="verse-header">' + @section + '</span><br />'
+        '<span class="sd-verse-header">' + @section + '</span><br />'
       end
     end
   end

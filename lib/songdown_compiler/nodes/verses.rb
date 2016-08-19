@@ -2,15 +2,15 @@
 require 'songdown_compiler/node'
 
 def chords_line(line)
-  '<pre class="chords">' + line + '<br /></pre>'
+  '<div class="sd-chords-line">' + line + '</div>'
 end
 
 def lyrics_line(line)
-  '<pre class="lyrics">' + line + '<br /></pre>'
+  '<div class="sd-lyrics-line">' + line + '</div>'
 end
 
 def verse_block(lines)
-  '<div class="verse">' + lines.join("\n") + '</div>'
+  '<div class="sd-verse-block">' + lines.join("\n") + '</div>'
 end
 
 class SongdownCompiler
