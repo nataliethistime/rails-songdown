@@ -24,7 +24,7 @@ class SongdownCompiler
     verse_header_index = -1
 
     lines.each_with_index do |line, i|
-      if !line.match(SongdownCompiler::Tokens::VERSE_HEADER_ANY).nil?
+      if !line.match(SongdownCompiler::Tokens::VERSE_ANY_HEADER).nil?
         verse_header_index = i
         break
       end

@@ -6,16 +6,11 @@ class SongdownCompiler
     class VerseHeader < SongdownCompiler::Node
       def to_html
         @section.gsub!(
-          SongdownCompiler::Tokens::VERSE_CHORDS_HEADER,
+          SongdownCompiler::Tokens::VERSE_ANY_HEADER,
           SongdownCompiler::Tokens::VERSE_START
         )
 
-        @section.gsub!(
-          SongdownCompiler::Tokens::VERSE_LYRICS_HEADER,
-          SongdownCompiler::Tokens::VERSE_START
-        )
-
-        '<br /><span class="verse-head">' + @section + '</span><br />'
+        '<span class="verse-header">' + @section + '</span><br />'
       end
     end
   end

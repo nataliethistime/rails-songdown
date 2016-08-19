@@ -6,7 +6,7 @@ class SongdownCompiler
     VERSE_COMMON_HEADER = /\:$/x
     VERSE_CHORDS_HEADER = /\+$/x
     VERSE_LYRICS_HEADER = /\-$/x
-    VERSE_HEADER_ANY = /[:+-]$/x
+    VERSE_ANY_HEADER = /[:+-]$/x
     NEWLINE = "\n"
   end
 end
