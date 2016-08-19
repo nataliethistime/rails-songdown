@@ -1,3 +1,6 @@
+
+require 'songdown_compiler'
+
 class Song < ActiveRecord::Base
   validates :artist, :presence => true
   validates :title, :presence => true
@@ -13,5 +16,11 @@ class Song < ActiveRecord::Base
 
   def full_name
     "#{artist} - #{title}"
+  end
+
+  def to_html
+    songdown_song = SongdownCompiler.new content
+    songdown_song.parse
+    songdown_song.to_html
   end
 end

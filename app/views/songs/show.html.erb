@@ -13,6 +13,6 @@
   <%= link_to 'Back to Songs', songs_path %>
 <% end %>
 
-<pre>
-<%= @song.content %>
-</pre>
+<div>
+<%= @song.to_html.html_safe %>
+</div>
