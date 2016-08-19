@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160811033216) do
+ActiveRecord::Schema.define(version: 20160819043805) do
 
   create_table "setlist_items", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -31,7 +31,10 @@ ActiveRecord::Schema.define(version: 20160811033216) do
     t.date     "date"
     t.string   "title"
     t.text     "notes"
+    t.integer  "user_id"
   end
+
+  add_index "setlists", ["user_id"], name: "index_setlists_on_user_id"
 
   create_table "songs", force: :cascade do |t|
     t.string   "artist"

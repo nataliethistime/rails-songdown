@@ -1,10 +1,10 @@
 class SetlistsController < ApplicationController
 
   before_filter :authenticate_user, :except => []
-  before_filter :ensure_user_is_editor, :except => []
+  before_filter :ensure_user_is_editor, :except => [:show]
 
   def create
-    @setlist = Setlist.new setlist_params
+    @setlist = @current_user.setlists.new setlist_params
 
     if @setlist.save
       flash[:success] = 'Successfully created setlist.'
@@ -14,16 +14,23 @@ class SetlistsController < ApplicationController
     end
   end
 
+  def destroy
+    @setlist = @current_user.setlists.find params[:id]
+    @setlist.destroy
+
+    redirect_to setlists_path
+  end
+
   def edit
-    @setlist = Setlist.find params[:id]
+    @setlist = @current_user.setlists.find params[:id]
   end
 
   def index
-    @setlists = Setlist.all
+    @setlists = @current_user.setlists
   end
 
   def new
-    @setlist = Setlist.new
+    @setlist = @current_user.setlists.new
   end
 
   def show
@@ -31,7 +38,7 @@ class SetlistsController < ApplicationController
   end
 
   def update
-    @setlist = Setlist.find params[:id]
+    @setlist = @current_user.setlists.find params[:id]
 
     if @setlist.update setlist_params
       flash[:success] = 'Setlist updated.'
@@ -44,10 +51,9 @@ class SetlistsController < ApplicationController
   private
     def setlist_params
       params.require(:setlist).permit(
-        :artist,
-        :key,
-        :song_id,
-        :title
+        :title,
+        :date,
+        :notes
       )
     end
 end
