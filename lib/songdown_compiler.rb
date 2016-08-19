@@ -3,6 +3,7 @@ require 'songdown_compiler/tokens'
 require 'songdown_compiler/nodes/verses'
 require 'songdown_compiler/nodes/verse_header'
 require 'songdown_compiler/nodes/markdown'
+require 'songdown_compiler/nodes/goto'
 
 class SongdownCompiler
 
@@ -48,11 +49,7 @@ class SongdownCompiler
     verse_header_index = get_verse_header_index lines
 
     if verse_header_index == -1
-      # This happens when there is no header in the current section. In which case, we assume
-      # that it is all a markdown block.
-      #
-      # NOTE: this is not the full solution - there are also goto nodes to take care of.
-      parse_markdown lines
+      parse_remaining_lines lines
     else
       header = lines[verse_header_index]
       verse_lines = lines.slice verse_header_index + 1, lines.size
@@ -62,13 +59,20 @@ class SongdownCompiler
     end
   end
 
-  def parse_markdown(input)
-    @nodes.push SongdownCompiler::Nodes::Markdown.new input
+  def parse_remaining_lines(remaining_lines)
+    remaining_lines.each do |line|
+      # Here, a line is either a GOTO marker or a bit of markdown.
+      if line.match(SongdownCompiler::Tokens::GOTO).nil?
+        @nodes.push SongdownCompiler::Nodes::Markdown.new line
+      else
+        @nodes.push SongdownCompiler::Nodes::Goto.new line
+      end
+    end
   end
 
   def parse_verse(header, verse_lines, remaining_lines)
     if Array(remaining_lines).size
-      parse_markdown(remaining_lines)
+      parse_remaining_lines remaining_lines
     end
 
     @nodes.push SongdownCompiler::Nodes::VerseHeader.new header
