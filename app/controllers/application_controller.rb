@@ -4,17 +4,23 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   protected
+    def handle_not_logged_in
+      reset_session
+      flash[:error] = 'You need to be logged in to view that page.'
+      redirect_to root_path
+      return false
+    end
+
     def authenticate_user
       if session[:user_id]
         begin
           @current_user = User.find session[:user_id]
           return true
         rescue ActiveRecord::RecordNotFound
-          flash[:error] = 'You need to be logged in to view that page.'
-          reset_session
-          redirect_to root_path
-          return false
+          handle_not_logged_in
         end
+      else
+        handle_not_logged_in
       end
     end
 
