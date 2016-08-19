@@ -50,6 +50,7 @@ class SongsController < ApplicationController
 
   def show
     @song = Song.find params[:id]
+    IncrementSongViewCounterJob.perform_later @song.id
   end
 
   private
