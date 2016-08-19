@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
       if @current_user && @current_user.is_admin?
         return true
       else
-        redirect_to :controller => 'songs', :action => 'index'
+        redirect_to home_path
         return false
       end
     end
@@ -37,14 +37,14 @@ class ApplicationController < ActionController::Base
       if @current_user && @current_user.is_editor?
         return true
       else
-        redirect_to :controller => 'songs', :action => 'index'
+        redirect_to home_path
         return false
       end
     end
 
     def redirect_if_already_logged_in
       if session[:user_id]
-        redirect_to :controller => 'songs', :action => 'index'
+        redirect_to home_path
         return false
       else
         return true
