@@ -6,14 +6,14 @@
   <p style="white-space: pre;"><%= @setlist.notes %></p>
 <% end %>
 
-<h2>Songs</h2>
+<h1>Songs</h1>
 
 <%= link_to 'Add Song', new_setlist_setlist_item_path(:setlist_id => @setlist.id) %>
 
 <ul>
   <% @setlist.setlist_items.each do |song| %>
     <li>
-      <%= song.title %>
+      <%= link_to song.title, song_path(song.song_id) %> (key: <%= song.key %>)
     </li>
   <% end %>
 </ul>

@@ -8,8 +8,19 @@
   <p>
     <%= f.label 'Key:' %>
     <%= f.select :key, [
-      ['C major / A minor', 'C']
-      ] %>
+      ['C major / A minor', 'C'],
+      ['D major / B minor', 'C'],
+      ['E major / C# minor', 'C'],
+      ['F major / D minor', 'C'],
+      ['G major / E minor', 'C'],
+      ['A major / F# minor', 'C'],
+      ['B major / G# minor', 'C'],
+      ['Db major / Bb minor', 'C'],
+      ['Eb major / C minor', 'C'],
+      ['Gb major / Eb minor', 'C'],
+      ['Ab major / F minor', 'C'],
+      ['Bb major / G minor', 'C'],
+    ] %>
   </p>
 
   <%= f.hidden_field :song_id %>
