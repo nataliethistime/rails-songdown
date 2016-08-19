@@ -23,7 +23,15 @@
 <ul>
   <% @setlist.setlist_items.each do |song| %>
     <li>
-      <%= link_to song.title, song_path(song.song_id) %> (key: <%= song.key %>)
+      <%= link_to song.title, song_path(song.song_id) %>
+      (key: <%= song.key %>)
+      (<%=
+        link_to 'remove', setlist_setlist_item_path(:setlist_id => @setlist.id, :id => song.id),
+          :method => 'delete',
+          :data => {
+            :confirm => "Are you sure you want to remove \"#{song.title}\" from the setlist?"
+          }
+      %>)
     </li>
   <% end %>
 </ul>

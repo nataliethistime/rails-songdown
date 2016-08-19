@@ -20,6 +20,19 @@ class SetlistItemsController < ApplicationController
     end
   end
 
+  def destroy
+    @setlist = Setlist.find params[:setlist_id]
+
+    if @setlist
+      @setlist_item = @setlist.setlist_items.find params[:id]
+      @setlist_item.destroy
+
+      redirect_to @setlist
+    else
+      # TODO
+    end
+  end
+
   def new
     @setlist = Setlist.find params[:setlist_id]
 
