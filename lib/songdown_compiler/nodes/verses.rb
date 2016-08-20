@@ -42,7 +42,10 @@ class SongdownCompiler
     #
     class VerseChords < SongdownCompiler::Node
       def to_html
-        lines = Array(@section).map &:chords_line
+        lines = Array(@section).map do |line|
+          chords_line line
+        end
+
         verse_block lines
       end
     end
@@ -52,7 +55,10 @@ class SongdownCompiler
     #
     class VerseLyrics < SongdownCompiler::Node
       def to_html
-        lines = Array(@section).map &:lyrics_line
+        lines = Array(@section).map do |line|
+          lyrics_line line
+        end
+
         verse_block lines
       end
     end

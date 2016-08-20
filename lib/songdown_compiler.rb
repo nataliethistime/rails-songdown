@@ -83,7 +83,7 @@ class SongdownCompiler
       when SongdownCompiler::Tokens::VERSE_CHORDS_HEADER
         @nodes.push SongdownCompiler::Nodes::VerseChords.new verse_lines
       when SongdownCompiler::Tokens::VERSE_LYRICS_HEADER
-        @nodes.push SongdownCompiler::Nodes::VerseChords.new verse_lines
+        @nodes.push SongdownCompiler::Nodes::VerseLyrics.new verse_lines
     end
   end
 
