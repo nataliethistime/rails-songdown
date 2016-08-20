@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 
     if authorized_user
       session[:user_id] = authorized_user.id
-      redirect_to :controller => 'songs', :action => 'index'
+      redirect_to home_path
     else
       flash[:error] = 'Username or password incorrect.'
       render 'new'
