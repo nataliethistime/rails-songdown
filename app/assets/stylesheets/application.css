@@ -12,4 +12,74 @@
  *
  *= require_tree .
  *= require_self
+ *
+ *= require pure
  */
+
+body {
+  /* Show the scroll bar to reduce jumping */
+  overflow-y: scroll;
+}
+
+.pure-menu-heading {
+  text-transform: none !important;
+  font-weight: bold;
+}
+
+.pure-g > div {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 1em;
+}
+
+a {
+  color: black;
+}
+
+a.fancy-link:hover {
+  color: #0f7ec8;
+}
+
+a.fancy-link,
+a.fancy-link:visited,
+a.fancy-link:hover,
+a.fancy-link:active {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  position: relative;
+  transition: 0.5s color ease;
+  text-decoration: none;
+}
+
+a.fancy-link:after {
+  content: '';
+  transition: 0.5s all ease;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  position: absolute;
+}
+
+a.fancy-link:after {
+  bottom: -0.25em;
+}
+
+a.fancy-link:after {
+  height: 0.2rem;
+  width: 0;
+  background: #0f7ec8;
+}
+
+a.fancy-link:after {
+  left: 0;
+}
+
+a.fancy-link:hover:after {
+  width: 100%;
+}
+
+
+/* Some form defaults */
+input, select {
+  width: 40%;
+}

@@ -26,7 +26,8 @@ class SetlistsController < ApplicationController
   end
 
   def index
-    @setlists = @current_user.setlists
+    @upcoming_setlists = @current_user.setlists.where('setlists.date >= ?', Time.now)
+    @past_setlists = @current_user.setlists.where('setlists.date < ?', Time.now)
   end
 
   def new

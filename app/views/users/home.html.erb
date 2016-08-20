@@ -1,29 +1,43 @@
-<h1>Home</h1>
+<div class="header">
+  <h1>Home</h1>
+</div>
 
-<% if @current_user.is_editor? %>
-  <p>
-    <%= link_to 'Create Song', new_song_path %> |
-    <%= link_to 'Create Setlist', new_setlist_path %>
-  </p>
-<% end %>
+<div class="content">
+  <div class="pure-g">
+    <div class="pure-u-1-1">
+      <div style="text-align: center;">
+        <%= render 'songs/search' %>
+      </div>
+    </div>
 
-<p>
-  <h2>Find a Song</h2>
+    <div class="pure-u-1-2">
+      <h2>Most Popular</h2>
 
-  <%= form_tag songs_path, :method => 'get' do %>
-    <%= text_field_tag :query, '', :autocomplete => 'off' %>
-    <%= submit_tag 'Search' %>
-  <% end %>
-</p>
+      <div>
+        <% @top_songs.each do |song| %>
+          <div>
+            <%= link_to song.title, song, :class => 'fancy-link'%>
+            <span style="float: right;">
+              <strong><%= song.artist %></strong>
+            </span>
+          </div>
+        <% end %>
+      </div>
+    </div>
 
-<p>
-  <h2>Top Songs</h2>
+    <div class="pure-u-1-2">
+      <h2>New</h2>
 
-  <ol>
-    <% @top_songs.each do |song| %>
-      <li>
-        <%= link_to "#{song.artist} - #{song.title}", song %> - <%= pluralize song.views, 'view' %>
-      </li>
-    <% end %>
-  </ol>
-</p>
+      <div>
+        <% @new_songs.each do |song| %>
+          <div>
+            <%= link_to song.title, song, :class => 'fancy-link'%>
+            <span style="float: right;">
+              <strong><%= song.artist %></strong>
+            </span>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

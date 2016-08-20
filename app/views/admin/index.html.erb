@@ -1,58 +1,61 @@
-<h1>Admin</h1>
+<div class="header">
+  <h1>Admin</h1>
+  <h2>Here there be dragons</h2>
+</div>
 
-<h2>Users</h2>
+<div class="content">
+  <div class="pure-g">
+    <div class="pure-u-1-1">
+      <h2>Users</h2>
 
-<table>
-  <tr>
-    <th>
-      ID
-    </th>
+      <table class="pure-table pure-table-bordered">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Role</th>
+          </tr>
+        </thead>
 
-    <th>
-      Username
-    </th>
+        <% @users.each do |user| %>
+          <tr>
+            <td>
+              <%= user.id %>
+            </td>
 
-    <th>
-      Email
-    </th>
+            <td>
+              <%= user.username %>
+            </td>
 
-    <th>
-      Role
-    </th>
-  </tr>
+            <td>
+              <%= user.email %>
+            </td>
 
-  <% @users.each do |user| %>
-    <tr>
-      <td>
-        <%= user.id %>
-      </td>
+            <td>
+              <%= form_for user,
+                :url => {
+                  :controller => 'admin',
+                  :action => 'reassign_role'
+                },
+                :html => {
+                  :class => 'pure-form'
+                },
+                :method => 'post' do |f|
+              %>
+                <%= f.select :role, [
+                  ['User', 'user'],
+                  ['Editor', 'editor'],
+                  ['Admin', 'admin']
+                ] %>
+                <%= f.hidden_field :id, :value => user.id %>
 
-      <td>
-        <%= user.username %>
-      </td>
-
-      <td>
-        <%= user.email %>
-      </td>
-
-      <td>
-        <%= form_for user,
-          :url => {:controller => 'admin', :action => 'reassign_role'},
-          :method => 'post' do |f|
-        %>
-          <%= f.select :role, [['User', 'user'], ['Editor', 'editor'], ['Admin', 'admin']] %>
-          <%= f.hidden_field :id, :value => user.id %>
-          <%= f.submit 'Reassign Role' %>
+                <%= f.submit 'Reassign Role', :class => 'pure-button pure-button-primary' %>
+              <% end %>
+            </td>
+          </tr>
         <% end %>
-      </td>
-    </tr>
-  <% end %>
-</table>
-
-<h2>Available Roles</h2>
-
-<ul>
-  <li><strong>User:</strong> can only view songs</li>
-  <li><strong>Editor:</strong> can view, edit, and create songs</li>
-  <li><strong>Admin:</strong> has all the powerz!</li>
-</ul>
+      </table>
+    </div>
+  </div>
+</div>

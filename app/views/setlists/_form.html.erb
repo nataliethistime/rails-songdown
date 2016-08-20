@@ -1,23 +1,17 @@
-<%= form_for @setlist do |f| %>
-  <p>
-    <%= f.label :title %>
-    <br />
-    <%= f.text_field :title %>
-  </p>
+<%= form_for @setlist, :html => {:class => 'pure-form pure-form-stacked'} do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title, :placeholder => 'Title' %>
+
+  <%= f.label :date %>
+  <%= f.date_field :date %>
+
+
+  <%= f.label :notes %>
+  <%= f.text_area :notes, :id => 'setlist_notes_input' %>
 
   <p>
-    <%= f.label :date %>
-    <br />
-    <%= f.date_field :date %>
+    <%= f.submit :class => 'pure-button pure-button-primary' %>
   </p>
-
-  <p>
-    <%= f.label :notes %>
-    <br />
-    <%= f.text_area :notes %>
-  </p>
-
-  <%= f.submit %>
 <% end %>
 
 <% if @setlist.errors.any? %>

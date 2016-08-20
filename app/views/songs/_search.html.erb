@@ -1,0 +1,10 @@
+<h2>Find a Song</h2>
+
+<%= form_tag songs_path, :method => 'get', :class => 'pure-form' do %>
+  <%= text_field_tag :query, params[:query] || '',
+    :autocomplete => 'off',
+    :placeholder => 'Enter query',
+    :id => 'song_search_field'
+  %>
+  <%= submit_tag 'Search', :class => 'pure-button pure-button-primary' %>
+<% end %>

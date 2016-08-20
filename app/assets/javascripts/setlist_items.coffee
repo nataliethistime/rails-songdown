@@ -12,9 +12,10 @@ setSelectedSong = (songs, songId) ->
   if song?
     console.log('Selected:', song)
 
-    $('#setlist_item_title').attr('value', song.title)
-    $('#setlist_item_song_id').attr('value', song.id)
-    $('#setlist_item_artist').attr('value', song.artist)
+    $('#setlist_item_title').val(song.title)
+    $('#setlist_item_song_id').val(song.id)
+    $('#setlist_item_artist').val(song.artist)
+    $('#setlist_item_key').val(song.key)
 
 handleSearch = (e, data, status, xhr) ->
   songs = JSON.parse xhr.responseText
@@ -24,11 +25,13 @@ handleSearch = (e, data, status, xhr) ->
 
     list.push """
       <li>
-        #{song.artist} - #{song.title} (<a data-song-id='#{song.id}' href='#'>select</a>)
+        <a class='fancy-link' data-song-id='#{song.id}' href='#'>#{song.artist} - #{song.title}</a>
       </li>
     """
 
   $('#results').html """
+    <h2>Results</h2>
+
     <ul>
       #{list.join ''}
     </ul>
@@ -42,9 +45,9 @@ handleSearch = (e, data, status, xhr) ->
     .on 'ajax:error', (e, data, status, error) ->
       $('#results').append 'ERROR'
 
-setup = ->
+init = ->
   $('#find_song').on 'ajax:success', handleSearch
 
 $(document)
-  .ready setup
-  .on 'page:load', setup
+  .ready init
+  .on 'page:load', init

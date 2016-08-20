@@ -1,11 +1,37 @@
-<h1>Setlists</h1>
+<div class="header">
+  <h1>Setlists</h1>
+</div>
 
-<%= link_to 'New Setlist', new_setlist_path %>
+<div class="content">
+  <div class="pure-g">
+    <div class="pure-u-1-1">
+      <div style="float: right;">
+        <%= link_to 'New Setlist', new_setlist_path, :class => 'pure-button pure-button-primary' %>
+      </div>
+    </div>
 
-<ul>
-  <% @setlists.each do |setlist| %>
-    <li>
-      <%= link_to "[#{setlist.date}] #{setlist.title}", setlist_path(setlist) %>
-    </li>
-  <% end %>
-</ul>
+    <div class="pure-u-1-2">
+      <h2>Upcoming Sets</h2>
+
+      <div>
+        <% @upcoming_setlists.each do |setlist| %>
+          <div>
+            <%= link_to setlist.full_name, setlist_path(setlist), :class => 'fancy-link' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="pure-u-1-2">
+      <h2>Past Sets</h2>
+
+      <div>
+        <% @past_setlists.each do |setlist| %>
+          <div>
+            <%= link_to setlist.full_name, setlist_path(setlist), :class => 'fancy-link' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

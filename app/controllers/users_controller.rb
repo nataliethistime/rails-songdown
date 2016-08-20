@@ -9,16 +9,18 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to '/'
     else
-      render 'new'
+      render 'new', :layout => 'logged_out'
     end
   end
 
   def new
     @user = User.new
+    render :layout =>'logged_out'
   end
 
   def home
     @top_songs = Song.all.order(:views => :desc).limit(10)
+    @new_songs = Song.all.order(:created_at => :desc).limit(10)
   end
 
   def settings

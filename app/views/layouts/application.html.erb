@@ -4,36 +4,75 @@
 <head>
   <title>Songdown</title>
 
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Roboto+Mono',
+    'data-turbolinks-track' => true
+  %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'side-menu', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 
 <body>
+  <div id="layout">
+    <!-- Menu toggle -->
+    <a href="#menu" id="menuLink" class="menu-link">
+      <!-- Hamburger icon -->
+      <span></span>
+    </a>
 
-  <% if @current_user %>
-    <p>
-      Hi
+    <div id="menu">
+      <div class="pure-menu">
+        <%= link_to 'Songdown', home_path, :class => 'pure-menu-heading' %>
 
-      <%= @current_user.username %> |
-      <%= link_to 'Home', home_path %> |
-      <%= link_to 'Songs', songs_path %> |
-      <% if @current_user.is_editor? %>
-        <%= link_to 'Setlists', setlists_path %> |
-      <% end %>
-      <%= link_to 'Settings', settings_path %> |
-      <% if @current_user.is_admin? %>
-        <%= link_to 'Admin', admin_path %> |
-      <% end %>
-      <%= link_to 'Log out', logout_path %>
-    </p>
-  <% end %>
+        <ul class="pure-menu-list">
+          <li class="pure-menu-item">
+            <%= link_to 'Home', home_path, :class => 'pure-menu-link' %>
+          </li>
 
-  <% flash.each do |name, message| %>
-    <%= content_tag :div, message, :class => name %>
-  <% end %>
+          <li class="pure-menu-item">
+            <%= link_to 'Songs', songs_path, :class => 'pure-menu-link' %>
+          </li>
 
-  <%= yield %>
+          <% if @current_user.is_editor? %>
+            <li class="pure-menu-item">
+              <%= link_to 'Setlists', setlists_path, :class => 'pure-menu-link' %>
+            </li>
+          <% end %>
 
+          <li class="pure-menu-item">
+            <%= link_to 'Settings', settings_path, :class => 'pure-menu-link' %>
+          </li>
+
+          <% if @current_user.is_admin? %>
+            <li class="pure-menu-item">
+              <%= link_to 'Admin', admin_path, :class => 'pure-menu-link' %>
+            </li>
+          <% end %>
+
+          <li class="pure-menu-item">
+            <%= link_to 'Logout', logout_path, :class => 'pure-menu-link' %>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="main">
+      <!-- I don't know what the fuck to do with this -->
+      <p>
+        <% flash.each do |name, message| %>
+          <%= content_tag :div, message, :class => name %>
+        <% end %>
+      </p>
+
+      <%= yield %>
+    </div>
+
+    <footer style="text-align: center;">
+      Logged in as <%= @current_user.username %>
+    </footer>
+  </div>
 </body>
 </html>

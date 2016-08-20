@@ -48,4 +48,8 @@ class User < ActiveRecord::Base
   def is_admin?
     role == 'admin'
   end
+
+  def owns_setlist?(setlist)
+    id == setlist.user.id
+  end
 end
