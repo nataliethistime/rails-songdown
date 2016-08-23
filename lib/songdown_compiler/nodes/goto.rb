@@ -6,7 +6,7 @@ class SongdownCompiler
   class Nodes
     class Goto < SongdownCompiler::Node
       def to_html
-        goto_name = @section.gsub(SongdownCompiler::Tokens::GOTO, '').strip
+        goto_name = @content.gsub(SongdownCompiler::Tokens::GOTO, '').strip
 
         """
         <p>

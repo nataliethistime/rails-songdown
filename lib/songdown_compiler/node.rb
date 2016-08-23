@@ -3,8 +3,10 @@ require 'songdown_compiler/tokens'
 
 class SongdownCompiler
   class Node
+    attr_accessor :content
+
     def initialize(input)
-      @section = input
+      @content = input
     end
 
     def to_html

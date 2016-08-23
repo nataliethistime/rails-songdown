@@ -1,3 +1,6 @@
+
+require 'songdown_compiler'
+
 class SongsController < ApplicationController
 
   before_filter :authenticate_user, :except => []
@@ -47,6 +50,17 @@ class SongsController < ApplicationController
 
   def show
     @song = Song.find params[:id]
+    @compiler = SongdownCompiler.new(
+      :input => @song.content,
+      :key => @song.key
+    )
+
+    if params[:key]
+      @compiler.change_key params[:key]
+    end
+
+    @song_key = @compiler.key
+    @song_html = @compiler.to_html
     IncrementSongViewCounterJob.perform_later @song.id
   end
 

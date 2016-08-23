@@ -59,7 +59,10 @@
               </td>
 
               <td>
-                <%= link_to song.full_name, song_path(song.song_id), :class => 'fancy-link' %>
+                <%= link_to song.full_name,
+                  song_path(song.song_id, :key => song.key), 
+                  :class => 'fancy-link'
+                %>
               </td>
 
               <% if @current_user.is_editor? && @current_user.owns_setlist?(@setlist) %>

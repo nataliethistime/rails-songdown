@@ -1,16 +1,49 @@
 
 require 'songdown_compiler/tokens'
-require 'songdown_compiler/nodes/verses'
+require 'songdown_compiler/nodes/verse_block_opener'
+require 'songdown_compiler/nodes/verse_block_closer'
 require 'songdown_compiler/nodes/verse_header'
 require 'songdown_compiler/nodes/markdown'
 require 'songdown_compiler/nodes/goto'
 
+require 'songdown_compiler/verses_handler'
+
+require 'songdown_transposer'
+
 class SongdownCompiler
 
-  def initialize(text)
-    # Normalize newlines..
-    @text = text.gsub /\r\n/, "\n"
+  attr_accessor :nodes
+  attr_accessor :key
+
+  def initialize(**args)
+    @input = args[:input].gsub /\r\n/, "\n" # Normalize newlines
+    @key = args[:key]
     @nodes = []
+
+    get_sections(@input).each do |section|
+      parse_section section
+    end
+  end
+
+  def change_key(new_key)
+    @nodes = SongdownTransposer.change_key(@nodes, @key, new_key)
+    @key = new_key
+  end
+
+  def to_html
+    html = @nodes.map(&:to_html).join("\n")
+
+    """
+    <div class='sd-song'>
+      <div>
+        <strong>Key</strong>: #{@key}
+      </div>
+
+      <br />
+
+      #{html}
+    </div>
+    """
   end
 
   def get_sections(text)
@@ -32,12 +65,6 @@ class SongdownCompiler
     end
 
     return verse_header_index
-  end
-
-  def parse
-    get_sections(@text).each do |section|
-      parse_section section
-    end
   end
 
   def parse_section(section)
@@ -76,24 +103,19 @@ class SongdownCompiler
     end
 
     @nodes.push SongdownCompiler::Nodes::VerseHeader.new header
+    @nodes.push SongdownCompiler::Nodes::VerseBlockOpener.new
 
-    case header
-      when SongdownCompiler::Tokens::VERSE_COMMON_HEADER
-        @nodes.push SongdownCompiler::Nodes::VerseCommon.new verse_lines
-      when SongdownCompiler::Tokens::VERSE_CHORDS_HEADER
-        @nodes.push SongdownCompiler::Nodes::VerseChords.new verse_lines
-      when SongdownCompiler::Tokens::VERSE_LYRICS_HEADER
-        @nodes.push SongdownCompiler::Nodes::VerseLyrics.new verse_lines
-    end
-  end
+    verse_nodes =
+      case header
+        when SongdownCompiler::Tokens::VERSE_COMMON_HEADER
+          SongdownCompiler::VersesHandler.handle_common_verse(verse_lines)
+        when SongdownCompiler::Tokens::VERSE_CHORDS_HEADER
+          SongdownCompiler::VersesHandler.handle_chords_verse(verse_lines)
+        when SongdownCompiler::Tokens::VERSE_LYRICS_HEADER
+          SongdownCompiler::VersesHandler.handle_lyrics_verse(verse_lines)
+      end
 
-  def to_html
-    html = @nodes.map(&:to_html).join("\n")
-
-    """
-    <div class='sd-song'>
-      #{html}
-    </div>
-    """
+    @nodes.concat verse_nodes
+    @nodes.push SongdownCompiler::Nodes::VerseBlockCloser.new
   end
 end
