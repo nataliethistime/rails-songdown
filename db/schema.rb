@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160824073135) do
+ActiveRecord::Schema.define(version: 20160824112633) do
 
   create_table "setlist_items", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -41,10 +41,10 @@ ActiveRecord::Schema.define(version: 20160824073135) do
     t.string   "title"
     t.text     "content"
     t.string   "key"
-    t.string   "youtube"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.integer  "views",      default: 0
+    t.string   "youtube_url"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "views",       default: 0
   end
 
   create_table "users", force: :cascade do |t|

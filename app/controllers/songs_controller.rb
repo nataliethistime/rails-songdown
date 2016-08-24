@@ -71,7 +71,7 @@ class SongsController < ApplicationController
         :title,
         :content,
         :key,
-        :youtube
+        :youtube_url
       )
     end
 end

@@ -7,6 +7,12 @@
       <%= f.label :title %>
       <%= f.text_field :title, :placeholder => 'Title' %>
 
+      <%= f.label :youtube_url, 'YouTube URL' %>
+      <%= f.text_field :youtube_url,
+        :autocomplete => 'off',
+        :placeholder => 'youtube.com/watch?v=123456789'
+      %>
+
       <%= f.label :key %>
       <%= f.select :key, [
         ['C major / A minor', 'C'],
