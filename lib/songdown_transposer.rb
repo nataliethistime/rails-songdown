@@ -2,32 +2,45 @@
 require 'songdown_compiler'
 
 KEY_SCALES = {
-  #         1       2       3   4       5       6       7
-  :C  => %w(C   Db  D   Eb  E   F   Gb  G   Ab  A   Bb  B),
+  #           1       2       3   4       5       6       7
+  :Cb   => %W(Cb C Db D Eb Fb F Gb G Ab A Bb B),
+  :C    => %w(C   Db  D   Eb  E   F   Gb  G   Ab  A   Bb  B),
+  :'C#' => %w(C#  D   D#  E   E#  F#  G   G#  A   A#  B   B#),
 
-  #         1       2       3   4       5       6       7
-  :Db => %w(Db  D   Eb  E   F   Gb  G   Ab  A   Bb  B   C),
-  :D  => %w(D   Eb  E   F   F#  G   Ab  A   Bb  B   C   C#),
+  #           1       2       3   4       5       6       7
+  :Db   => %w(Db  D   Eb  E   F   Gb  G   Ab  A   Bb  B   C),
+  :D    => %w(D   Eb  E   F   F#  G   Ab  A   Bb  B   C   C#),
+  :'D#' => %w(D#  E   E#  F#  G   G#  A   A#  B   B#  C#  D),
 
-  #         1       2       3   4       5       6       7
-  :Eb => %w(),
-  :E  => %w(E   F   F#  G   G#  A   Bb  B   C   C#  D   D#),
+  #           1       2       3   4       5       6       7
+  :Eb   => %w(Eb  E   F   Ab  G   Ab  A   Bb  B   C   Db  D),
+  :E    => %w(E   F   F#  G   G#  A   Bb  B   C   C#  D   D#),
+  :'E#' => %w(E#  F#  G   G#  A   A#  B   B#  C#   D  D#  E),
 
-  #         1       2       3   4       5       6       7
-  :F  => %w(F   Gb  G   Ab  A   Bb  B   C   Db  D   Eb  E),
+  #           1       2       3   4       5       6       7
+  :Fb   => %w(Fb  F   Gb  G   Ab  A   Bb  Cb  C   Db  D   Eb),
+  :F    => %w(F   Gb  G   Ab  A   Bb  B   C   Db  D   Eb  E),
+  :'F#' => %w(F#  G   G#  A   A#  B   C   C#  D   D#  E   E#),
 
-  #         1       2       3   4       5       6       7
-  :Gb => %w(),
-  :G  => %w(G   Ab  A   Bb  B   C   Db  D   Eb  E   F   F#),
+  #           1       2       3   4       5       6       7
+  :Gb   => %w(Gb  G   Ab  A   Bb  Cb  C   Db  D   Eb  E   F),
+  :G    => %w(G   Ab  A   Bb  B   C   Db  D   Eb  E   F   F#),
+  :'G#' => %w(G#  A   A#  B   B#  C#  D   D#  E   E#  F#  G),
 
-  #         1       2       3   4       5       6       7
-  :Ab => %w(),
-  :A  => %w(A   Bb  B   C   C#  D   Eb  E   F   F#  G   G#),
+  #           1       2       3   4       5       6       7
+  :Ab   => %w(Ab  A   Bb  B   C   Db  D   Eb  E   F   Gb  G),
+  :A    => %w(A   Bb  B   C   C#  D   Eb  E   F   F#  G   G#),
+  :'A#' => %w(A#  B   B#  C#  D   D#  E   E#  F#  G   G#  A),
 
-  #         1       2       3   4       5       6       7
-  :Bb => %w(),
-  :B  => %w(B   C   C#  D   D#  E   F   F#  G   G#  A   A#),
+  #           1       2       3   4       5       6       7
+  :Bb   => %w(Bb  B   C   Db  D   Eb  E   F   Gb  G   Ab  A),
+  :B    => %w(B   C   C#  D   D#  E   F   F#  G   G#  A   A#),
+  :'B#' => %w(B#  C#  D   D#  E   E#  F#  G   G#  A   A#  B),
 }
+
+KEY_SCALES.default_proc = proc do |hash, key|
+  raise "Key #{key} not found in KEY_SCALES"
+end
 
 def get_root_note(chord)
   root_note = chord[0]
@@ -96,6 +109,10 @@ end
 
 def transpose_standard_chord(current_key, new_key, chord)
   index = chord_to_scale_degree(current_key, chord)
+  puts '---'
+  puts "current_key: #{current_key}"
+  puts "new_key: #{new_key}"
+  puts "chord: #{chord}"
   KEY_SCALES[new_key.to_sym][index] + get_rest_of_chord(chord)
 end
 
