@@ -80,6 +80,6 @@ a.fancy-link:hover:after {
 
 
 /* Some form defaults */
-input, select {
+.sd-form input, .sd-form select {
   width: 40%;
 }
