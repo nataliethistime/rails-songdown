@@ -78,19 +78,33 @@ def chord_to_scale_degree(key, chord)
   end
 end
 
-def transpose_chord(current_key, new_key, chord)
-  splitted = chord.split('/')
-  if splitted.size > 1
-    transposed = splitted.map do |splitted_part|
-      puts splitted_part
-      transpose_chord(current_key, new_key, splitted_part)
-    end
+def transpose_split_chord(current_key, new_key, split_chord)
+  splitted = split_chord.split('/')
 
-    return transposed.join('/')
-  end
+  chord = splitted[0]
+  base = splitted[1]
 
+  transposed_chord = transpose_standard_chord(current_key, new_key, chord)
+  transposed_base = transpose_standard_chord(
+    get_root_note(chord),
+    get_root_note(transposed_chord),
+    base
+  )
+
+  "#{transposed_chord}/#{transposed_base}"
+end
+
+def transpose_standard_chord(current_key, new_key, chord)
   index = chord_to_scale_degree(current_key, chord)
   KEY_SCALES[new_key.to_sym][index] + get_rest_of_chord(chord)
+end
+
+def transpose_chord(current_key, new_key, chord)
+  if chord.split('/').size > 1
+    transpose_split_chord(current_key, new_key, chord)
+  else
+    transpose_standard_chord(current_key, new_key, chord)
+  end
 end
 
 def transpose_line(current_key, new_key, line)
