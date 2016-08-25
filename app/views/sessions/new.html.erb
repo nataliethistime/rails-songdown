@@ -1,19 +1,19 @@
 <h1>Log in</h1>
 
-<%= form_tag :controller => 'sessions', :action => 'create' do %>
+<%= form_tag attempt_login_path, :class => 'pure-form pure-form-stacked' do %>
   <p>
-    Username: <br />
+    <%= label_tag :username %>
     <%= text_field_tag(:username) %>
   </p>
 
   <p>
-    Password: <br  />
+    <%= label_tag :login_password, 'Login' %>
     <%= password_field_tag(:login_password) %>
   </p>
 
-  <%= submit_tag('Log in') %>
+  <%= submit_tag('Log in', :class => 'pure-button pure-button-primary') %>
 <% end %>
 
 <p>
-  Don't have an account? <%= link_to 'Register', register_path %>
+  Don't have an account? <%= link_to 'Register', register_path, :class => 'fancy-link' %>
 </p>
