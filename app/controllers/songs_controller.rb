@@ -29,6 +29,10 @@ class SongsController < ApplicationController
   end
 
   def index
+    if params[:query].instance_of? String
+      params[:query].strip!
+    end
+
     @songlist = Song.build_songlist Song.search params[:query]
     @artists = @songlist.keys.sort
   end
