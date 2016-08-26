@@ -1,15 +1,16 @@
 class UsersController < ApplicationController
 
-  before_filter :authenticate_user, :except => [:new, :create]
-  before_filter :redirect_if_already_logged_in, :only => [:create, :new]
+  before_filter :authenticate_user, :except => [:create]
+  before_filter :redirect_if_already_logged_in, :only => [:create]
 
   def create
     @user = User.new(user_params)
 
     if @user.save
+      flash[:success] = 'Successfully created account - please sign in.'
       redirect_to '/'
     else
-      render :template => 'lobby/register', :layout => 'logged_out'
+      render :template => 'lobby/register'
     end
   end
 

@@ -1,0 +1,5 @@
+<% if !@current_user.nil? %>
+  <footer style="text-align: center;">
+    Logged in as <%= @current_user.username %>
+  </footer>
+<% end %>
