@@ -49,3 +49,6 @@ end
 
 # Markdown parsing
 gem 'kramdown', '~> 1.12'
+
+# Bower packages
+gem 'bower-rails', '~> 0.10.0'

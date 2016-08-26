@@ -1,41 +1,53 @@
-<h1>Sign Up</h1>
+<div class="header">
+  <h1>Register</h1>
+</div>
 
-<%= form_for @user, 
-  :url => {controller: 'users', action: 'create'}, 
-  :html => {:class => 'pure-form pure-form-stacked'} do |f| 
-%>
-  <p>
-    <%= f.label :username %>
-    <%= f.text_field :username %>
-  </p>
+<div class="content">
+  <div class="pure-g">
+    <div class="pure-u-1-2">
+      <%= form_for @user, 
+        :url => {controller: 'users', action: 'create'}, 
+        :html => {:class => 'pure-form pure-form-stacked'} do |f| 
+      %>
+        <p>
+          <%= f.label :username %>
+          <%= f.text_field :username %>
+        </p>
 
-  <p>
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-  </p>
+        <p>
+          <%= f.label :email %>
+          <%= f.text_field :email %>
+        </p>
 
-  <p>
-    <%= f.label :email_confirmation, 'Confirm Email' %>
-    <%= f.text_field :email_confirmation %>
-  </p>
+        <p>
+          <%= f.label :email_confirmation, 'Confirm Email' %>
+          <%= f.text_field :email_confirmation %>
+        </p>
 
-  <p>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </p>
+        <p>
+          <%= f.label :password %>
+          <%= f.password_field :password %>
+        </p>
 
-  <p>
-    <%= f.label :password_confirmation, 'Confirm Password' %>
-    <%= f.password_field :password_confirmation%>
-  </p>
+        <p>
+          <%= f.label :password_confirmation, 'Confirm Password' %>
+          <%= f.password_field :password_confirmation%>
+        </p>
 
-  <%= f.submit :class => 'pure-button pure-button-primary' %>
-<% end %>
+        <%= f.submit :class => 'pure-button pure-button-primary' %>
+      <% end %>
+    </div>
 
-<% if @user.errors.any? %>
-  <ul>
-    <% for error_message in @user.errors.full_messages %>
-      <li><%= error_message %></li>
-    <% end %>
-  </ul>
-<% end %>
+    <div class="pure-u-1-2">
+      <% if @user.errors.any? %>
+        <h2>Something went wrong:</h2>
+
+        <ul>
+          <% for error_message in @user.errors.full_messages %>
+            <li><%= error_message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+</div>

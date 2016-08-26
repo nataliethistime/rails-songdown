@@ -81,5 +81,5 @@ a.fancy-link:hover:after {
 
 /* Some form defaults */
 .sd-form input, .sd-form select {
-  width: 40%;
+  width: 100%;
 }
