@@ -5,17 +5,17 @@ Rails.application.routes.draw do
   end
   resources :songs
 
-  get 'about'    => 'lobby#about'
+  get 'about'    => 'static#about'
   get 'admin'    => 'admin#index'
   get 'home'     => 'users#home'
-  get 'login'    => 'sessions#new'
   get 'logout'   => 'sessions#destroy'
   get 'profile'  => 'users#profile'
-  get 'register' => 'users#new'
+  get 'register' => 'lobby#register'
   get 'settings' => 'users#settings'
 
-  post 'attempt_login' => 'sessions#create'
-  post 'create_user'   => 'users#create'
+  post 'login' => 'sessions#create'
+  post 'register'   => 'users#create'
+
   post 'admin/reassign_role' => 'admin#reassign_role'
 
   post 'api/search_songs' => 'api#search_songs'

@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
   attr_accessor :password
   validates :password, :confirmation => true, :length => 6..20
 
+  validates :password_confirmation, :presence => true
+  validates :email_confirmation, :presence => true
+
   before_save :encrypt_password
   after_save :clear_password
 

@@ -33,6 +33,35 @@ body {
   padding: 1em;
 }
 
+.pure-form-stacked label {
+  font-weight: bold;
+}
+
+.pure-form-stacked input {
+  margin-bottom: 1em !important;
+}
+
+.medium-form input, .medium-form select {
+  width: 50%;
+}
+
+.full-form input, .full-form select {
+  width: 100%;
+}
+
+.medium-form input[type=button], .medium-form input[type=submit],
+.full-form input[type=button], .full-form input[type=submit] {
+  width: auto;
+}
+
+.field_with_errors input {
+  border-color: red !important;
+}
+
+.center-text {
+  text-align: center;
+}
+
 a {
   color: black;
 }
@@ -75,11 +104,5 @@ a.fancy-link:after {
 }
 
 a.fancy-link:hover:after {
-  width: 100%;
-}
-
-
-/* Some form defaults */
-.sd-form input, .sd-form select {
   width: 100%;
 }

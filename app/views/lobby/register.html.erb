@@ -7,7 +7,7 @@
     <div class="pure-u-1-2">
       <%= form_for @user, 
         :url => {controller: 'users', action: 'create'}, 
-        :html => {:class => 'pure-form pure-form-stacked'} do |f| 
+        :html => {:class => 'pure-form pure-form-stacked full-form'} do |f| 
       %>
         <p>
           <%= f.label :username %>
@@ -34,7 +34,7 @@
           <%= f.password_field :password_confirmation%>
         </p>
 
-        <%= f.submit :class => 'pure-button pure-button-primary' %>
+        <%= f.submit 'Register', :class => 'pure-button pure-button-primary' %>
       <% end %>
     </div>
 

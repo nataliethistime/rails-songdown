@@ -9,13 +9,8 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to '/'
     else
-      render 'new', :layout => 'logged_out'
+      render :template => 'lobby/register', :layout => 'logged_out'
     end
-  end
-
-  def new
-    @user = User.new
-    render :layout =>'logged_out'
   end
 
   def home

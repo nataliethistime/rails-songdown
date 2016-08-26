@@ -3,7 +3,24 @@
 </div>
 
 <div class="content">
-  <%= link_to 'Login', login_path %> |
-  <%= link_to 'Register', register_path %> |
-  <%= link_to 'About', about_path %>
+  <div class="pure-g">
+    <div class="pure-u-1-2">
+      <%= form_tag login_path, :class => 'pure-form pure-form-stacked full-form' do %>
+        <%= label_tag :username %>
+        <%= text_field_tag(:username, '', :placeholder => 'Batman') %>
+
+        <%= label_tag :login_password, 'Password' %>
+        <%= password_field_tag(:login_password) %>
+
+        <%= submit_tag('Log in', :class => 'pure-button pure-button-primary') %>
+      <% end %>
+    </div>
+
+    <div class="pure-u-1-2">
+      <p>
+        Don't have an account? 
+        <%= link_to 'Register', register_path, :class => 'pure-button pure-button-primary' %>
+      </p>
+    </div>
+  </div>
 </div>
