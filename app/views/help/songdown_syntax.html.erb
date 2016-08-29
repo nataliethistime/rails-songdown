@@ -1,0 +1,34 @@
+<div class="header">
+  <h1>Songdown Syntax</h1>
+</div>
+
+<div class="content">
+  <div class="pure-g">
+    <div class="pure-u-1-1">
+      Songs are written using a plaintext markup language. This means that rather than visually selecting and changing the look of text (i.e., select text, click "B" for bold) we use symbols inside the text. Here are some examples of how to use the Songdown syntax.
+    </div>
+
+    <div class="pure-u-1-2">
+      <h2>Songdown code</h2>
+    </div>
+
+    <div class="pure-u-1-2">
+      <h2>Output</h2>
+    </div>
+
+    <% @examples.each do |example| %>
+      <div class="pure-u-1-2">
+        <code style="white-space: pre-wrap;"><%= example.strip %></code>
+      </div>
+
+      <div class="pure-u-1-2">
+        <%= compile_songdown(example).html_safe %>
+      </div>
+
+      <div class="pure-u-1-1">
+        <hr />
+      </div>
+    <% end %>
+  </div>
+</div>
+

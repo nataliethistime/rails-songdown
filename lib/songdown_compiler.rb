@@ -18,6 +18,12 @@ class SongdownCompiler
   def initialize(**args)
     @input = args[:input].gsub /\r\n/, "\n" # Normalize newlines
     @key = args[:key]
+    @show_key =
+      if [true, false].include? args[:show_key]
+        args[:show_key]
+      else
+        true
+      end
     @nodes = []
 
     get_sections(@input).each do |section|
@@ -33,14 +39,22 @@ class SongdownCompiler
   def to_html
     html = @nodes.map(&:to_html).join("\n")
 
+    key =
+      if @show_key
+        """
+          <div>
+            <strong>Key</strong>: #{@key}
+          </div>
+
+          <br />
+        """
+      else
+        ""
+      end
+
     """
     <div class='sd-song'>
-      <div>
-        <strong>Key</strong>: #{@key}
-      </div>
-
-      <br />
-
+      #{key}
       #{html}
     </div>
     """

@@ -35,12 +35,12 @@ ul.songlist li {
 }
 
 .sd-lyrics-line {
-  white-space: pre;
+  white-space: pre-wrap;
 }
 
 .sd-chords-line {
   font-weight: bold;
-  white-space: pre;
+  white-space: pre-wrap;
 }
 
 .sd-goto {

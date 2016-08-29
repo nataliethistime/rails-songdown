@@ -37,7 +37,7 @@ body {
   font-weight: bold;
 }
 
-.pure-form-stacked input {
+.pure-form-stacked input, .pure-form-stacked select {
   margin-bottom: 1em !important;
 }
 
@@ -105,4 +105,10 @@ a.fancy-link:after {
 
 a.fancy-link:hover:after {
   width: 100%;
+}
+
+hr {
+  border-color: black;
+  border-width: 1px;
+  width: 65%;
 }

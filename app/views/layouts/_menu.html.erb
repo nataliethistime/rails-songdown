@@ -11,10 +11,6 @@
 
       <ul class="pure-menu-list">
         <li class="pure-menu-item">
-          <%= link_to 'About', about_path, :class => 'pure-menu-link' %>
-        </li>
-        
-        <li class="pure-menu-item">
           <%= link_to 'Home', home_path, :class => 'pure-menu-link' %>
         </li>
 
@@ -37,6 +33,14 @@
             <%= link_to 'Admin', admin_path, :class => 'pure-menu-link' %>
           </li>
         <% end %>
+
+        <li class="pure-menu-item">
+          <%= link_to 'About', about_path, :class => 'pure-menu-link' %>
+        </li>
+
+        <li class="pure-menu-item">
+          <%= link_to 'Help', help_path, :class => 'pure-menu-link' %>
+        </li>
 
         <li class="pure-menu-item">
           <%= link_to 'Logout', logout_path, :class => 'pure-menu-link' %>
