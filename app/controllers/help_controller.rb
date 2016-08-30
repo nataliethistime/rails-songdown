@@ -9,6 +9,7 @@ class HelpController < ApplicationController
     @examples = [
       """
 Each verse has three parts.
+
   - a header, ends in \"+\", \"-\", \":\"
   - chords, lyrics, or both
   - an end marker: \"---\"
@@ -20,7 +21,7 @@ Chords and lyrics alternate
 ---
       """,
       """
-The following is a chords verse.
+The following is a **chords verse**.
 You can tell from the \"+\".
 
 Chords verse+
@@ -30,7 +31,7 @@ Good for introductions or instrumentals
 ---
       """,
       """
-The following is a lyrics verse.
+The following is a **lyrics verse**.
 You can tell from the \"-\".
 
 Lyrics verse-
@@ -43,14 +44,18 @@ Use \"->\" to indicate where to go.
 
 -> Chorus
 -> Instrumental x4
--> Bridge x100 (drop 'n' build)
+-> Bridge x10 (drop 'n' build)
       """,
       """
 Text can be written outside verses.
 
+It can also be formatted.
+
   - **bold**
   - *italic*
   - [url link](https://google.com)
+
+Oooh, so fancy!
       """,
       """
 Here's an example of everything working together.

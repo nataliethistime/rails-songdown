@@ -101,13 +101,28 @@ class SongdownCompiler
   end
 
   def parse_remaining_lines(remaining_lines)
-    remaining_lines.each do |line|
-      # Here, a line is either a GOTO marker or a bit of markdown.
-      if line.match(SongdownCompiler::Tokens::GOTO).nil?
-        @nodes.push SongdownCompiler::Nodes::Markdown.new line
+    markdown_lines = []
+
+    until remaining_lines.size == 0 do
+      line = remaining_lines.shift
+
+      if line.nil?
+        break
+      elsif !line.match(SongdownCompiler::Tokens::GOTO).nil?
+        if markdown_lines.size > 0
+          @nodes.push(SongdownCompiler::Nodes::Markdown.new(markdown_lines.join("\n")))
+          markdown_lines.clear
+        end
+
+        @nodes.push(SongdownCompiler::Nodes::Goto.new(line))
       else
-        @nodes.push SongdownCompiler::Nodes::Goto.new line
+        markdown_lines.push(line)
       end
+    end
+
+    if markdown_lines.size > 0
+      @nodes.push(SongdownCompiler::Nodes::Markdown.new(markdown_lines.join("\n")))
+      markdown_lines.clear
     end
   end
 
