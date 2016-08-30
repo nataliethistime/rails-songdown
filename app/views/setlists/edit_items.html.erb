@@ -1,0 +1,64 @@
+<div class="header">
+  <h1>Edit Setlist Items</h1>
+</div>
+
+<div class="content">
+  <div class="pure-g">
+    <div class="pure-u-1-1">
+      <%= link_to 'Add Song', setlist_add_items_path, :class => 'pure-button pure-button-primary' %>
+    </div>
+
+    <div class="pure-u-1-1">
+      <table class="pure-table pure-table-bordered">
+        <thead>
+          <tr>
+            <th>
+              Key
+            </th>
+
+            <th>
+              Song
+            </th>
+
+            <th>
+              Remove
+            </th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @setlist.setlist_items.each do |song| %>
+            <tr>
+              <td>
+                <%= song.key %>
+              </td>
+
+              <td>
+                <%= song.full_name %>
+              </td>
+
+              <td>
+                <%= link_to 'Remove',
+                  setlist_items_path(:setlist_id => @setlist.id, :id => song.id),
+                  :method => 'delete',
+                  :class => 'pure-button pure-button-primary',
+                  :data => {
+                    :confirm =>
+                      "Are you sure you want to remove \"#{song.title}\" from the setlist?"
+                  }
+                %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pure-u-1-1">
+      <%= link_to 'Back to Setlist', setlist_path(@setlist),
+        :class => 'pure-button pure-button-primary'
+      %>
+    </div>
+  </div>
+</div>
+

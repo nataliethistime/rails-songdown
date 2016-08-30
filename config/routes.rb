@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
 
   resources :setlists do
-    resources :setlist_items
+    get 'edit_items' => 'setlists#edit_items'
+    get 'add_items' => 'setlists#add_items'
+    post 'items' => 'setlists#create_item'
+    delete 'items' => 'setlists#destroy_item'
   end
+
   resources :songs
 
   get 'about'    => 'static#about'

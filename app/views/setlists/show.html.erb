@@ -42,12 +42,6 @@
             <th>
               Song
             </th>
-
-            <% if @current_user.is_editor? && @current_user.owns_setlist?(@setlist) %>
-              <th>
-                Remove
-              </th>
-            <% end %>
           </tr>
         </thead>
 
@@ -60,24 +54,10 @@
 
               <td>
                 <%= link_to song.full_name,
-                  song_path(song.song_id, :key => song.key), 
+                  song_path(song.song_id, :key => song.key),
                   :class => 'fancy-link'
                 %>
               </td>
-
-              <% if @current_user.is_editor? && @current_user.owns_setlist?(@setlist) %>
-                <td>
-                  <%= link_to 'Remove',
-                    setlist_setlist_item_path(:setlist_id => @setlist.id, :id => song.id),
-                    :method => 'delete',
-                    :class => 'pure-button pure-button-primary',
-                    :data => {
-                      :confirm =>
-                        "Are you sure you want to remove \"#{song.title}\" from the setlist?"
-                    }
-                  %>
-                </td>
-              <% end %>
             </tr>
           <% end %>
         </tbody>
@@ -86,9 +66,8 @@
 
     <div class="pure-u-1-3">
       <% if @current_user.is_editor? && @current_user.owns_setlist?(@setlist) %>
-        <%= link_to 'Add Song', new_setlist_setlist_item_path(:setlist_id => @setlist.id),
-          :class => 'pure-button pure-button-primary',
-          :style => 'margin-top: 0.83em;'
+        <%= link_to 'Edit Songs', setlist_edit_items_path(:setlist_id => @setlist.id),
+          :class => 'fancy-link'
         %>
       <% end %>
     </div>
