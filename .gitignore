@@ -19,4 +19,4 @@
 /vendor/assets/bower_components
 
 # Vim makes these for some reason...
-.swp
+*.swp
