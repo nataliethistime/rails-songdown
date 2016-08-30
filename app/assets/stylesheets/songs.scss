@@ -24,6 +24,10 @@ ul.songlist li {
   font-size: 16px;
 }
 
+.sd-song *:first-child {
+  margin-top: 0;
+}
+
 .sd-verse-header {
   text-decoration: underline;
   margin-left: 5%;
