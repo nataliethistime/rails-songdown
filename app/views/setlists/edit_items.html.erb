@@ -26,9 +26,9 @@
           </tr>
         </thead>
 
-        <tbody>
-          <% @setlist.setlist_items.each do |song| %>
-            <tr>
+        <tbody id="setlist_item_rearrange">
+          <% @setlist_items.each do |song| %>
+            <tr data-position="<%= song.position %>" data-id="<%= song.id %>">
               <td>
                 <%= song.key %>
               </td>
@@ -58,6 +58,12 @@
       <%= link_to 'Back to Setlist', setlist_path(@setlist),
         :class => 'pure-button pure-button-primary'
       %>
+
+      <span style="display: none;" id="setlist_items_rearrange_button">
+        <div class="pure-button pure-button-primary">
+          Save Song Order
+        </div>
+      </span>
     </div>
   </div>
 </div>

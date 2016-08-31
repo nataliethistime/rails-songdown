@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       redirect_to home_path
     else
       flash[:error] = 'Username or password incorrect.'
-      render :template => 'lobby/index', :layout => 'logged_out'
+      render :template => 'lobby/index'
     end
   end
 

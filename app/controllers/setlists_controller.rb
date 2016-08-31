@@ -28,7 +28,9 @@ class SetlistsController < ApplicationController
     @setlist = Setlist.find params[:setlist_id]
 
     if @setlist
+      @setlist_items = @setlist.setlist_items.all.where(:setlist_id => params[:setlist_id])
       @setlist_item = @setlist.setlist_items.new setlist_item_params
+      @setlist_item.position = @setlist_items.size
 
       if @setlist_item.save
         flash[:success] = 'Successfully added song to setlist'
@@ -67,6 +69,7 @@ class SetlistsController < ApplicationController
 
   def edit_items
     @setlist = @current_user.setlists.find params[:setlist_id]
+    @setlist_items = @setlist.setlist_items.all.order(:position)
   end
 
   def index
@@ -76,6 +79,19 @@ class SetlistsController < ApplicationController
 
   def new
     @setlist = @current_user.setlists.new
+  end
+
+  def rearrange_items
+    @setlist = @current_user.setlists.find params[:setlist_id]
+    @setlist_items = @setlist.setlist_items.all
+
+    params[:items].each do |item|
+      item_to_change = @setlist_items.where(:id => item['id']).first
+      item_to_change.position = item['position']
+      item_to_change.save
+    end
+
+    redirect_to setlist_edit_items_path(:setlist_id => params[:setlist_id])
   end
 
   def show

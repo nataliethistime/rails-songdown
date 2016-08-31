@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160824112633) do
+ActiveRecord::Schema.define(version: 20160830223635) do
 
   create_table "setlist_items", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20160824112633) do
     t.string   "key"
     t.string   "title"
     t.integer  "setlist_id"
+    t.integer  "position"
   end
 
   add_index "setlist_items", ["setlist_id"], name: "index_setlist_items_on_setlist_id"

@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//
+//= require dragula/dist/dragula
 
 function moveCursorToEnd(el) {
   if (typeof el.selectionStart === "number") {

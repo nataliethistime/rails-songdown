@@ -7,3 +7,7 @@
   height: 300px;
   resize: none;
 }
+
+#setlist_item_rearrange > tr {
+  cursor: move;
+}

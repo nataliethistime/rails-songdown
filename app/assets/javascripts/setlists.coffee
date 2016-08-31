@@ -45,8 +45,49 @@ handleSearch = (e, data, status, xhr) ->
     .on 'ajax:error', (e, data, status, error) ->
       $('#results').append 'ERROR'
 
+handleSetlistItemsDragging = (el) ->
+  dragula([el])
+    .on('drop', ->
+      # Make sure the "Rearrange Songs" button is shown.
+      $('#setlist_items_rearrange_button').css('display', '')
+
+      # Reoder the songs
+      $('tr', '#setlist_item_rearrange').each((i) ->
+        $(this).attr({
+          'data-position': i
+        })
+      )
+    )
+
+handleRearrangeSetlistItems = (e) ->
+  e.preventDefault()
+  items = []
+
+  $('tr', '#setlist_item_rearrange').each((i) ->
+    items.push({
+      position: i,
+      id: $(this).attr('data-id')
+    })
+  )
+
+  $.ajax({
+    url: window.location.href.replace(/edit_items$/, 'rearrange_items'),
+    type: 'post',
+    data: JSON.stringify({items}),
+    contentType: "application/json; charset=utf-8",
+    traditional: true,
+    success: ->
+      $('#setlist_items_rearrange_button').css('display', 'none')
+  })
+
 init = ->
   $('#find_song').on 'ajax:success', handleSearch
+
+  el = document.getElementById('setlist_item_rearrange')
+  if el
+    handleSetlistItemsDragging(el)
+
+  $('div:first', '#setlist_items_rearrange_button').on('click', handleRearrangeSetlistItems)
 
 $(document)
   .ready init
