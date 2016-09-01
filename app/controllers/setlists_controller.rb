@@ -13,6 +13,24 @@ class SetlistsController < ApplicationController
     end
   end
 
+  def change_item_key
+    @setlist = Setlist.find params[:setlist_id]
+
+    if @setlist
+      @setlist_item = @setlist.setlist_items.find params[:setlist_item_id]
+
+      if @setlist_item
+        @setlist_item.key = params[:key]
+        @setlist_item.save
+        redirect_to setlist_edit_items_path(:setlist_id => @setlist.id)
+      else
+        # TODO
+      end
+    else
+      # TODO
+    end
+  end
+
   def create
     @setlist = @current_user.setlists.new setlist_params
 

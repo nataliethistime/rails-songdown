@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     get 'add_items' => 'setlists#add_items'
     post 'items' => 'setlists#create_item'
     post 'rearrange_items' => 'setlists#rearrange_items'
+    post 'change_item_key' => 'setlists#change_item_key'
     delete 'items' => 'setlists#destroy_item'
   end
 

@@ -30,7 +30,23 @@
           <% @setlist_items.each do |song| %>
             <tr data-position="<%= song.position %>" data-id="<%= song.id %>">
               <td>
-                <%= song.key %>
+                <%= form_tag setlist_change_item_key_path, :class => 'pure-form' do %>
+                  <%= hidden_field_tag :setlist_item_id, song.id %>
+                  <%= select_tag(:key, options_for_select([
+                    ['C major / A minor', 'C'],
+                    ['Db major / Bb minor', 'Db'],
+                    ['D major / B minor', 'D'],
+                    ['Eb major / C minor', 'Eb'],
+                    ['E major / C# minor', 'E'],
+                    ['F major / D minor', 'F'],
+                    ['Gb major / Eb minor', 'Gb'],
+                    ['G major / E minor', 'G'],
+                    ['Ab major / F minor', 'Ab'],
+                    ['A major / F# minor', 'A'],
+                    ['Bb major / G minor', 'Bb'],
+                    ['B major / G# minor', 'B'],
+                  ], song.key), :onchange => 'this.form.submit()') %>
+                <% end %>
               </td>
 
               <td>
