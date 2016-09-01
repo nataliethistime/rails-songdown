@@ -26,6 +26,13 @@ class AdminController < ApplicationController
     end
   end
 
+  def reset_statistics
+    Song.reset_views_count
+
+    flash[:success] = 'Successfully reset statistics.'
+    redirect_to admin_path
+  end
+
   private
     def user_params
       params.require(:user).permit(

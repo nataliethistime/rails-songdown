@@ -57,5 +57,14 @@
         <% end %>
       </table>
     </div>
+
+    <div class="pure-u-1-1">
+      <%= link_to 'Reset Statistics', admin_reset_statistics_path,
+        :class => 'pure-button pure-button-primary',
+        :data => {
+          :confirm => 'This resets all satistics site-wide. Are you sure?'
+        }
+      %>
+    </div>
   </div>
 </div>

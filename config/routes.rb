@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   post 'register'   => 'users#create'
 
   post 'admin/reassign_role' => 'admin#reassign_role'
+  get 'admin/reset_statistics' => 'admin#reset_statistics'
 
   post 'api/search_songs' => 'api#search_songs'
 
