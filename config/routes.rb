@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   get 'admin/reset_statistics' => 'admin#reset_statistics'
 
   post 'api/search_songs' => 'api#search_songs'
+  post 'api/compile_songdown' => 'api#compile_songdown'
 
   root 'lobby#index'
 

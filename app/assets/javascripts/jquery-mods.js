@@ -5,5 +5,9 @@
   $.fn.exists = function() {
     return this.length > 0;
   };
+
+  $.fn.refresh = function() {
+    return $(this.selector);
+  }
 })(jQuery);
 

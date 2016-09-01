@@ -20,6 +20,28 @@ var SongdownGlobal = function() {
   $(document)
     .ready(_.bind(this.handleReady, this))
     .on('page:load', _.bind(this.handleReady, this))
+
+  this.postData = function(url, data, successCallback, errorCallback) {
+    if (typeof successCallback !== 'function') {
+      successCallback = _.noop;
+    }
+
+    if (typeof errorCallback !== 'function') {
+      errorCallback = _.noop;
+    }
+
+    console.log('[Songdown.postData]: posting to', url, 'with', data);
+
+    $.ajax({
+      url: url,
+      type: 'post',
+      data: JSON.stringify(data),
+      contentType: 'application/json; charset=utf-8',
+      traditional: true,
+      success: successCallback,
+      error: errorCallback
+    });
+  }
 }
 
 window.Songdown = new SongdownGlobal()

@@ -10,4 +10,24 @@
   <div class="pure-u-1-2">
     <h2>Output</h2>
   </div>
+
+  <div class="pure-u-1-2">
+    <div class="pure-form pure-form-stacked">
+      <textarea id="songdown_editor_input"></textarea>
+    </div>
+  </div>
+
+  <div class="pure-u-1-2">
+    <span id="songdown_editor_output"></span>
+  </div>
+
+  <div class="pure-u-1-2">
+    <p>
+      Use this to make sure songs are right before submitting them.
+      <%= link_to 'Syntax Help', help_songdown_syntax_path,
+        :class => 'pure-button pure-button-primary',
+        :target => '_blank'
+      %>
+    </p>
+  </div>
 </div>
