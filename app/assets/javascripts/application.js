@@ -13,30 +13,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
-//
+//= require lodash/dist/lodash
 //= require dragula/dist/dragula
+//
+//= require jquery-mods
+//= require songdown
+//= require_tree .
 
-function moveCursorToEnd(el) {
-  if (typeof el.selectionStart === "number") {
-    el.selectionStart = el.selectionEnd = el.value.length;
-  } else if (typeof el.createTextRange !== "undefined") {
-    el.focus();
-    var range = el.createTextRange();
-    range.collapse(false);
-    range.select();
-  }
-}
 
-function init() {
-  var searchField = document.getElementById('song_search_field');
-
-  if (searchField) {
-    searchField.focus();
-    moveCursorToEnd(searchField);
-  }
-}
-
-$(document)
-  .ready(init)
-  .on('page:load', init);

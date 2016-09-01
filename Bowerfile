@@ -5,3 +5,4 @@ asset 'pure'
 asset 'roboto-fontface'
 
 asset 'dragula'
+asset 'lodash'

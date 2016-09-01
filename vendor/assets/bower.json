@@ -3,6 +3,7 @@
   "dependencies": {
     "pure": "latest",
     "roboto-fontface": "latest",
-    "dragula": "latest"
+    "dragula": "latest",
+    "lodash": "latest"
   }
 }
