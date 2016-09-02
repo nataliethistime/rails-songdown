@@ -1,4 +1,9 @@
-#songdown_editor_input {
+.songdown-editor {
+  min-height: 300px;
   width: 100%;
+  resize: vertical;
+}
+
+.songdown-editor, .sd-song {
   font-family: 'Roboto Mono', monospace;
 }

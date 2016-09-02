@@ -2,24 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-ul.songlist {
-  list-style-type: none;
-}
-
-ul.songlist li {
-  list-style-type: none;
-}
-
-#songdown_input_field, .sd-song {
-  font-family: 'Roboto Mono', monospace;
-}
-
-#songdown_input_field {
-  min-height: 300px;
-  width: 100%;
-  resize: vertical;
-}
-
 .sd-song {
   font-size: 16px;
 }

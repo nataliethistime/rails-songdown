@@ -5,23 +5,23 @@
 <div class="content">
   <div class="pure-g">
     <div class="pure-u-1-2">
-      <%= form_for @user, 
-        :url => {controller: 'users', action: 'create'}, 
-        :html => {:class => 'pure-form pure-form-stacked full-form'} do |f| 
+      <%= form_for @user,
+        :url => {controller: 'users', action: 'create'},
+        :html => {:class => 'pure-form pure-form-stacked big-form'} do |f|
       %>
         <p>
           <%= f.label :username %>
-          <%= f.text_field :username %>
+          <%= f.text_field :username, :placeholder => 'Batman' %>
         </p>
 
         <p>
           <%= f.label :email %>
-          <%= f.text_field :email %>
+          <%= f.text_field :email, :placeholder => 'someone@example.com' %>
         </p>
 
         <p>
           <%= f.label :email_confirmation, 'Confirm Email' %>
-          <%= f.text_field :email_confirmation %>
+          <%= f.text_field :email_confirmation, :placeholder => 'someone@example.com' %>
         </p>
 
         <p>

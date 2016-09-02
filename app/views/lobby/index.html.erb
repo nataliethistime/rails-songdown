@@ -5,7 +5,7 @@
 <div class="content">
   <div class="pure-g">
     <div class="pure-u-1-2">
-      <%= form_tag login_path, :class => 'pure-form pure-form-stacked full-form' do %>
+      <%= form_tag login_path, :class => 'pure-form pure-form-stacked big-form' do %>
         <%= label_tag :username %>
         <%= text_field_tag(:username, '', :placeholder => 'Batman') %>
 
@@ -18,7 +18,7 @@
 
     <div class="pure-u-1-2">
       <p>
-        Don't have an account? 
+        Don't have an account?
         <%= link_to 'Register', register_path, :class => 'pure-button pure-button-primary' %>
       </p>
     </div>
