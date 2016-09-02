@@ -17,8 +17,11 @@ class ApiController < ApplicationController
       params[:query].strip!
     end
 
-    @results = Song.search(params[:query])
-    render :json => @results
+    @results = Song.search(params[:query]).order(:artist)
+
+    render :json => {
+      :results => @results
+    }
   end
 
   def transpose_song

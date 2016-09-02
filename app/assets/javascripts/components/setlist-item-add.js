@@ -26,7 +26,7 @@
   }
 
   function handleSearchResults(e, data, status, xhr) {
-    var songs = JSON.parse(xhr.responseText);
+    var songs = JSON.parse(xhr.responseText).results;
     var list = [];
 
     _.each(songs, function(song) {
