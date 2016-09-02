@@ -1,0 +1,14 @@
+<h1 style="text-align: center;"><%= @song.full_name %></h1>
+
+<%= @song_html.html_safe %>
+
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+    window.print();
+
+    // NOTE: timers are halted during printing.
+    setTimeout(function () {
+      window.close();
+    }, 100);
+  });
+</script>

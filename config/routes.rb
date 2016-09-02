@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
 
   resources :songs
+  get 'print_song/:id' => 'songs#print_song'
 
   get 'about'    => 'static#about'
   get 'admin'    => 'admin#index'

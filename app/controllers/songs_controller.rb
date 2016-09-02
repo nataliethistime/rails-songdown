@@ -41,6 +41,23 @@ class SongsController < ApplicationController
     @song = Song.new
   end
 
+  def print_song
+    @song = Song.find params[:id]
+    @compiler = SongdownCompiler.new(
+      :input => @song.content,
+      :key => @song.key
+    )
+
+    if params[:key]
+      @compiler.change_key params[:key]
+    end
+
+    @song_key = @compiler.key
+    @song_html = @compiler.to_html
+
+    render :layout => 'print_song'
+  end
+
   def update
     @song = Song.find params[:id]
 

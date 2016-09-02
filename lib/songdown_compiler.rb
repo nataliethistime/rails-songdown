@@ -131,8 +131,8 @@ class SongdownCompiler
       parse_remaining_lines remaining_lines
     end
 
-    @nodes.push SongdownCompiler::Nodes::VerseHeader.new header
     @nodes.push SongdownCompiler::Nodes::VerseBlockOpener.new
+    @nodes.push SongdownCompiler::Nodes::VerseHeader.new header
 
     verse_nodes =
       case header

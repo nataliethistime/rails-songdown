@@ -16,7 +16,11 @@
 }
 
 .sd-verse-block {
-  page-break-after: avoid;
+  page-break-inside: avoid;
+  margin-bottom: 1em;
+}
+
+.sd-chords-line, .sd-lyrics-line {
   margin-left: 10%;
 }
 

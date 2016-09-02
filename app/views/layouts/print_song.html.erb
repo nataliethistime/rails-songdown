@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <title>Songdown</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Roboto+Mono',
+      'data-turbolinks-track' => true
+    %>
+    <%= stylesheet_link_tag 'print-song', media: 'all', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>
