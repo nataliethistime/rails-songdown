@@ -114,6 +114,7 @@ class SetlistsController < ApplicationController
 
   def show
     @setlist = Setlist.find params[:id]
+    @setlist_items = @setlist.setlist_items.all.order(:position)
   end
 
   def update

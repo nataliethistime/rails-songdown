@@ -28,18 +28,15 @@
       });
     });
 
-    $.ajax({
-      url: window.location.href.replace(/edit_items$/, 'rearrange_items'),
-      type: 'post',
-      data: JSON.stringify({
+    Songdown.postData(
+      window.location.href.replace(/edit_items$/, 'rearrange_items'),
+      {
         items: items
-      }),
-      contentType: 'application/json; charset=utf-8',
-      traditional: true,
-      success: function() {
+      },
+      function() {
         $('#setlist_items_rearrange_button').hide();
       }
-    });
+    )
   }
 
   Songdown.onReady(function() {
