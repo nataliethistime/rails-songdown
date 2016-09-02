@@ -24,7 +24,7 @@
         <strong>Views:</strong> <%= @song.views %>
       </div>
 
-      <%= form_tag song_path(@song), :class => 'pure-form pure-form-stacked', :method => 'get' do %>
+      <%= form_tag '', :class => 'pure-form pure-form-stacked' do %>
         <strong>
           <%= label_tag 'Key:' %>
         </strong>
@@ -45,7 +45,7 @@
             ['B major / G# minor', 'B'],
           ], @song_key),
           :style => 'width: 100%',
-          :onchange => 'this.form.submit()'
+          :id => 'song_transpose'
         %>
       <% end %>
     </div>

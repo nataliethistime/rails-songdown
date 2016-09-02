@@ -20,4 +20,23 @@ class ApiController < ApplicationController
     @results = Song.search(params[:query])
     render :json => @results
   end
+
+  def transpose_song
+    song = Song.find params[:song_id]
+
+    if !song.nil?
+      compiler = SongdownCompiler.new(
+        :input => song.content,
+        :key => song.key
+      )
+
+      compiler.change_key params[:new_key]
+
+      render :json => {
+        :transposed_song => compiler.to_html
+      }
+    else
+      # TODO
+    end
+  end
 end

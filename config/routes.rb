@@ -32,6 +32,7 @@ Rails.application.routes.draw do
 
   post 'api/search_songs' => 'api#search_songs'
   post 'api/compile_songdown' => 'api#compile_songdown'
+  post 'api/transpose_song' => 'api#transpose_song'
 
   root 'lobby#index'
 
