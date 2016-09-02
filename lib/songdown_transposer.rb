@@ -78,15 +78,6 @@ def chord_to_scale_degree(key, chord)
           0
       end
 
-    # puts '---'
-    # puts scale
-    # puts '---'
-    #
-    # puts "root_note: #{root_note}"
-    # puts "new_root_note: #{new_root_note}"
-    # puts "offset: #{offset}"
-    # puts "result: #{scale.index(new_root_note) + offset}"
-
     scale.index(new_root_note) + offset
   end
 end
@@ -109,10 +100,6 @@ end
 
 def transpose_standard_chord(current_key, new_key, chord)
   index = chord_to_scale_degree(current_key, chord)
-  puts '---'
-  puts "current_key: #{current_key}"
-  puts "new_key: #{new_key}"
-  puts "chord: #{chord}"
   KEY_SCALES[new_key.to_sym][index] + get_rest_of_chord(chord)
 end
 
