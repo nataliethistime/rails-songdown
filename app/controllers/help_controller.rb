@@ -103,8 +103,5 @@ That time will not allow us to forget.
       """,
     ]
   end
-
-  def faq
-  end
 end
 

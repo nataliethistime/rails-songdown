@@ -22,7 +22,6 @@ Rails.application.routes.draw do
   get 'settings' => 'users#settings'
 
   get 'help' => 'help#index'
-  get 'help/faq' => 'help#faq'
   get 'help/songdown_syntax' => 'help#songdown_syntax'
 
   post 'login' => 'sessions#create'
