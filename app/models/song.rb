@@ -4,11 +4,13 @@ class Song < ActiveRecord::Base
   validates :title, :presence => true
   validates :content, :presence => true
 
+  before_save :handle_full_name
+
   def self.search(query)
     if query.nil? || query.empty?
       all
     else
-      where 'artist LIKE :query OR title LIKE :query', :query => "%#{query}%"
+      where 'full_name_searchable LIKE :query', :query => "%#{query}%"
     end
   end
 
@@ -28,7 +30,9 @@ class Song < ActiveRecord::Base
     update_all(:views => 0)
   end
 
-  def full_name
-    "#{artist} - #{title}"
-  end
+  private
+    def handle_full_name
+      self.full_name = "#{self.artist} - #{self.title}"
+      self.full_name_searchable = "#{self.artist} #{self.title}"
+    end
 end
