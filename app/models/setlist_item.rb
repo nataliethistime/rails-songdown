@@ -7,7 +7,21 @@ class SetlistItem < ActiveRecord::Base
   validates :title, :presence => true
   validates :position, :presence => true
 
+  before_validation :handle_create_position
+
   def full_name
     "#{artist} - #{title}"
   end
+
+  def get_all_positions
+    setlist_items = self.setlist.setlist_items.all.select('position')
+    setlist_items.map { |item| item.position }
+  end
+
+  private
+    def handle_create_position
+      positions = self.get_all_positions
+      last_position = positions.sort.last
+      self.position = last_position + 1
+    end
 end

@@ -6,6 +6,7 @@ class SessionsController < ApplicationController
     authorized_user = User.authenticate(params[:username], params[:login_password])
 
     if authorized_user
+      flash.clear
       session[:user_id] = authorized_user.id
       redirect_to home_path
     else

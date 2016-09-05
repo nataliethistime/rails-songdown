@@ -15,8 +15,8 @@ class UsersController < ApplicationController
   end
 
   def home
-    @top_songs = Song.all.order(:views => :desc).limit(10)
-    @new_songs = Song.all.order(:created_at => :desc).limit(10)
+    @top_songs = Song.top_songs
+    @new_songs = Song.new_songs
   end
 
   def settings

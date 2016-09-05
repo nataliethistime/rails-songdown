@@ -21,7 +21,7 @@ class SongsController < ApplicationController
     @song = Song.find params[:id]
     @song.destroy
 
-    redirect_to :controller => 'songs', :action => 'index'
+    redirect_to songs_path
   end
 
   def edit

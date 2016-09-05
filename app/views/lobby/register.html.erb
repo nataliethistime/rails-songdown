@@ -9,33 +9,28 @@
         :url => {controller: 'users', action: 'create'},
         :html => {:class => 'pure-form pure-form-stacked big-form'} do |f|
       %>
-        <p>
-          <%= f.label :username %>
-          <%= f.text_field :username, :placeholder => 'Batman' %>
-        </p>
+        <%= f.label :username %>
+        <%= f.text_field :username, :placeholder => 'Batman' %>
 
-        <p>
-          <%= f.label :email %>
-          <%= f.text_field :email, :placeholder => 'someone@example.com' %>
-        </p>
+        <%= f.label :email %>
+        <%= f.text_field :email, :placeholder => 'someone@example.com' %>
 
-        <p>
-          <%= f.label :email_confirmation, 'Confirm Email' %>
-          <%= f.text_field :email_confirmation, :placeholder => 'someone@example.com' %>
-        </p>
+        <%= f.label :email_confirmation, 'Confirm Email' %>
+        <%= f.text_field :email_confirmation, :placeholder => 'someone@example.com' %>
 
-        <p>
-          <%= f.label :password %>
-          <%= f.password_field :password %>
-        </p>
+        <%= f.label :password %>
+        <%= f.password_field :password %>
 
-        <p>
-          <%= f.label :password_confirmation, 'Confirm Password' %>
-          <%= f.password_field :password_confirmation%>
-        </p>
+        <%= f.label :password_confirmation, 'Confirm Password' %>
+        <%= f.password_field :password_confirmation%>
 
         <%= f.submit 'Register', :class => 'pure-button pure-button-primary' %>
       <% end %>
+
+      <p>
+        Already have an account?
+        <%= link_to 'Sign in', root_path, :class => 'fancy-link' %>
+      </p>
     </div>
 
     <div class="pure-u-1-2">

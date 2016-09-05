@@ -7,20 +7,22 @@
     <div class="pure-u-1-2">
       <%= form_tag login_path, :class => 'pure-form pure-form-stacked big-form' do %>
         <%= label_tag :username %>
-        <%= text_field_tag(:username, '', :placeholder => 'Batman') %>
+        <%= text_field_tag(:username, params[:username] || '', :placeholder => 'Batman') %>
 
         <%= label_tag :login_password, 'Password' %>
         <%= password_field_tag(:login_password) %>
 
         <%= submit_tag('Log in', :class => 'pure-button pure-button-primary') %>
       <% end %>
+
+      <p>
+        Don't have an account?
+        <%= link_to 'Register', register_path, :class => 'fancy-link' %>
+      </p>
     </div>
 
     <div class="pure-u-1-2">
-      <p>
-        Don't have an account?
-        <%= link_to 'Register', register_path, :class => 'pure-button pure-button-primary' %>
-      </p>
+      <%= image_tag 'password.jpg', :class => 'pure-img' %>
     </div>
   </div>
 </div>

@@ -46,15 +46,13 @@ class SetlistsController < ApplicationController
     @setlist = Setlist.find params[:setlist_id]
 
     if @setlist
-      @setlist_items = @setlist.setlist_items.all.where(:setlist_id => params[:setlist_id])
       @setlist_item = @setlist.setlist_items.new setlist_item_params
-      @setlist_item.position = @setlist_items.size
 
       if @setlist_item.save
         flash[:success] = 'Successfully added song to setlist'
         redirect_to setlist_edit_items_path(:id => params[:setlist_id])
       else
-        render 'new'
+        render 'add_items'
       end
     else
       # TODO
@@ -101,12 +99,16 @@ class SetlistsController < ApplicationController
 
   def rearrange_items
     @setlist = @current_user.setlists.find params[:setlist_id]
-    @setlist_items = @setlist.setlist_items.all
+    updates = {}
 
     params[:items].each do |item|
-      item_to_change = @setlist_items.where(:id => item['id']).first
-      item_to_change.position = item['position']
-      item_to_change.save
+      updates[item[:id]] = {
+        :position => item[:position]
+      }
+    end
+
+    ActiveRecord::Base.transaction do
+      @setlist.setlist_items.update(updates.keys, updates.values)
     end
 
     redirect_to setlist_edit_items_path(:setlist_id => params[:setlist_id])

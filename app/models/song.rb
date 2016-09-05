@@ -6,14 +6,6 @@ class Song < ActiveRecord::Base
 
   before_save :handle_full_name
 
-  def self.search(query)
-    if query.nil? || query.empty?
-      all
-    else
-      where 'full_name_searchable LIKE :query', :query => "%#{query}%"
-    end
-  end
-
   def self.build_songlist(songs)
     # A `songlist` is an object of the form "Artist name => array of songs"
     songlist = {}
@@ -28,6 +20,22 @@ class Song < ActiveRecord::Base
 
   def self.reset_views_count
     update_all(:views => 0)
+  end
+
+  def self.search(query)
+    if query.nil? || query.empty?
+      all
+    else
+      where 'full_name_searchable LIKE :query', :query => "%#{query}%"
+    end
+  end
+
+  def self.top_songs
+    all.order(:views => :desc).limit(10)
+  end
+
+  def self.new_songs
+    all.order(:created_at => :desc).limit(10)
   end
 
   private
