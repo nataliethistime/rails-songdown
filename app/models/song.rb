@@ -5,6 +5,7 @@ class Song < ActiveRecord::Base
   validates :content, :presence => true
 
   before_save :handle_full_name
+  after_save :update_relevant_setlist_items
 
   def self.build_songlist(songs)
     # A `songlist` is an object of the form "Artist name => array of songs"
@@ -42,5 +43,17 @@ class Song < ActiveRecord::Base
     def handle_full_name
       self.full_name = "#{self.artist} - #{self.title}"
       self.full_name_searchable = "#{self.artist} #{self.title}"
+    end
+
+    def update_relevant_setlist_items
+      items = SetlistItem.all.where(:song_id => self.id)
+
+      ActiveRecord::Base.transaction do
+        items.each do |item|
+          item.artist = self.artist
+          item.title = self.title
+          item.save
+        end
+      end
     end
 end

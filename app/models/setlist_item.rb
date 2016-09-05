@@ -21,7 +21,7 @@ class SetlistItem < ActiveRecord::Base
   private
     def handle_create_position
       positions = self.get_all_positions
-      last_position = positions.sort.last
+      last_position = positions.sort.last || 0
       self.position = last_position + 1
     end
 end
