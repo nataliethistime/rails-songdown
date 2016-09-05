@@ -14,15 +14,21 @@
   font-weight: bold;
 }
 
-.pure-form-stacked input, .pure-form-stacked select {
+.pure-form-stacked input:not([type="submit"]),
+.pure-form-stacked select,
+.pure-form-stacked textarea {
   margin-bottom: 1em !important;
 }
 
-.medium-form input, .medium-form select {
+.medium-form input,
+.medium-form select,
+.medium-form textarea {
   width: 50%;
 }
 
-.big-form input, .big-form select {
+.big-form input,
+.big-form select,
+.big-form textarea {
   width: 100%;
 }
 
@@ -31,3 +37,7 @@
   width: auto;
 }
 
+.pure-button-danger {
+  color: #ffffff;
+  background-color: #d82424;
+}

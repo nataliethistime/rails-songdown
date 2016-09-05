@@ -9,25 +9,22 @@
     </div>
 
     <div class="pure-u-1-3" id="toolbox">
-      <% if @current_user.is_editor? %>
-        <%= link_to 'Edit Song', edit_song_path(@song), :class => 'fancy-link' %> |
-        <%= link_to 'Delete Song', song_path(@song),
-          :method => :delete,
-          :class => 'fancy-link',
-          :data => {
-            :confirm => "Are you sure you want to delete \"#{@song.full_name}\"?"
-          }
-        %>
-      <% end %>
+      <p>
+        <% if @current_user.is_editor? %>
+          <%= link_to 'Edit Song', edit_song_path(@song),
+            :class => 'pure-button pure-button-primary'
+          %>
+        <% end %>
 
-      <div>
-        <strong>Views:</strong> <%= @song.views %>
-      </div>
+        <span id="print_song_button" class="pure-button pure-button-primary">
+          Print Song
+        </span>
+      </p>
 
       <%= form_tag '', :class => 'pure-form pure-form-stacked' do %>
-        <strong>
+        <label>
           <%= label_tag 'Key:' %>
-        </strong>
+        </label>
 
         <%= select_tag :key,
           options_for_select([
@@ -49,9 +46,9 @@
         %>
       <% end %>
 
-      <div id="print_song_button" class="pure-button pure-button-primary">
-        Print
-      </div>
+      <p>
+        <strong>Views:</strong> <%= @song.views %>
+      </p>
     </div>
 
     <div class="pure-u-1-1">

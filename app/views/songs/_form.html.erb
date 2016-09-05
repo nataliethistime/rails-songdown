@@ -1,6 +1,20 @@
-<div class="pure-g">
-  <div class="pure-u-1-1">
-    <%= form_for @song, :html => {:class => 'pure-form pure-form-stacked medium-form'} do |f| %>
+<%= form_for @song, :html => {:class => 'pure-form pure-form-stacked big-form'} do |f| %>
+  <div class="pure-g">
+    <div class="pure-u-1-2">
+      <% if params[:id] %>
+        <p>
+          <%= link_to 'Back to Song', song_path(@song),
+            :class => 'pure-button pure-button-primary'
+          %>
+        </p>
+      <% else %>
+        <p>
+          <%= link_to 'Back to Songs', songs_path,
+            :class => 'pure-button pure-button-primary'
+          %>
+        </p>
+      <% end %>
+
       <%= f.label :artist %>
       <%= f.text_field :artist, :placeholder => 'Artist' %>
 
@@ -28,7 +42,23 @@
         ['Bb major / G minor', 'Bb'],
         ['B major / G# minor', 'B'],
       ] %>
+    </div>
 
+    <div class="pure-u-1-2">
+      <% if @song.errors.any? %>
+        <h2>Something went wrong:</h2>
+
+        <ul>
+          <% for error_message in @song.errors.full_messages %>
+            <li>
+              <%= error_message %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+
+    <div class="pure-u-1-1">
       <%= f.label :song %>
       <%= f.text_area :content,
         :autocomplete => 'off',
@@ -37,26 +67,22 @@
 
       <p>
         Don't know what this is?
-        <%= link_to 'Click here', help_songdown_syntax_path, :class => 'fancy-link', :target => '_blank' %>.
+        <%= link_to 'Click here', help_songdown_syntax_path, :class => 'fancy-link', :target => '_blank' %>
       </p>
 
       <p>
         <%= f.submit :class => 'pure-button pure-button-primary' %>
-      </p>
-    <% end %>
-  </div>
 
-  <div class="pure-u-1-2">
-    <% if @song.errors.any? %>
-      <h1>Error</h1>
-
-      <ul>
-        <% for error_message in @song.errors.full_messages %>
-          <li>
-            <%= error_message %>
-          </li>
+        <% if params[:id] %>
+          <%= link_to 'Delete Song', songs_path(@song),
+            :method => 'delete',
+            :class => 'pure-button pure-button-danger',
+            :data => {
+              :confirm => "Are you sure you want to delete \"#{@song.title}\"?"
+            }
+          %>
         <% end %>
-      </ul>
+      </p>
     <% end %>
   </div>
 </div>

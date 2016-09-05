@@ -5,7 +5,19 @@
 <div class="content">
   <div class="pure-g">
     <div class="pure-u-1-1">
-      <%= link_to 'Add Song', setlist_add_items_path, :class => 'pure-button pure-button-primary' %>
+      <%= link_to 'Back to Setlist', setlist_path(@setlist),
+        :class => 'pure-button pure-button-primary'
+      %>
+
+      <%= link_to 'Add Song', setlist_add_items_path,
+        :class => 'pure-button pure-button-primary'
+      %>
+
+      <span style="display: none;" id="setlist_items_rearrange_button">
+        <div class="pure-button pure-button-primary">
+          Save Song Order
+        </div>
+      </span>
     </div>
 
     <div class="pure-u-1-1">
@@ -21,7 +33,6 @@
             </th>
 
             <th>
-              Remove
             </th>
           </tr>
         </thead>
@@ -57,7 +68,7 @@
                 <%= link_to 'Remove',
                   setlist_items_path(:setlist_id => @setlist.id, :id => song.id),
                   :method => 'delete',
-                  :class => 'pure-button pure-button-primary',
+                  :class => 'pure-button pure-button-danger',
                   :data => {
                     :confirm =>
                       "Are you sure you want to remove \"#{song.title}\" from the setlist?"
@@ -68,18 +79,6 @@
           <% end %>
         </tbody>
       </table>
-    </div>
-
-    <div class="pure-u-1-1">
-      <%= link_to 'Back to Setlist', setlist_path(@setlist),
-        :class => 'pure-button pure-button-primary'
-      %>
-
-      <span style="display: none;" id="setlist_items_rearrange_button">
-        <div class="pure-button pure-button-primary">
-          Save Song Order
-        </div>
-      </span>
     </div>
   </div>
 </div>

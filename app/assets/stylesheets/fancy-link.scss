@@ -7,12 +7,12 @@ a.fancy-link,
 a.fancy-link:visited,
 a.fancy-link:hover,
 a.fancy-link:active,
-p a, {
+p a:not(.pure-button), {
   transition: 0.2s background-color ease;
   padding: 4px;
   background-color: rgba(255,153,0,0.5);
 }
 
-a.fancy-link:hover, p a:hover {
+a.fancy-link:hover, p a:not(.pure-button):hover {
   background-color: rgba(255,153,0,1);
 }
