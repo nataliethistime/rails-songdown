@@ -20,19 +20,12 @@
   margin-bottom: 1em !important;
 }
 
-.medium-form input,
-.medium-form select,
-.medium-form textarea {
-  width: 50%;
-}
-
 .big-form input,
 .big-form select,
 .big-form textarea {
   width: 100%;
 }
 
-.medium-form input[type=button], .medium-form input[type=submit],
 .big-form input[type=button], .big-form input[type=submit] {
   width: auto;
 }
