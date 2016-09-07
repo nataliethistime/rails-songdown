@@ -96,8 +96,7 @@ namespace :bower do
   end
 end
 
-before 'deploy:compile_assets', 'bower:install'
-before 'assets:precompile', 'bower:install'
+after 'bundler:install', 'bower:install'
 
 # ps aux | grep puma    # Get puma pid
 # kill -s SIGUSR2 pid   # Restart puma
