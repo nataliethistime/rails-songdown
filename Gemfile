@@ -37,6 +37,10 @@ gem 'bower-rails', '~> 0.10.0'
 # Puma instead of WEBrick.
 gem 'puma'
 
+# JavaScript runtime
+gem 'execjs'
+gem 'therubyracer'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
