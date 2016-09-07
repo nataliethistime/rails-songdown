@@ -27,10 +27,11 @@ set :puma_worker_timeout, nil
 set :puma_init_active_record, true  # Change to false when not using ActiveRecord
 
 set :linked_files, %w(config/database.yml config/secrets.yml)
-after 'deploy:compile_assets', 'linked_files:upload'
+after 'deploy:compile_assets', 'linked_files:upload_files'
 
 namespace :puma do
   desc 'Create Directories for Puma Pids and Socket'
+
   task :make_dirs do
     on roles(:app) do
       execute "mkdir #{shared_path}/tmp/sockets -p"
@@ -43,6 +44,7 @@ end
 
 namespace :deploy do
   desc "Make sure local git is in sync with remote."
+
   task :check_revision do
     on roles(:app) do
       unless `git rev-parse HEAD` == `git rev-parse origin/master`
@@ -54,6 +56,7 @@ namespace :deploy do
   end
 
   desc 'Initial Deploy'
+
   task :initial do
     on roles(:app) do
       before 'deploy:restart', 'puma:start'
@@ -62,6 +65,7 @@ namespace :deploy do
   end
 
   desc 'Restart application'
+
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
       invoke 'puma:restart'
