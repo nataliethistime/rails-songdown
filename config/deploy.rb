@@ -2,7 +2,7 @@
 lock '3.6.1'
 
 # Change these
-server '104.131.23.228', port: 5000, roles: [:web, :app, :db], primary: true
+server '104.131.23.228', port: 22, roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'git@github.com:1vasari/rails-songdown.git'
 set :application,     'songdown'
