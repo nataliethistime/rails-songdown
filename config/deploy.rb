@@ -27,7 +27,7 @@ set :puma_worker_timeout, nil
 set :puma_init_active_record, true  # Change to false when not using ActiveRecord
 
 set :linked_files, %w(config/database.yml config/secrets.yml)
-before :finishing, 'linked_files:upload'
+after 'deploy:compile_assets', 'linked_files:upload'
 
 namespace :puma do
   desc 'Create Directories for Puma Pids and Socket'
