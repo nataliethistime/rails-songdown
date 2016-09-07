@@ -4,6 +4,7 @@
     "pure": "latest",
     "roboto-fontface": "latest",
     "dragula": "latest",
-    "lodash": "latest"
+    "lodash": "latest",
+    "autosize": "latest"
   }
 }

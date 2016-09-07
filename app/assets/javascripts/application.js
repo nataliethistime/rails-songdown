@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require lodash/dist/lodash
 //= require dragula/dist/dragula
+//= require autosize/dist/autosize
 //
 //= require jquery-mods
 //= require songdown
