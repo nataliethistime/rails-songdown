@@ -18,8 +18,7 @@ var SongdownGlobal = function() {
   }
 
   $(document)
-    .ready(_.bind(this.handleReady, this))
-    .on('page:load', _.bind(this.handleReady, this))
+    .on('turbolinks:load', _.bind(this.handleReady, this))
 
   this.postData = function(url, data, successCallback, errorCallback) {
     if (typeof successCallback !== 'function') {
