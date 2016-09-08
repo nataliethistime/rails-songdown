@@ -13,6 +13,10 @@ Songdown is a web app for storing chord charts.
 
 ## Versions
 
+### 0.1.2
+
+- Disabled Turbolinks cache.
+
 ### 0.1.1
 
 - Fixed issue with Turbolinks and JavaScript not mixing well.
