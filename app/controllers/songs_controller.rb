@@ -4,7 +4,7 @@ require 'songdown_compiler'
 class SongsController < ApplicationController
 
   before_filter :authenticate_user, :except => []
-  before_filter :ensure_user_is_editor, :except => [:show, :index]
+  before_filter :ensure_user_is_editor, :except => [:show, :index, :print_song]
 
   def create
     @song = Song.create(song_params)
@@ -42,19 +42,7 @@ class SongsController < ApplicationController
   end
 
   def print_song
-    @song = Song.find params[:id]
-    @compiler = SongdownCompiler.new(
-      :input => @song.content,
-      :key => @song.key
-    )
-
-    if params[:key]
-      @compiler.change_key params[:key]
-    end
-
-    @song_key = @compiler.key
-    @song_html = @compiler.to_html
-
+    handle_show
     render :layout => 'print_song'
   end
 
@@ -70,18 +58,7 @@ class SongsController < ApplicationController
   end
 
   def show
-    @song = Song.find params[:id]
-    @compiler = SongdownCompiler.new(
-      :input => @song.content,
-      :key => @song.key
-    )
-
-    if params[:key]
-      @compiler.change_key params[:key]
-    end
-
-    @song_key = @compiler.key
-    @song_html = @compiler.to_html
+    handle_show
     IncrementSongViewCounterJob.perform_later @song.id
   end
 
@@ -94,5 +71,20 @@ class SongsController < ApplicationController
         :key,
         :youtube_url
       )
+    end
+
+    def handle_show
+      @song = Song.find params[:id]
+      @compiler = SongdownCompiler.new(
+        :input => @song.content,
+        :key => @song.key
+      )
+
+      if params[:key]
+        @compiler.change_key params[:key]
+      end
+
+      @song_key = @compiler.key
+      @song_html = @compiler.to_html
     end
 end
