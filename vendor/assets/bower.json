@@ -5,6 +5,7 @@
     "roboto-fontface": "latest",
     "dragula": "latest",
     "lodash": "latest",
-    "autosize": "latest"
+    "autosize": "latest",
+    "jquery-loading-overlay": "git://github.com/gasparesganga/jquery-loading-overlay"
   }
 }

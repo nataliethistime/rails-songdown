@@ -16,6 +16,7 @@
 //= require lodash/dist/lodash
 //= require dragula/dist/dragula
 //= require autosize/dist/autosize
+//= require jquery-loading-overlay/src/loadingoverlay
 //
 //= require jquery-mods
 //= require songdown

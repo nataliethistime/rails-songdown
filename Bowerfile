@@ -4,3 +4,5 @@ asset 'roboto-fontface'
 asset 'dragula'
 asset 'lodash'
 asset 'autosize'
+
+asset 'jquery-loading-overlay', :github => 'gasparesganga/jquery-loading-overlay'

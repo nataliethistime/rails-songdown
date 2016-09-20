@@ -30,6 +30,10 @@ body {
   border-color: red !important;
 }
 
+.turbolinks-progress-bar {
+  visibility: hidden;
+}
+
 hr {
   border-color: black;
   border-width: 1px;
