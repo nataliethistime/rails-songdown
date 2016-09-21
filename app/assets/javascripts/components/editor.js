@@ -1,23 +1,29 @@
 'use strict';
 
 (function() {
-  var _waiting = false;
+  var _timeout = '';
 
-  function postInput($inputEl, $outputEl) {
+  function postInput() {
+    var $inputEl = $('#songdown_editor_input');
+    var $outputEl = $('#songdown_editor_output');
+
     Songdown.postData('/api/compile_songdown', {
-      input: $inputEl.refresh().val()
+      input: $inputEl.val()
     }, function(data) {
-      _waiting = false;
-      $outputEl.refresh().html(data.output);
+      $outputEl.html(data.output);
+      clearTimeout(_timeout);
+      _timeout = '';
     });
   }
 
-  function setupEditor($inputEl, $outputEl) {
+  function setupEditor($inputEl) {
     $inputEl.on('keydown', function(e) {
-      if (!_waiting) {
-        _waiting = true;
-        setTimeout(_.partial(postInput, $inputEl, $outputEl), 3000);
+      if (_timeout) {
+        clearTimeout(_timeout);
+        _timeout = '';
       }
+
+      _timeout = setTimeout(postInput, 3000);
     });
   }
 
@@ -26,7 +32,7 @@
     var $outputEl = $('#songdown_editor_output');
 
     if ($inputEl.exists() && $outputEl.exists()) {
-      setupEditor($inputEl, $outputEl);
+      setupEditor($inputEl);
     }
   });
 })();
