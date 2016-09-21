@@ -53,3 +53,9 @@ textarea {
   color: red;
   padding: 10px;
 }
+
+.growlyflash {
+  cursor: pointer;
+  position: fixed !important;
+  z-index: 100;
+}

@@ -34,10 +34,7 @@
 
             <td>
               <%= form_for user,
-                :url => {
-                  :controller => 'admin',
-                  :action => 'reassign_role'
-                },
+                :url => admin_reassign_role_path,
                 :html => {
                   :class => 'pure-form'
                 },
@@ -50,7 +47,7 @@
                 ] %>
                 <%= f.hidden_field :id, :value => user.id %>
 
-                <%= f.submit 'Reassign Role', :class => 'pure-button pure-button-primary' %>
+                <%= f.submit 'Change Role', :class => 'pure-button pure-button-primary' %>
               <% end %>
             </td>
           </tr>

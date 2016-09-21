@@ -11,25 +11,30 @@ class AdminController < ApplicationController
     user = User.find user_params[:id]
 
     if user
+      if user.id == @current_user.id
+        flash[:error] = 'You cannot change your own role'
+        return redirect_to admin_path
+      end
+
       user.role = user_params[:role]
 
       if user.save :validate => false
-        flash[:success] = 'Successfully updated user role.'
+        flash[:success] = 'Successfully updated user role'
         redirect_to :controller => 'admin', :action => 'index'
       else
         flash[:error] = 'Failed to update user role.'
-        render 'index'
+        redirect_to admin_path
       end
     else
       flash[:error] = 'User not found.'
-      render 'index'
+      redirect_to admin_path
     end
   end
 
   def reset_statistics
     Song.reset_views_count
 
-    flash[:success] = 'Successfully reset statistics.'
+    flash[:success] = 'Successfully reset statistics'
     redirect_to admin_path
   end
 
