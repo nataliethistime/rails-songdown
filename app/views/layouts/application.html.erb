@@ -9,6 +9,8 @@
     <!-- Disable Turbolinks caching because it looks weird to me. No other reason. Really. -->
     <meta name="turbolinks-cache-control" content="no-cache">
 
+    <%= growlyflash_static_notices %>
+
     <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Roboto+Mono',
       'data-turbolinks-track' => true
     %>
@@ -23,12 +25,6 @@
       <%= render 'layouts/menu'%>
 
       <div id="main">
-        <p>
-          <% flash.each do |name, message| %>
-            <%= content_tag :div, message, :class => name %>
-          <% end %>
-        </p>
-
         <%= yield %>
       </div>
 

@@ -12,7 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require twitter/bootstrap
 //= require turbolinks
+//= require growlyflash
 //= require lodash/dist/lodash
 //= require dragula/dist/dragula
 //= require autosize/dist/autosize

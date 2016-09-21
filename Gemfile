@@ -41,6 +41,11 @@ gem 'puma'
 gem 'execjs'
 gem 'therubyracer'
 
+# Growl-style notifications for flash messages.
+gem 'less-rails'
+gem 'twitter-bootstrap-rails'
+gem 'growlyflash'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
