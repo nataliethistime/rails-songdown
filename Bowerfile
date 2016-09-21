@@ -6,3 +6,4 @@ asset 'lodash'
 asset 'autosize'
 
 asset 'jquery-loading-overlay', :github => 'gasparesganga/jquery-loading-overlay'
+asset 'jquery.serializeJSON'

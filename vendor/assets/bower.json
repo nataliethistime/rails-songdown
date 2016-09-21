@@ -6,6 +6,7 @@
     "dragula": "latest",
     "lodash": "latest",
     "autosize": "latest",
-    "jquery-loading-overlay": "git://github.com/gasparesganga/jquery-loading-overlay"
+    "jquery-loading-overlay": "git://github.com/gasparesganga/jquery-loading-overlay",
+    "jquery.serializeJSON": "latest"
   }
 }

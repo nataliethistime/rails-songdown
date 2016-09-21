@@ -12,6 +12,7 @@
       $.LoadingOverlay('hide');
     }
 
+    $(document).on('turbolinks:visit', showLoadingIndicator);
     $(document).on('turbolinks:click', showLoadingIndicator);
     $(document).on('turbolinks:load', hideLoadingIndicator);
 

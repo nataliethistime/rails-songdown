@@ -74,8 +74,8 @@
         <%= f.submit :class => 'pure-button pure-button-primary' %>
 
         <% if params[:id] %>
-          <%= link_to 'Delete Song', songs_path(@song),
-            :method => 'delete',
+          <%= link_to 'Delete Song', song_path(@song),
+            :method => :delete,
             :class => 'pure-button pure-button-danger',
             :data => {
               :confirm => "Are you sure you want to delete \"#{@song.title}\"?"

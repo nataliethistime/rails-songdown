@@ -19,6 +19,7 @@
 //= require dragula/dist/dragula
 //= require autosize/dist/autosize
 //= require jquery-loading-overlay/src/loadingoverlay
+//= require jquery.serializeJSON/jquery.serializejson
 //
 //= require jquery-mods
 //= require songdown

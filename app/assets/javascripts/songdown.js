@@ -33,7 +33,7 @@ var SongdownGlobal = function() {
 
     $.ajax({
       url: url,
-      type: 'post',
+      type: data._method || 'post',
       data: JSON.stringify(data),
       contentType: 'application/json; charset=utf-8',
       traditional: true,
