@@ -13,10 +13,16 @@ Songdown is a web app for storing chord charts.
 
 ## Versions
 
-### 0.1.3
+### 0.2.0
 
 - Removed meme and Batman reference from home page.
-- Minor change to editor page.
+- Fix editor page not working.
+- Add loading indicator.
+- Performance improvements (using Turbolinks).
+- Added a warning for those using the site with JavaScript disabled.
+- Fixed bug with the order of setlist items getting muddled.
+- Made the notifications look nice.
+- Other minor changes nobody will notice.
 
 ### 0.1.2
 
