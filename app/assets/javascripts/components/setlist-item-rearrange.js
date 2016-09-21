@@ -28,8 +28,10 @@
       });
     });
 
-    Songdown.postData(
-      window.location.href.replace(/edit_items$/, 'rearrange_items'),
+    var url = window.location.href
+      .replace(/edit_items$/, 'rearrange_items');
+
+    Songdown.postData(url,
       {
         items: items
       },

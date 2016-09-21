@@ -73,7 +73,7 @@ class SetlistsController < ApplicationController
       @setlist_item = @setlist.setlist_items.find params[:id]
       @setlist_item.destroy
 
-      redirect_to setlist_edit_items_path(:id => @setlist.id)
+      redirect_to setlist_edit_items_path(@setlist)
     else
       # TODO
     end
