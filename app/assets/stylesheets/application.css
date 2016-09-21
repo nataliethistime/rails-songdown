@@ -47,3 +47,9 @@ textarea {
   overflow-y: hidden;
   min-height: 300px;
 }
+
+#noscript-warning {
+  text-align: center;
+  color: red;
+  padding: 10px;
+}

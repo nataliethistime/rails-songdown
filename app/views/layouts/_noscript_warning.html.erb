@@ -1,0 +1,20 @@
+<div id="noscript-warning">
+  Warning: you have JavaScript disabled.
+  JavaScript is required for Songdown to function properly.
+  Please enable it and refresh the page.
+</div>
+
+<script type="text/javascript" id="noscript-warning-remover">
+  (function() {
+    function removeNode(nodeId) {
+      var el = document.getElementById(nodeId);
+
+      if (el) {
+        el.parentNode.removeChild(el);
+      }
+    }
+
+    removeNode('noscript-warning');
+    removeNode('noscript-warning-remover');
+  })();
+</script>
