@@ -2,16 +2,16 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.6'
+gem 'rails', '5.0.0'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails'
 
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -19,20 +19,14 @@ gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.0'
-
-# bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0', group: :doc
-
 # Securely store passwords
-gem 'bcrypt-ruby', '~> 3.1', '>= 3.1.5'
+gem 'bcrypt-ruby'
 
 # Markdown parsing
-gem 'kramdown', '~> 1.12'
+gem 'kramdown'
 
 # Bower packages
-gem 'bower-rails', '~> 0.10.0'
+gem 'bower-rails'
 
 # Puma instead of WEBrick.
 gem 'puma'
