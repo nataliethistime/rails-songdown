@@ -2,7 +2,9 @@
 
 (function() {
   Songdown.onReady(function() {
-    $('form').off().on('submit', function(e) {
+    $('form:not(.custom-form)').off().on('submit', function(e) {
+      console.log('[turbolinks-forms] handling form');
+
       e.preventDefault();
 
       if (this.method === 'get') {
