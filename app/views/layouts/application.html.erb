@@ -9,8 +9,6 @@
     <!-- Disable Turbolinks caching because it looks weird to me. No other reason. Really. -->
     <meta name="turbolinks-cache-control" content="no-cache">
 
-    <%= growlyflash_static_notices %>
-
     <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Roboto+Mono',
       'data-turbolinks-track' => true
     %>
@@ -21,7 +19,6 @@
   </head>
 
   <body>
-    <div id="notifications" data-turbolinks-permanent></div>
     <div id="layout">
       <%= render 'layouts/noscript_warning' %>
       <%= render 'layouts/menu'%>
