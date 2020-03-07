@@ -35,7 +35,7 @@ class SetlistsController < ApplicationController
     @setlist = @current_user.setlists.new setlist_params
 
     if @setlist.save
-      flash[:success] = 'Successfully created setlist.'
+      flash[:notice] = 'Successfully created setlist.'
       redirect_to @setlist
     else
       render 'new'
@@ -49,7 +49,7 @@ class SetlistsController < ApplicationController
       @setlist_item = @setlist.setlist_items.new setlist_item_params
 
       if @setlist_item.save
-        flash[:success] = 'Successfully added song to setlist'
+        flash[:notice] = 'Successfully added song to setlist'
         redirect_to setlist_edit_items_path(:id => params[:setlist_id])
       else
         render 'add_items'
@@ -123,7 +123,7 @@ class SetlistsController < ApplicationController
     @setlist = @current_user.setlists.find params[:id]
 
     if @setlist.update setlist_params
-      flash[:success] = 'Setlist updated.'
+      flash[:notice] = 'Setlist updated.'
       redirect_to @setlist
     else
       render 'edit'

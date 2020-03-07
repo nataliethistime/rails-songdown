@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      flash[:success] = 'Successfully created account - please sign in.'
+      flash[:notice] = 'Successfully created account - please sign in.'
       redirect_to '/'
     else
       render :template => 'lobby/register'

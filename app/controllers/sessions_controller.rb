@@ -10,14 +10,14 @@ class SessionsController < ApplicationController
       session[:user_id] = authorized_user.id
       redirect_to home_path
     else
-      flash[:error] = 'Username or password incorrect'
+      flash[:alert] = 'Username or password incorrect'
       render :template => 'lobby/index'
     end
   end
 
   def destroy
     reset_session
-    flash[:success] = 'You have been logged out'
+    flash[:notice] = 'You have been logged out'
     redirect_to root_path
   end
 end

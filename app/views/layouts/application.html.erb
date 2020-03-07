@@ -23,6 +23,17 @@
       <%= render 'layouts/noscript_warning' %>
       <%= render 'layouts/menu'%>
 
+      <% if notice %>
+        <div>
+          <%= notice %>
+        </div>
+      <% end %>
+      <% if alert %>
+        <div>
+          <%= alert %>
+        </div>
+      <% end %>
+
       <div id="main">
         <%= yield %>
       </div>

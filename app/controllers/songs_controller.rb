@@ -10,7 +10,7 @@ class SongsController < ApplicationController
     @song = Song.create(song_params)
 
     if @song.save
-      flash[:success] = 'Successfully created new song.'
+      flash[:notice] = 'Successfully created new song.'
       redirect_to @song
     else
       render 'new'
@@ -50,7 +50,7 @@ class SongsController < ApplicationController
     @song = Song.find params[:id]
 
     if @song.update song_params
-      flash[:success] = 'Song updated.'
+      flash[:notice] = 'Song updated.'
       redirect_to @song
     else
       render 'edit'

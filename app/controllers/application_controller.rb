@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   protected
     def handle_not_logged_in
       reset_session
-      flash[:error] = 'You need to be logged in to view that page.'
+      flash[:alert] = 'You need to be logged in to view that page.'
       redirect_to root_path
       return false
     end
@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
       if @current_user && @current_user.is_admin?
         return true
       else
-        flash[:error] = "You don't have permission to do that."
+        flash[:alert] = "You don't have permission to do that."
         redirect_to home_path
         return false
       end
@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
       if @current_user && @current_user.is_editor?
         return true
       else
-        flash[:error] = "You don't have permission to do that."
+        flash[:alert] = "You don't have permission to do that."
         redirect_to home_path
         return false
       end
