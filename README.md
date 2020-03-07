@@ -9,6 +9,16 @@ Songdown is a web app for storing chord charts.
   - Add a YouTube video to a song
   - … and much more!
 
+# Running
+
+Requires Ruby version `2.6.5`
+
+```bash
+bundle install
+rails bower:install # Ensure you have node, npm, and bower installed on your system
+rails s
+```
+
 # Changes
 
 ## Versions
