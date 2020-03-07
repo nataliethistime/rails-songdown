@@ -2,10 +2,11 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '5.0.0'
+gem 'rails', '5.0.1'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# Using an older version per: https://superuser.com/a/1407787
+gem 'sqlite3', '~> 1.3.0'
 
 # Use SCSS for stylesheets
 gem 'sass-rails'
@@ -31,14 +32,8 @@ gem 'bower-rails'
 # Puma instead of WEBrick.
 gem 'puma'
 
-# JavaScript runtime
-gem 'execjs'
-gem 'therubyracer'
-
-# Growl-style notifications for flash messages.
-gem 'less-rails'
-gem 'twitter-bootstrap-rails'
-gem 'growlyflash'
+# Environment configuration
+gem 'dotenv-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

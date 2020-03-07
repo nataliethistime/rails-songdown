@@ -21,4 +21,5 @@
 # Vim makes these for some reason...
 *.swp
 
-/config/*.yml
+.DS_Store
+.env
