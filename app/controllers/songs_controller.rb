@@ -2,10 +2,6 @@
 require 'songdown_compiler'
 
 class SongsController < ApplicationController
-
-  before_filter :authenticate_user, :except => []
-  before_filter :ensure_user_is_editor, :except => [:show, :index, :print_song]
-
   def create
     @song = Song.create(song_params)
 

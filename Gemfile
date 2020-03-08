@@ -20,9 +20,6 @@ gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
-# Securely store passwords
-gem 'bcrypt-ruby'
-
 # Markdown parsing
 gem 'kramdown'
 
@@ -31,6 +28,9 @@ gem 'puma'
 
 # Environment configuration
 gem 'dotenv-rails'
+
+# Use Devise for authentication
+gem 'devise'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

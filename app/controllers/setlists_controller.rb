@@ -1,8 +1,4 @@
 class SetlistsController < ApplicationController
-
-  before_filter :authenticate_user, :except => []
-  before_filter :ensure_user_is_editor, :except => [:show]
-
   def add_items
     @setlist = Setlist.find params[:setlist_id]
 
@@ -32,7 +28,7 @@ class SetlistsController < ApplicationController
   end
 
   def create
-    @setlist = @current_user.setlists.new setlist_params
+    @setlist = current_user.setlists.new setlist_params
 
     if @setlist.save
       flash[:notice] = 'Successfully created setlist.'
@@ -60,7 +56,7 @@ class SetlistsController < ApplicationController
   end
 
   def destroy
-    @setlist = @current_user.setlists.find params[:id]
+    @setlist = current_user.setlists.find params[:id]
     @setlist.destroy
 
     redirect_to setlists_path
@@ -80,25 +76,25 @@ class SetlistsController < ApplicationController
   end
 
   def edit
-    @setlist = @current_user.setlists.find params[:id]
+    @setlist = current_user.setlists.find params[:id]
   end
 
   def edit_items
-    @setlist = @current_user.setlists.find params[:setlist_id]
+    @setlist = current_user.setlists.find params[:setlist_id]
     @setlist_items = @setlist.setlist_items.all.order(:position)
   end
 
   def index
-    @upcoming_setlists = @current_user.setlists.where('setlists.date >= ?', Time.now)
-    @past_setlists = @current_user.setlists.where('setlists.date < ?', Time.now)
+    @upcoming_setlists = current_user.setlists.where('setlists.date >= ?', Time.now)
+    @past_setlists = current_user.setlists.where('setlists.date < ?', Time.now)
   end
 
   def new
-    @setlist = @current_user.setlists.new
+    @setlist = current_user.setlists.new
   end
 
   def rearrange_items
-    @setlist = @current_user.setlists.find params[:setlist_id]
+    @setlist = current_user.setlists.find params[:setlist_id]
     updates = {}
 
     params[:items].each do |item|
@@ -120,7 +116,7 @@ class SetlistsController < ApplicationController
   end
 
   def update
-    @setlist = @current_user.setlists.find params[:id]
+    @setlist = current_user.setlists.find params[:id]
 
     if @setlist.update setlist_params
       flash[:notice] = 'Setlist updated.'

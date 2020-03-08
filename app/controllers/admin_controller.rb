@@ -1,6 +1,5 @@
 class AdminController < ApplicationController
 
-  before_filter :authenticate_user, :except => []
   before_filter :ensure_user_is_admin, :except => []
 
   def index
@@ -11,7 +10,7 @@ class AdminController < ApplicationController
     user = User.find user_params[:id]
 
     if user
-      if user.id == @current_user.id
+      if user.id == current_user.id
         flash[:alert] = 'You cannot change your own role'
         return redirect_to admin_path
       end

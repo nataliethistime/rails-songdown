@@ -2,7 +2,6 @@
 class Song < ActiveRecord::Base
   validates :artist, :presence => true
   validates :title, :presence => true
-  validates :content, :presence => true
 
   before_save :handle_full_name
   after_save :update_relevant_setlist_items

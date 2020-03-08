@@ -9,11 +9,9 @@
     </div>
 
     <div class="pure-u-1-2">
-      <% if @current_user.is_editor? %>
-        <div style="text-align: right; margin-top: 0.83em;">
-          <%= link_to 'New Song', new_song_path, :class => 'pure-button pure-button-primary' %>
-        </div>
-      <% end %>
+      <div style="text-align: right; margin-top: 0.83em;">
+        <%= link_to 'New Song', new_song_path, :class => 'pure-button pure-button-primary' %>
+      </div>
     </div>
 
     <% @artists.each do |artist| %>

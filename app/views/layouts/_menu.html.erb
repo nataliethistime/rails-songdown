@@ -1,4 +1,4 @@
-<% if !@current_user.nil? %>
+<% if current_user.present? %>
   <!-- Menu toggle -->
   <a href="#menu" id="menuLink" class="menu-link">
     <!-- Hamburger icon -->
@@ -18,11 +18,9 @@
           <%= link_to 'Songs', songs_path, :class => 'pure-menu-link' %>
         </li>
 
-        <% if @current_user.is_editor? %>
-          <li class="pure-menu-item">
-            <%= link_to 'Setlists', setlists_path, :class => 'pure-menu-link' %>
-          </li>
-        <% end %>
+        <li class="pure-menu-item">
+          <%= link_to 'Setlists', setlists_path, :class => 'pure-menu-link' %>
+        </li>
 
         <li class="pure-menu-item">
           <%= link_to 'Editor', editor_path, :class => 'pure-menu-link' %>
@@ -32,7 +30,7 @@
           <%= link_to 'Settings', settings_path, :class => 'pure-menu-link' %>
         </li>
 
-        <% if @current_user.is_admin? %>
+        <% if current_user.is_admin? %>
           <li class="pure-menu-item">
             <%= link_to 'Admin', admin_path, :class => 'pure-menu-link' %>
           </li>
@@ -47,7 +45,7 @@
         </li>
 
         <li class="pure-menu-item">
-          <%= link_to 'Logout', logout_path, :class => 'pure-menu-link' %>
+          <%= link_to 'Logout', destroy_session_path(current_user), :class => 'pure-menu-link', :method => :delete %>
         </li>
       </ul>
     </div>

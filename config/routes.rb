@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  devise_for :users
+
   resources :setlists do
     get 'edit_items' => 'setlists#edit_items'
     get 'add_items' => 'setlists#add_items'
@@ -16,7 +18,6 @@ Rails.application.routes.draw do
   get 'admin'    => 'admin#index'
   get 'editor'   => 'static#editor'
   get 'home'     => 'users#home'
-  get 'logout'   => 'sessions#destroy'
   get 'profile'  => 'users#profile'
   get 'register' => 'lobby#register'
   get 'settings' => 'users#settings'
@@ -24,7 +25,6 @@ Rails.application.routes.draw do
   get 'help' => 'help#index'
   get 'help/songdown_syntax' => 'help#songdown_syntax'
 
-  post 'login' => 'sessions#create'
   post 'register'   => 'users#create'
 
   post 'admin/reassign_role' => 'admin#reassign_role'
@@ -34,5 +34,5 @@ Rails.application.routes.draw do
   post 'api/compile_songdown' => 'api#compile_songdown'
   post 'api/transpose_song' => 'api#transpose_song'
 
-  root 'lobby#index'
+  root 'users#home'
 end

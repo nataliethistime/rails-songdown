@@ -1,6 +1,4 @@
 class StaticController < ApplicationController
-  before_filter :authenticate_user, :except => []
-
-  def about 
+  def about
   end
 end
