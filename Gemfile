@@ -4,9 +4,9 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '5.0.1'
 
-# Use sqlite3 as the database for Active Record
-# Using an older version per: https://superuser.com/a/1407787
-gem 'sqlite3', '~> 1.3.0'
+# Use PostgreSQL as our database
+# For some reason we need to use 0.20 to get it to work. See here: https://stackoverflow.com/a/44817108
+gem 'pg', '~> 0.20'
 
 # Use SCSS for stylesheets
 gem 'sass-rails'
