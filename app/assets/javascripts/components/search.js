@@ -1,6 +1,6 @@
-'use strict'
+'use strict';
 
-;(function() {
+(function() {
   function moveCursorToEnd(el) {
     if (typeof el.selectionStart === "number") {
       el.selectionStart = el.selectionEnd = el.value.length;

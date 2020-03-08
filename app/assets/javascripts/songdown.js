@@ -1,26 +1,28 @@
-'use strict'
+class SongdownGlobal {
+  constructor() {
+    this._readyCallbacks = [];
+    document.addEventListener('turbolinks:load', () => this.handleReady());
+  }
 
-var SongdownGlobal = function() {
-  this._readyCallbacks = []
-
-  this.onReady = function(callback) {
+  onReady(callback) {
     if (typeof callback === 'function') {
       this._readyCallbacks.push(callback)
     }
   }
 
-  this.handleReady = function() {
-    console.log('[Songdown.handleReady]: handling callbacks')
+  handleReady() {
+    console.log(`[Songdown.handleReady]: ${this._readyCallbacks.length} handling callbacks`);
 
-    _.each(this._readyCallbacks, function(callback) {
-      callback.call(window)
-    })
+    for (var cb of this._readyCallbacks) {
+      try {
+        cb();
+      } catch (e) {
+        console.error(e);
+      }
+    }
   }
 
-  $(document)
-    .on('turbolinks:load', _.bind(this.handleReady, this))
-
-  this.postData = function(url, data, successCallback, errorCallback) {
+  postData(url, data, successCallback, errorCallback) {
     if (typeof successCallback !== 'function') {
       successCallback = _.noop;
     }
@@ -43,4 +45,4 @@ var SongdownGlobal = function() {
   }
 }
 
-window.Songdown = new SongdownGlobal()
+window.Songdown = new SongdownGlobal();

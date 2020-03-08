@@ -26,9 +26,6 @@ gem 'bcrypt-ruby'
 # Markdown parsing
 gem 'kramdown'
 
-# Bower packages
-gem 'bower-rails'
-
 # Puma instead of WEBrick.
 gem 'puma'
 

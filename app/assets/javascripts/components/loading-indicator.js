@@ -1,22 +1,18 @@
-'use strict';
+Songdown.onReady(() => {
+  $.LoadingOverlaySetup();
 
-(function() {
-  Songdown.onReady(function() {
-    $.LoadingOverlaySetup();
+  function showLoadingIndicator() {
+    $.LoadingOverlay('show');
+  }
 
-    function showLoadingIndicator() {
-      $.LoadingOverlay('show');
-    }
+  function hideLoadingIndicator() {
+    $.LoadingOverlay('hide');
+  }
 
-    function hideLoadingIndicator() {
-      $.LoadingOverlay('hide');
-    }
+  $(document).on('turbolinks:visit', showLoadingIndicator);
+  $(document).on('turbolinks:click', showLoadingIndicator);
+  $(document).on('turbolinks:load', hideLoadingIndicator);
 
-    $(document).on('turbolinks:visit', showLoadingIndicator);
-    $(document).on('turbolinks:click', showLoadingIndicator);
-    $(document).on('turbolinks:load', hideLoadingIndicator);
-
-    $(document).ajaxStart(showLoadingIndicator);
-    $(document).ajaxStop(hideLoadingIndicator);
-  });
-})();
+  $(document).ajaxStart(showLoadingIndicator);
+  $(document).ajaxStop(hideLoadingIndicator);
+});
