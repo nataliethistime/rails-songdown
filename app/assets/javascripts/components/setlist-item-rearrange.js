@@ -1,5 +1,3 @@
-'use strict';
-
 (function() {
   function handleItemDrop() {
     // Make sure the "Rearrange Songs" button is shown.

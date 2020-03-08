@@ -1,5 +1,3 @@
-'use strict';
-
 (function() {
   function int(number) {
     return parseInt(number, 10);

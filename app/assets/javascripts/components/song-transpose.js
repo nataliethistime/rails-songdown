@@ -1,5 +1,3 @@
-'use strict';
-
 (function() {
   function handleKeySelector($el) {
     $el.on('change', function() {
