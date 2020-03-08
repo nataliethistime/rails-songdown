@@ -32,6 +32,9 @@ gem 'dotenv-rails'
 # Use Devise for authentication
 gem 'devise'
 
+# CanCan for role management
+gem 'cancancan'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

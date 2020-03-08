@@ -29,7 +29,7 @@ class SongsController < ApplicationController
       params[:query].strip!
     end
 
-    @songlist = Song.build_songlist Song.search params[:query]
+    @songlist = Song.build_songlist(Song.accessible_by(current_ability).search(params[:query]))
     @artists = @songlist.keys.sort
   end
 
