@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get 'profile'  => 'users#profile'
   get 'register' => 'lobby#register'
   get 'settings' => 'users#settings'
+  patch 'settings' => 'users#update'
 
   get 'help' => 'help#index'
   get 'help/songdown_syntax' => 'help#songdown_syntax'
