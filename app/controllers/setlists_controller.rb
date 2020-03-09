@@ -85,8 +85,7 @@ class SetlistsController < ApplicationController
   end
 
   def index
-    @upcoming_setlists = current_user.setlists.where('setlists.date >= ?', Time.now)
-    @past_setlists = current_user.setlists.where('setlists.date < ?', Time.now)
+    @setlists = Setlist.accessible_by(current_ability)
   end
 
   def new
