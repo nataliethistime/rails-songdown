@@ -25,4 +25,15 @@ class User < ActiveRecord::Base
   def owns_setlist?(setlist)
     id == setlist.user.id
   end
+
+  def name
+    "#{first_name} #{last_name}"
+  end
+
+  def name_and_username
+    buffer = []
+    buffer << name if name.present?
+    buffer << (name.present? ? "(#{username})" : "#{username}") if username.present?
+    buffer.join ' '
+  end
 end

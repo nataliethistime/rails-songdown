@@ -6,6 +6,13 @@
   <%= form_for current_user, url: settings_path, html: { class: 'pure-form pure-form-stacked' } do |f| %>
     <%= f.label :username %>
     <%= f.text_field :username %>
-    <%= f.submit class: 'pure-button pure-button-primary' %>
+
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+
+    <%= f.submit 'Update Settings', class: 'pure-button pure-button-primary' %>
   <% end %>
 </div>
