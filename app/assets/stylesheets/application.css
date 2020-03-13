@@ -10,6 +10,8 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ *= require pure
+ *= require side-menu
  *= require_tree .
  *= require_self
  */
@@ -25,10 +27,6 @@ body {
 
 .field_with_errors * {
   border-color: red !important;
-}
-
-.turbolinks-progress-bar {
-  visibility: hidden;
 }
 
 hr {
@@ -47,10 +45,4 @@ textarea {
   text-align: center;
   color: red;
   padding: 10px;
-}
-
-.growlyflash {
-  cursor: pointer;
-  position: fixed !important;
-  z-index: 100;
 }
