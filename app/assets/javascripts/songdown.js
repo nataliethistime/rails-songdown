@@ -24,11 +24,11 @@ class SongdownGlobal {
 
   postData(url, data, successCallback, errorCallback) {
     if (typeof successCallback !== 'function') {
-      successCallback = _.noop;
+      successCallback = function(){};
     }
 
     if (typeof errorCallback !== 'function') {
-      errorCallback = _.noop;
+      errorCallback = function(){};
     }
 
     console.log('[Songdown.postData]: posting to', url, 'with', data);
