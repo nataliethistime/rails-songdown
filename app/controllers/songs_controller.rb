@@ -79,6 +79,7 @@ class SongsController < ApplicationController
 
       if params[:key]
         @compiler.change_key params[:key]
+        @song.key = params[:key]
       end
 
       @song_key = @compiler.key

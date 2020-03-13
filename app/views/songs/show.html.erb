@@ -17,29 +17,19 @@
         </span>
       </p>
 
-      <%= form_tag '', :class => 'pure-form pure-form-stacked' do %>
-        <label>
-          <%= label_tag 'Key:' %>
-        </label>
+      <%= form_for @song, method: 'get', html: { class: 'pure-form pure-form-stacked' } do |f| %>
+        <%= f.label :key %>
 
-        <%= select_tag :key,
-          options_for_select([
-            ['C major / A minor', 'C'],
-            ['Db major / Bb minor', 'Db'],
-            ['D major / B minor', 'D'],
-            ['Eb major / C minor', 'Eb'],
-            ['E major / C# minor', 'E'],
-            ['F major / D minor', 'F'],
-            ['Gb major / Eb minor', 'Gb'],
-            ['G major / E minor', 'G'],
-            ['Ab major / F minor', 'Ab'],
-            ['A major / F# minor', 'A'],
-            ['Bb major / G minor', 'Bb'],
-            ['B major / G# minor', 'B'],
-          ], @song_key),
-          :style => 'width: 100%',
-          :id => 'song_transpose'
+        <%=
+          select_tag(
+            :key,
+            options_for_select(song_keys, @song.key),
+            style: 'width: 100%',
+            onchange: %q!this.form.querySelector('input[type="submit"]').click()!
+          )
         %>
+
+        <%= f.submit hidden: true %>
       <% end %>
 
       <p>
