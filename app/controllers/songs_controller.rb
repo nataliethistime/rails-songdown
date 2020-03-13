@@ -4,6 +4,7 @@ require 'songdown_compiler'
 class SongsController < ApplicationController
   def create
     @song = Song.create(song_params)
+    @song.user_id = current_user.id
 
     if @song.save
       flash[:notice] = 'Successfully created new song.'
