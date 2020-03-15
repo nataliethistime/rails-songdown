@@ -16,7 +16,6 @@ Rails.application.routes.draw do
 
   get 'about'    => 'static#about'
   get 'admin'    => 'admin#index'
-  get 'editor'   => 'static#editor'
   get 'home'     => 'users#home'
   get 'profile'  => 'users#profile'
   get 'register' => 'lobby#register'
