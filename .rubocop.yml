@@ -1,0 +1,12 @@
+AllCops:
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'bin/**/*'
+
+Layout/LineLength:
+  Max: 100
+
+Layout/SpaceInsideArrayPercentLiteral:
+  Enabled: false
