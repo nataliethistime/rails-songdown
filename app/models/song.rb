@@ -40,8 +40,8 @@ class Song < ActiveRecord::Base
 
   private
     def handle_full_name
-      self.full_name = "#{self.artist} - #{self.title}"
-      self.full_name_searchable = "#{self.artist} #{self.title}"
+      self.full_name = "#{self.artist} - #{self.title}".strip
+      self.full_name_searchable = "#{self.artist} #{self.title}".strip.downcase
     end
 
     def update_relevant_setlist_items
