@@ -18,14 +18,11 @@ Rails.application.routes.draw do
   get 'admin'    => 'admin#index'
   get 'home'     => 'users#home'
   get 'profile'  => 'users#profile'
-  get 'register' => 'lobby#register'
   get 'settings' => 'users#settings'
   patch 'settings' => 'users#update'
 
   get 'help' => 'help#index'
   get 'help/songdown_syntax' => 'help#songdown_syntax'
-
-  post 'register'   => 'users#create'
 
   post 'admin/reassign_role' => 'admin#reassign_role'
   get 'admin/reset_statistics' => 'admin#reset_statistics'
