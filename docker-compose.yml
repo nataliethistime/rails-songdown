@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  adminer:
+    image: adminer:latest
+    container_name: songdown_adminer
+    restart: always
+    ports:
+      - '8080:8080'
+
+  db:
+    image: postgres:12
+    container_name: songdown_db
+    restart: always
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: password
+
+  web:
+    build: .
+    container_name: songdown_web
+    command: rails server --port 3000 --binding '0.0.0.0'
+    restart: always
+    expose:
+      - 3000
+    ports:
+      - '3000:3000'
+    volumes:
+      - '.:/usr/src/app'
+    depends_on:
+      - db

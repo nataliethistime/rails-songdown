@@ -11,12 +11,14 @@ Songdown is a web app for storing chord charts.
 
 # Running
 
-Requires Ruby version `2.6.5`
+The project can be run with Docker and Docker Compose.
 
 ```bash
-bundle install
-rails bower:install # Ensure you have node, npm, and bower installed on your system
-rails s
+docker-compose up --build
+
+# First time database initialization:
+docker-compose run web rails db:create
+docker-compose run web rails db:migrate
 ```
 
 # Changes
