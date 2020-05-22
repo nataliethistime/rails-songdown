@@ -24,7 +24,7 @@
       <% end %>
     </div>
 
-    <div class="pure-u-2-3">
+    <div class="pure-u-1">
       <h2>Songs</h2>
 
       <table class="pure-table pure-table-bordered">
@@ -37,6 +37,9 @@
             <th>
               Song
             </th>
+
+            <th>
+            </th>
           </tr>
         </thead>
 
@@ -44,7 +47,23 @@
           <% @setlist_items.each do |song| %>
             <tr>
               <td>
-                <%= song.key %>
+                <%= form_tag setlist_update_song_path(setlist_id: @setlist.id, song_id: song.id), :class => 'pure-form' do %>
+                  <%= hidden_field_tag :setlist_item_id, song.id %>
+                  <%= select_tag(:key, options_for_select([
+                    ['C major / A minor', 'C'],
+                    ['Db major / Bb minor', 'Db'],
+                    ['D major / B minor', 'D'],
+                    ['Eb major / C minor', 'Eb'],
+                    ['E major / C# minor', 'E'],
+                    ['F major / D minor', 'F'],
+                    ['Gb major / Eb minor', 'Gb'],
+                    ['G major / E minor', 'G'],
+                    ['Ab major / F minor', 'Ab'],
+                    ['A major / F# minor', 'A'],
+                    ['Bb major / G minor', 'Bb'],
+                    ['B major / G# minor', 'B'],
+                  ], song.key), :onchange => 'this.form.submit()') %>
+                <% end %>
               </td>
 
               <td>
@@ -53,10 +72,44 @@
                   :class => 'fancy-link'
                 %>
               </td>
+
+              <td>
+                <%= link_to 'Remove',
+                  setlist_items_path(:setlist_id => @setlist.id, :id => song.id),
+                  :method => 'delete',
+                  :class => 'pure-button pure-button-danger',
+                  :data => {
+                    :confirm =>
+                      "Are you sure you want to remove \"#{song.title}\" from the setlist?"
+                  }
+                %>
+              </td>
             </tr>
           <% end %>
         </tbody>
       </table>
+    </div>
+
+    <div class="pure-u-1">
+      <h2>Add a Song</h2>
+
+      <%= form_tag setlist_search_songs_path(@setlist),
+        method: 'post',
+        remote: true,
+        class: 'pure-form custom-form' do
+      %>
+
+        <%= text_field_tag :query, '',
+          autocomplete: 'off',
+          placeholder: 'Enter title or artist'
+        %>
+
+        <%= submit_tag 'Search', class: 'pure-button pure-button-primary' %>
+      <% end %>
+    </div>
+
+    <div class="pure-u-1">
+      <ul id="search-results"></ul>
     </div>
   </div>
 </div>

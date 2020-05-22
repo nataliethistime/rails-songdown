@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     post 'rearrange_items' => 'setlists#rearrange_items'
     post 'change_item_key' => 'setlists#change_item_key'
     delete 'items' => 'setlists#destroy_item'
+    post 'search_songs' => 'setlists#search_songs'
+    get 'add_song' => 'setlists#add_song'
+    get 'update_song' => 'setlists#update_song'
   end
 
   resources :songs
@@ -27,7 +30,6 @@ Rails.application.routes.draw do
   post 'admin/reassign_role' => 'admin#reassign_role'
   get 'admin/reset_statistics' => 'admin#reset_statistics'
 
-  post 'api/search_songs' => 'api#search_songs'
   post 'api/compile_songdown' => 'api#compile_songdown'
   post 'api/transpose_song' => 'api#transpose_song'
 

@@ -12,18 +12,6 @@ class ApiController < ApplicationController
     }
   end
 
-  def search_songs
-    if params[:query].instance_of? String
-      params[:query].strip!
-    end
-
-    @results = Song.search(params[:query]).order(:artist)
-
-    render :json => {
-      :results => @results
-    }
-  end
-
   def transpose_song
     song = Song.find params[:song_id]
 

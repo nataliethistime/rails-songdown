@@ -1,30 +1,11 @@
 class SetlistsController < ApplicationController
-  def add_items
-    @setlist = Setlist.find params[:setlist_id]
-
-    if @setlist
-      @setlist_item = @setlist.setlist_items.new
-    else
-      # TODO
-    end
-  end
-
   def change_item_key
     @setlist = Setlist.find params[:setlist_id]
+    @setlist_item = @setlist.setlist_items.find params[:setlist_item_id]
 
-    if @setlist
-      @setlist_item = @setlist.setlist_items.find params[:setlist_item_id]
-
-      if @setlist_item
-        @setlist_item.key = params[:key]
-        @setlist_item.save
-        redirect_to setlist_edit_items_path(:setlist_id => @setlist.id)
-      else
-        # TODO
-      end
-    else
-      # TODO
-    end
+    @setlist_item.key = params[:key]
+    @setlist_item.save
+    redirect_to setlist_edit_items_path(:setlist_id => @setlist.id)
   end
 
   def create
@@ -38,23 +19,6 @@ class SetlistsController < ApplicationController
     end
   end
 
-  def create_item
-    @setlist = Setlist.find params[:setlist_id]
-
-    if @setlist
-      @setlist_item = @setlist.setlist_items.new setlist_item_params
-
-      if @setlist_item.save
-        flash[:notice] = 'Successfully added song to setlist'
-        redirect_to setlist_edit_items_path(:id => params[:setlist_id])
-      else
-        render 'add_items'
-      end
-    else
-      # TODO
-    end
-  end
-
   def destroy
     @setlist = current_user.setlists.find params[:id]
     @setlist.destroy
@@ -63,16 +27,10 @@ class SetlistsController < ApplicationController
   end
 
   def destroy_item
-    @setlist = Setlist.find params[:setlist_id]
-
-    if @setlist
-      @setlist_item = @setlist.setlist_items.find params[:id]
-      @setlist_item.destroy
-
-      redirect_to setlist_edit_items_path(@setlist)
-    else
-      # TODO
-    end
+    @setlist = current_user.setlists.find params[:setlist_id]
+    @setlist_item = @setlist.setlist_items.find params[:id]
+    @setlist_item.destroy
+    redirect_to @setlist
   end
 
   def edit
@@ -85,7 +43,7 @@ class SetlistsController < ApplicationController
   end
 
   def index
-    @setlists = Setlist.accessible_by(current_ability)
+    @setlists = current_user.setlists.all
   end
 
   def new
@@ -110,7 +68,7 @@ class SetlistsController < ApplicationController
   end
 
   def show
-    @setlist = Setlist.find params[:id]
+    @setlist = current_user.setlists.find params[:id]
     @setlist_items = @setlist.setlist_items.all.order(:position)
   end
 
@@ -125,23 +83,47 @@ class SetlistsController < ApplicationController
     end
   end
 
-  private
-    def setlist_params
-      params.require(:setlist).permit(
-        :title,
-        :date,
-        :notes
-      )
+  def search_songs
+    if params[:query].instance_of? String
+      params[:query].strip!
     end
 
-    def setlist_item_params
-      params.require(:setlist_item).permit(
-        :title,
-        :date,
-        :notes,
-        :key,
-        :song_id,
-        :artist
-      )
+    @setlist = current_user.setlists.find params[:setlist_id]
+    @results = Song.search(params[:query]).order(:artist)
+
+    respond_to do |format|
+      format.js
     end
+  end
+
+  def add_song
+    @setlist = current_user.setlists.find params[:setlist_id]
+    @song = Song.find params[:song_id]
+
+    # TODO: do this better
+    @setlist_item = @setlist.setlist_items.new(
+      song_id: @song.id,
+      artist: @song.artist,
+      title: @song.title,
+      key: @song.key,
+      position: @setlist.setlist_items.count
+    )
+
+    if @setlist_item.save
+      flash[:notice] = 'Successfully added song to setlist'
+      redirect_to @setlist
+    else
+      render 'add_items'
+    end
+  end
+
+  private
+
+  def setlist_params
+    params.require(:setlist).permit(
+      :title,
+      :date,
+      :notes
+    )
+  end
 end
