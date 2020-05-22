@@ -1,5 +1,5 @@
 <li>
-  <%= link_to setlist_add_song_path(setlist_id: @setlist.id, song_id: song_search_result.id) do %>
+  <%= link_to setlist_add_song_path(setlist_id: @setlist.id, song_id: song_search_result.id), class: 'fancy-link' do %>
     <%= song_search_result.artist %> - <%= song_search_result.title %>
   <% end %>
 </li>

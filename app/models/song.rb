@@ -43,16 +43,4 @@ class Song < ActiveRecord::Base
       self.full_name = "#{self.artist} - #{self.title}".strip
       self.full_name_searchable = "#{self.artist} #{self.title}".strip.downcase
     end
-
-    def update_relevant_setlist_items
-      items = SetlistItem.all.where(:song_id => self.id)
-
-      ActiveRecord::Base.transaction do
-        items.each do |item|
-          item.artist = self.artist
-          item.title = self.title
-          item.save
-        end
-      end
-    end
 end

@@ -3,15 +3,10 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :setlists do
-    get 'edit_items' => 'setlists#edit_items'
-    get 'add_items' => 'setlists#add_items'
-    post 'items' => 'setlists#create_item'
-    post 'rearrange_items' => 'setlists#rearrange_items'
-    post 'change_item_key' => 'setlists#change_item_key'
-    delete 'items' => 'setlists#destroy_item'
     post 'search_songs' => 'setlists#search_songs'
     get 'add_song' => 'setlists#add_song'
     get 'update_song' => 'setlists#update_song'
+    delete 'songs' => 'setlists#destroy_song'
   end
 
   resources :songs
