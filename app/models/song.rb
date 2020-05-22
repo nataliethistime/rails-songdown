@@ -4,7 +4,6 @@ class Song < ActiveRecord::Base
   validates :title, :presence => true
 
   before_save :handle_full_name
-  after_save :update_relevant_setlist_items
 
   def self.build_songlist(songs)
     # A `songlist` is an object of the form "Artist name => array of songs"

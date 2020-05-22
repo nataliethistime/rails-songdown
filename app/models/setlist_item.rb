@@ -8,8 +8,8 @@ class SetlistItem < ActiveRecord::Base
   before_validation :handle_create_position
 
   def get_all_positions
-    setlist_items = self.setlist.setlist_items.all.select('position')
-    setlist_items.map { |item| item.position }
+    items = self.setlist.items.all.select('position')
+    items.map { |item| item.position }
   end
 
   private

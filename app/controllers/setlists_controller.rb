@@ -31,7 +31,6 @@ class SetlistsController < ApplicationController
 
   def show
     @setlist = current_user.setlists.find params[:id]
-    @setlist_items = @setlist.setlist_items.all.order(:position)
   end
 
   def update
@@ -60,31 +59,30 @@ class SetlistsController < ApplicationController
   end
 
   def add_song
-    @setlist = current_user.setlists.find params[:setlist_id]
-    @song = Song.find params[:song_id]
+    setlist = current_user.setlists.find params[:setlist_id]
+    song = Song.find params[:song_id]
 
-    @setlist_item = @setlist.setlist_items.new key: @song.key
-    @setlist_item.song = @song
-    @setlist_item.save!
+    item = setlist.items.new key: song.key
+    item.song = song
+    item.save!
 
     flash[:notice] = 'Successfully added song to setlist'
-    redirect_to @setlist
+    redirect_to setlist
   end
 
   def update_song
-    @setlist = current_user.setlists.find params[:setlist_id]
-    @setlist_item = @setlist.items.find params[:song_id]
-
-    @setlist_item.key = params[:key]
-    @setlist_item.save!
-    redirect_to @setlist
+    setlist = current_user.setlists.find params[:setlist_id]
+    setlist_item = setlist.items.find params[:song_id]
+    setlist_item.key = params[:key]
+    setlist_item.save!
+    redirect_to setlist
   end
 
   def destroy_song
-    @setlist = current_user.setlists.find params[:setlist_id]
-    @setlist_item = @setlist.setlist_items.find params[:id]
-    @setlist_item.destroy
-    redirect_to @setlist
+    setlist = current_user.setlists.find params[:setlist_id]
+    setlist_item = setlist.items.find params[:id]
+    setlist_item.destroy
+    redirect_to setlist
   end
 
   private
