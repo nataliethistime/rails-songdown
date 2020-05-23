@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   get 'print_song/:id' => 'songs#print_song'
 
   get 'about'    => 'static#about'
-  get 'admin'    => 'admin#index'
   get 'home'     => 'users#home'
   get 'profile'  => 'users#profile'
   get 'settings' => 'users#settings'
@@ -21,9 +20,6 @@ Rails.application.routes.draw do
 
   get 'help' => 'help#index'
   get 'help/songdown_syntax' => 'help#songdown_syntax'
-
-  post 'admin/reassign_role' => 'admin#reassign_role'
-  get 'admin/reset_statistics' => 'admin#reset_statistics'
 
   post 'api/compile_songdown' => 'api#compile_songdown'
   post 'api/transpose_song' => 'api#transpose_song'

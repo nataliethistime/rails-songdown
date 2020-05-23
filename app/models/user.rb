@@ -8,8 +8,6 @@
 #  username               :string
 #  email                  :string
 #  encrypted_password     :string
-#  salt                   :string
-#  role                   :string           default("user")
 #  reset_password_token   :string
 #  reset_password_sent_at :datetime
 #  remember_created_at    :datetime
@@ -28,7 +26,6 @@
 #  first_name             :string
 #  last_name              :string
 #
-require 'bcrypt'
 
 class User < ActiveRecord::Base
   devise(
@@ -40,14 +37,6 @@ class User < ActiveRecord::Base
   )
 
   has_many :setlists, :dependent => :destroy
-
-  def is_normal_user?
-    role == 'user'
-  end
-
-  def is_admin?
-    role == 'admin'
-  end
 
   def owns_setlist?(setlist)
     id == setlist.user.id

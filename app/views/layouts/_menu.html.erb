@@ -26,12 +26,6 @@
           <%= link_to 'Settings', settings_path, :class => 'pure-menu-link' %>
         </li>
 
-        <% if current_user.is_admin? %>
-          <li class="pure-menu-item">
-            <%= link_to 'Admin', admin_path, :class => 'pure-menu-link' %>
-          </li>
-        <% end %>
-
         <li class="pure-menu-item">
           <%= link_to 'About', about_path, :class => 'pure-menu-link' %>
         </li>
