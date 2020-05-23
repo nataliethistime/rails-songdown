@@ -23,18 +23,6 @@ class Song < ActiveRecord::Base
 
   before_save :handle_full_name
 
-  def self.build_songlist(songs)
-    # A `songlist` is an object of the form "Artist name => array of songs"
-    songlist = {}
-
-    songs.each do |song|
-      songlist[song.artist] ||= []
-      songlist[song.artist].push song
-    end
-
-    songlist
-  end
-
   def self.search(query)
     if query.nil? || query.empty?
       all

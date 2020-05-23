@@ -26,8 +26,7 @@ class SongsController < ApplicationController
 
   def index
     query = params[:query]&.strip&.downcase
-    @songlist = Song.build_songlist(current_user.songs.search(query))
-    @artists = @songlist.keys.sort
+    @songs = current_user.songs.search(query).group_by &:artist
   end
 
   def new
