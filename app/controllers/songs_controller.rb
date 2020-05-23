@@ -56,29 +56,30 @@ class SongsController < ApplicationController
   end
 
   private
-    def song_params
-      params.require(:song).permit(
-        :artist,
-        :title,
-        :content,
-        :key,
-        :youtube_url
-      )
+
+  def song_params
+    params.require(:song).permit(
+      :artist,
+      :title,
+      :content,
+      :key,
+      :youtube_url
+    )
+  end
+
+  def handle_show
+    @song = current_user.songs.find params[:id]
+    @compiler = SongdownCompiler.new(
+      :input => @song.content,
+      :key => @song.key
+    )
+
+    if params[:key]
+      @compiler.change_key params[:key]
+      @song.key = params[:key]
     end
 
-    def handle_show
-      @song = current_user.songs.find params[:id]
-      @compiler = SongdownCompiler.new(
-        :input => @song.content,
-        :key => @song.key
-      )
-
-      if params[:key]
-        @compiler.change_key params[:key]
-        @song.key = params[:key]
-      end
-
-      @song_key = @compiler.key
-      @song_html = @compiler.to_html
-    end
+    @song_key = @compiler.key
+    @song_html = @compiler.to_html
+  end
 end
