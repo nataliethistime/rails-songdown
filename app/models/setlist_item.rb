@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: setlist_items
+#
+#  id         :integer          not null, primary key
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  song_id    :integer
+#  key        :string
+#  setlist_id :integer
+#  position   :integer
+#
 class SetlistItem < ActiveRecord::Base
   belongs_to :setlist
   belongs_to :song

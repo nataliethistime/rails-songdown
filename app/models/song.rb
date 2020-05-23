@@ -1,4 +1,20 @@
-
+# == Schema Information
+#
+# Table name: songs
+#
+#  id                   :integer          not null, primary key
+#  artist               :string
+#  title                :string
+#  content              :text
+#  key                  :string
+#  youtube_url          :string
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  views                :integer          default(0)
+#  full_name            :string
+#  full_name_searchable :string
+#  user_id              :integer
+#
 class Song < ActiveRecord::Base
   validates :artist, :presence => true
   validates :title, :presence => true
