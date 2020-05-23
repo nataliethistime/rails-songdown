@@ -21,7 +21,6 @@ Rails.application.routes.draw do
   get 'help' => 'help#index'
   get 'help/songdown_syntax' => 'help#songdown_syntax'
 
-  post 'api/compile_songdown' => 'api#compile_songdown'
   post 'api/transpose_song' => 'api#transpose_song'
 
   root 'users#home'

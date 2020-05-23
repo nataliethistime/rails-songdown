@@ -1,17 +1,6 @@
 require 'songdown_compiler'
 
 class ApiController < ApplicationController
-  def compile_songdown
-    compiler = SongdownCompiler.new(
-      :input => params[:input],
-      :show_key => false
-    )
-
-    render :json => {
-      :output => compiler.to_html
-    }
-  end
-
   def transpose_song
     song = current_user.songs.find params[:song_id]
 
