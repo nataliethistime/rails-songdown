@@ -48,7 +48,6 @@ GEM
       debug_inspector (>= 0.0.1)
     builder (3.2.4)
     byebug (11.1.1)
-    cancancan (3.0.2)
     concurrent-ruby (1.1.6)
     crass (1.0.6)
     debug_inspector (0.0.3)
@@ -180,7 +179,6 @@ PLATFORMS
 DEPENDENCIES
   annotate
   byebug
-  cancancan
   devise
   dotenv-rails
   jquery-rails

@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def home
-    @top_songs = current_user.songs.accessible_by(current_ability).top_songs
-    @new_songs = current_user.songs.accessible_by(current_ability).new_songs
+    @top_songs = current_user.songs.top_songs
+    @new_songs = current_user.songs.new_songs
   end
 
   def settings

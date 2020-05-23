@@ -26,7 +26,7 @@ class SongsController < ApplicationController
 
   def index
     query = params[:query]&.strip&.downcase
-    @songlist = Song.build_songlist(current_user.songs.accessible_by(current_ability).search(query))
+    @songlist = Song.build_songlist(current_user.songs.search(query))
     @artists = @songlist.keys.sort
   end
 
