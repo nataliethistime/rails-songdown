@@ -37,6 +37,7 @@ class User < ActiveRecord::Base
   )
 
   has_many :setlists, :dependent => :destroy
+  has_many :songs, dependent: :destroy
 
   def owns_setlist?(setlist)
     id == setlist.user.id

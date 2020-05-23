@@ -51,7 +51,7 @@ class SetlistsController < ApplicationController
     end
 
     @setlist = current_user.setlists.find params[:setlist_id]
-    @results = Song.search(params[:query]).order(:artist)
+    @results = current_user.songs.search(params[:query]).order(:artist)
 
     respond_to do |format|
       format.js
@@ -60,7 +60,7 @@ class SetlistsController < ApplicationController
 
   def add_song
     setlist = current_user.setlists.find params[:setlist_id]
-    song = Song.find params[:song_id]
+    song = current_user.songs.find params[:song_id]
 
     item = setlist.items.new key: song.key
     item.song = song

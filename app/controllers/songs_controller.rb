@@ -3,8 +3,7 @@ require 'songdown_compiler'
 
 class SongsController < ApplicationController
   def create
-    @song = Song.create(song_params)
-    @song.user_id = current_user.id
+    @song = current_user.songs.create(song_params)
 
     if @song.save
       flash[:notice] = 'Successfully created new song.'
@@ -15,24 +14,24 @@ class SongsController < ApplicationController
   end
 
   def destroy
-    @song = Song.find params[:id]
+    @song = current_user.songs.find params[:id]
     @song.destroy
 
     redirect_to songs_path
   end
 
   def edit
-    @song = Song.find params[:id]
+    @song = current_user.songs.find params[:id]
   end
 
   def index
     query = params[:query]&.strip&.downcase
-    @songlist = Song.build_songlist(Song.accessible_by(current_ability).search(query))
+    @songlist = Song.build_songlist(current_user.songs.accessible_by(current_ability).search(query))
     @artists = @songlist.keys.sort
   end
 
   def new
-    @song = Song.new
+    @song = current_user.songs.new
   end
 
   def print_song
@@ -41,7 +40,7 @@ class SongsController < ApplicationController
   end
 
   def update
-    @song = Song.find params[:id]
+    @song = current_user.songs.find params[:id]
 
     if @song.update song_params
       flash[:notice] = 'Song updated.'
@@ -68,7 +67,7 @@ class SongsController < ApplicationController
     end
 
     def handle_show
-      @song = Song.find params[:id]
+      @song = current_user.songs.find params[:id]
       @compiler = SongdownCompiler.new(
         :input => @song.content,
         :key => @song.key

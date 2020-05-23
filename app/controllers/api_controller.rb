@@ -13,7 +13,7 @@ class ApiController < ApplicationController
   end
 
   def transpose_song
-    song = Song.find params[:song_id]
+    song = current_user.songs.find params[:song_id]
 
     if !song.nil?
       compiler = SongdownCompiler.new(

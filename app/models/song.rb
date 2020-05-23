@@ -16,6 +16,8 @@
 #  user_id              :integer
 #
 class Song < ActiveRecord::Base
+  belongs_to :user
+
   validates :artist, :presence => true
   validates :title, :presence => true
 
