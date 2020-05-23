@@ -35,10 +35,6 @@ class Song < ActiveRecord::Base
     songlist
   end
 
-  def self.reset_views_count
-    update_all(:views => 0)
-  end
-
   def self.search(query)
     if query.nil? || query.empty?
       all
