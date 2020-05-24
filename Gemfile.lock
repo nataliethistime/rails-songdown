@@ -80,6 +80,7 @@ GEM
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     method_source (0.9.2)
+    mini_decorator (0.0.1)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.14.0)
@@ -183,6 +184,7 @@ DEPENDENCIES
   dotenv-rails
   jquery-rails
   kramdown
+  mini_decorator
   pg (~> 0.20)
   puma
   rails (= 5.0.1)

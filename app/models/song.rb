@@ -23,6 +23,8 @@ class Song < ActiveRecord::Base
 
   before_save :handle_full_name
 
+  include MiniDecorator.new(SongDecorator)
+
   def self.search(query)
     if query.nil? || query.empty?
       all
