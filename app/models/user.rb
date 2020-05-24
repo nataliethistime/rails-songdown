@@ -39,18 +39,9 @@ class User < ActiveRecord::Base
   has_many :setlists, :dependent => :destroy
   has_many :songs, dependent: :destroy
 
+  include MiniDecorator.new(UserDecorator)
+
   def owns_setlist?(setlist)
     id == setlist.user.id
-  end
-
-  def name
-    "#{first_name} #{last_name}"
-  end
-
-  def name_and_username
-    buffer = []
-    buffer << name if name.present?
-    buffer << (name.present? ? "(#{username})" : "#{username}") if username.present?
-    buffer.join ' '
   end
 end
