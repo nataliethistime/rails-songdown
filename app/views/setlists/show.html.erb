@@ -14,11 +14,7 @@
     </div>
 
     <div class="pure-u-1-3">
-      <% if current_user.owns_setlist?(@setlist) %>
-        <%= link_to 'Edit', edit_setlist_path(@setlist),
-          :class => 'pure-button pure-button-primary'
-        %>
-      <% end %>
+      <%= link_to 'Edit', edit_setlist_path(@setlist), class: 'pure-button pure-button-primary' %>
     </div>
 
     <div class="pure-u-1">

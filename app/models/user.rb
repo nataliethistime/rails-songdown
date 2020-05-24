@@ -40,8 +40,4 @@ class User < ActiveRecord::Base
   has_many :songs, dependent: :destroy
 
   include MiniDecorator.new(UserDecorator)
-
-  def owns_setlist?(setlist)
-    id == setlist.user.id
-  end
 end
