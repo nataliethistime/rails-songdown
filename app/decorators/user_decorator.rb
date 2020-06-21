@@ -1,6 +1,4 @@
-module UserDecorator
-  extend self
-
+class UserDecorator
   def full_name(user)
     buffer = []
     if user.first_name.present?

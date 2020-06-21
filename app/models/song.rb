@@ -15,7 +15,7 @@
 #  full_name_searchable :string
 #  user_id              :integer
 #
-class Song < ActiveRecord::Base
+class Song < ApplicationRecord
   belongs_to :user
 
   validates :artist, :presence => true
@@ -23,7 +23,7 @@ class Song < ActiveRecord::Base
 
   before_save :handle_full_name
 
-  include MiniDecorator.new(SongDecorator)
+  decorate_with SongDecorator
 
   def self.search(query)
     if query.nil? || query.empty?

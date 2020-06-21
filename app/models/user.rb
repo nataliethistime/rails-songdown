@@ -27,7 +27,7 @@
 #  last_name              :string
 #
 
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   devise(
     :database_authenticatable,
     :registerable,
@@ -39,5 +39,5 @@ class User < ActiveRecord::Base
   has_many :setlists, :dependent => :destroy
   has_many :songs, dependent: :destroy
 
-  include MiniDecorator.new(UserDecorator)
+  decorate_with UserDecorator
 end

@@ -9,7 +9,7 @@
 #  notes      :text
 #  user_id    :integer
 #
-class Setlist < ActiveRecord::Base
+class Setlist < ApplicationRecord
   belongs_to :user
   has_many :items, dependent: :destroy, class_name: 'SetlistItem'
   validates :title, :presence => true

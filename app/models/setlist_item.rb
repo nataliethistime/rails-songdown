@@ -10,7 +10,7 @@
 #  setlist_id :integer
 #  position   :integer
 #
-class SetlistItem < ActiveRecord::Base
+class SetlistItem < ApplicationRecord
   belongs_to :setlist
   belongs_to :song
 

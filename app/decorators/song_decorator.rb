@@ -1,5 +1,4 @@
-module SongDecorator
-  extend self
+class SongDecorator
   def name(song)
     "#{song.title.strip} - #{song.artist.strip}"
   end
