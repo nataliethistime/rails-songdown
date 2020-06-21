@@ -1,5 +1,9 @@
 <% if user_signed_in? %>
-  <footer class="center-text">
-    Logged in as <%= current_user.decorate :full_name %>
-  </footer>
+  <div class="columns">
+    <div class="column">
+      <footer class="center-text">
+        Logged in as <%= current_user.decorate :full_name %>
+      </footer>
+    </div>
+  </div>
 <% end %>

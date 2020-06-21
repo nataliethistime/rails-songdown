@@ -1,64 +1,64 @@
-<%= form_for @song, :html => {:class => 'pure-form pure-form-stacked big-form'} do |f| %>
-  <div class="pure-g">
-    <div class="pure-u-1-2">
-      <p>
-        <% if params[:id] %>
-          <%= link_to 'Back to Song', song_path(@song), class: 'pure-button pure-button-primary' %>
-        <% else %>
-          <%= link_to 'Back to Songs', songs_path, class: 'pure-button pure-button-primary' %>
-        <% end %>
-      </p>
+<%= form_for @song do |f| %>
+  <% if @song.new_record? %>
+    <%= link_to 'Back to Songs', songs_path, class: 'btn btn-primary' %>
+  <% else %>
+    <%= link_to 'Back to Song', song_path(@song), class: 'btn btn-primary' %>
+  <% end %>
 
-      <%= f.label :artist %>
-      <%= f.text_field :artist, :placeholder => 'Artist' %>
+  <% if @song.errors.any? %>
+    <h2>Something went wrong:</h2>
 
-      <%= f.label :title %>
-      <%= f.text_field :title, :placeholder => 'Title' %>
-
-      <%= f.label :youtube_url, 'YouTube URL' %>
-      <%= f.text_field :youtube_url,
-        :autocomplete => 'off',
-        :placeholder => 'youtube.com/watch?v=123456789'
-      %>
-
-      <%= f.label :key %>
-      <%= f.select :key, song_keys %>
-    </div>
-
-    <div class="pure-u-1-2">
-      <% if @song.errors.any? %>
-        <h2>Something went wrong:</h2>
-
-        <ul>
-          <% for error_message in @song.errors.full_messages %>
-            <li>
-              <%= error_message %>
-            </li>
-          <% end %>
-        </ul>
+    <ul>
+      <% for error_message in @song.errors.full_messages %>
+        <li>
+          <%= error_message %>
+        </li>
       <% end %>
-    </div>
+    </ul>
+  <% end %>
 
-    <div class="pure-u-1-1">
-      <%= f.label :song %>
-      <%= f.text_area :content,
-        :autocomplete => 'off',
-        :class => 'songdown-editor'
+  <div class="form-group">
+    <%= f.label :artist, class: 'form-label' %>
+    <%= f.text_field :artist, placeholder: 'Artist', class: 'form-input' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :title, class: 'form-label' %>
+    <%= f.text_field :title, placeholder: 'Title', class: 'form-input' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :youtube_url, 'YouTube URL', class: 'form-label' %>
+    <%= f.text_field :youtube_url,
+      autocomplete: 'off',
+      placeholder: 'youtube.com/watch?v=123456789',
+      class: 'form-input'
+    %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :key, class: 'form-label' %>
+    <%= f.select :key, song_keys, {}, class: 'form-select' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :song, class: 'form-label' %>
+    <%= f.text_area :content,
+      autocomplete: 'off',
+      class: 'songdown-editor',
+      class: 'form-input'
+    %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit class: 'btn btn-primary' %>
+
+    <% if params[:id] %>
+      <%= link_to 'Delete Song', song_path(@song),
+        method: :delete,
+        class: 'btn btn-error',
+        data: { confirm: "Are you sure you want to delete '#{@song.title}'?" }
       %>
-
-      <p>
-        <%= f.submit :class => 'pure-button pure-button-primary' %>
-
-        <% if params[:id] %>
-          <%= link_to 'Delete Song', song_path(@song),
-            :method => :delete,
-            :class => 'pure-button pure-button-danger',
-            :data => {
-              :confirm => "Are you sure you want to delete \"#{@song.title}\"?"
-            }
-          %>
-        <% end %>
-      </p>
     <% end %>
   </div>
-</div>
+<% end %>

@@ -1,43 +1,18 @@
 <% if user_signed_in? %>
-  <!-- Menu toggle -->
-  <a href="#menu" id="menuLink" class="menu-link">
-    <!-- Hamburger icon -->
-    <span></span>
-  </a>
-
-  <div id="menu">
-    <div class="pure-menu">
-      <%= link_to 'Songdown', home_path, :class => 'pure-menu-heading' %>
-
-      <ul class="pure-menu-list">
-        <li class="pure-menu-item">
-          <%= link_to 'Home', home_path, :class => 'pure-menu-link' %>
-        </li>
-
-        <li class="pure-menu-item">
-          <%= link_to 'Songs', songs_path, :class => 'pure-menu-link' %>
-        </li>
-
-        <li class="pure-menu-item">
-          <%= link_to 'Setlists', setlists_path, :class => 'pure-menu-link' %>
-        </li>
-
-        <li class="pure-menu-item">
-          <%= link_to 'Settings', settings_path, :class => 'pure-menu-link' %>
-        </li>
-
-        <li class="pure-menu-item">
-          <%= link_to 'About', about_path, :class => 'pure-menu-link' %>
-        </li>
-
-        <li class="pure-menu-item">
-          <%= link_to 'Help', help_path, :class => 'pure-menu-link' %>
-        </li>
-
-        <li class="pure-menu-item">
-          <%= link_to 'Logout', destroy_session_path(current_user), :class => 'pure-menu-link', :method => :delete %>
-        </li>
+  <header class="navbar">
+    <div class="dropdown">
+      <a class="btn btn-primary dropdown-toggle" tabindex="0" style="border-bottom-right-radius: 10px;">
+        Songdown <i class="icon icon-caret"></i>
+      </a>
+      <ul class="menu">
+        <li class="menu-item"><%= link_to 'Home', home_path %></li>
+        <li class="menu-item"><%= link_to 'Songs', songs_path %></li>
+        <li class="menu-item"><%= link_to 'Setlists', setlists_path %></li>
+        <li class="menu-item"><%= link_to 'Settings', settings_path %></li>
+        <li class="menu-item"><%= link_to 'About', about_path %></li>
+        <li class="menu-item"><%= link_to 'Help', help_path %></li>
+        <li class="menu-item"><%= link_to 'Logout', destroy_session_path(current_user), method: :delete %></li>
       </ul>
     </div>
-  </div>
+  </header>
 <% end %>

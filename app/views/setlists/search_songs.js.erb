@@ -1,1 +1,3 @@
-document.getElementById('search-results').innerHTML = '<%= j render partial: 'song_search_result', collection: @results %>';
+var el = document.getElementById('search-results')
+el.innerHTML = '<%= j render partial: 'song_search_result', collection: @results %>';
+el.style.display = 'block';

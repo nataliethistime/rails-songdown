@@ -1,33 +1,35 @@
-<div class="header">
-  <h1>All Songs</h1>
+<% content_for(:title, 'Songs') %>
+
+<div class="columns">
+  <div class="column">
+    <div style="text-align: center;">
+      <%= render 'songs/search' %>
+    </div>
+  </div>
 </div>
 
-<div class="content">
-  <div class="pure-g">
-    <div class="pure-u-1-2">
-      <%= render 'search' %>
-    </div>
-
-    <div class="pure-u-1-2">
-      <div style="text-align: right; margin-top: 0.83em;">
-        <%= link_to 'New Song', new_song_path, :class => 'pure-button pure-button-primary' %>
-      </div>
-    </div>
-
-    <% @songs.keys.sort.each do |artist| %>
-      <div class="pure-u-1-3">
-        <fieldset>
-          <legend><h2 style="padding: 0 10px;"><%= artist %></h2></legend>
-
-          <ul class="songlist">
-            <% @songs[artist].each do |song| %>
-              <li>
-                <%= link_to song.title, song, :class => 'fancy-link' %>
-              </li>
-            <% end %>
-          </ul>
-        </fieldset>
-      </div>
-    <% end %>
+<div class="columns">
+  <div class="column">
+    <%= link_to 'New Song', new_song_path, class: 'btn btn-primary' %>
   </div>
+</div>
+
+<div class="columns">
+  <% @songs.keys.sort.each do |artist| %>
+    <div class="column col-3">
+      <ul class="menu">
+        <div class="tile">
+          <div class="tile-content">
+            <strong><%= artist %></strong>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <% @songs[artist].each do |song| %>
+          <li class="menu-item">
+            <%= link_to song.title, song %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 </div>

@@ -1,51 +1,41 @@
-<div class="pure-g">
-  <div class="pure-u-1-2">
-    <%= form_for @setlist, :html => {:class => 'pure-form pure-form-stacked big-form'} do |f| %>
-      <% if params[:id] %>
-        <p>
-          <%= link_to 'Back to Setlist', setlist_path(@setlist),
-            :class => 'pure-button pure-button-primary'
-          %>
-        </p>
-      <% else %>
-        <p>
-          <%= link_to 'Back to Setlists', setlists_path,
-            :class => 'pure-button pure-button-primary'
-          %>
-        </p>
+<%= form_for @setlist do |f| %>
+  <% if @setlist.new_record? %>
+    <%= link_to 'Back to Setlists', setlists_path, class: 'btn btn-primary' %>
+  <% else %>
+    <%= link_to 'Back to Setlist', setlist_path(@setlist), class: 'btn btn-primary' %>
+  <% end %>
+
+  <% if @setlist.errors.any? %>
+    <h2>Something went wrong:</h2>
+
+    <ul>
+      <% for error_message in @setlist.errors.full_messages %>
+        <li>
+          <%= error_message %>
+        </li>
       <% end %>
+    </ul>
+  <% end %>
 
-      <%= f.label :title %>
-      <%= f.text_field :title, :placeholder => 'Title' %>
-
-      <%= f.label :notes %>
-      <%= f.text_area :notes %>
-
-      <%= f.submit :class => 'pure-button pure-button-primary' %>
-
-      <% if params[:id] %>
-        <%= link_to 'Delete Setlist', setlist_path(@setlist),
-          :method => 'delete',
-          :class => 'pure-button pure-button-danger',
-          :data => {
-            :confirm => "Are you sure you want to delete \"#{@setlist.title}\"?"
-          }
-        %>
-      <% end %>
-    <% end %>
+  <div class="form-group">
+    <%= f.label :title, class: 'form-label' %>
+    <%= f.text_field :title, placeholder: 'Title', class: 'form-input' %>
   </div>
 
-  <div class="pure-u-1-2">
-    <% if @setlist.errors.any? %>
-      <h2>Something went wrong:</h2>
-
-      <ul>
-        <% for error_message in @setlist.errors.full_messages %>
-          <li>
-            <%= error_message %>
-          </li>
-        <% end %>
-      </ul>
-    <% end %>
+  <div class="form-group">
+    <%= f.label :notes, class: 'form-label' %>
+    <%= f.text_area :notes, class: 'form-input' %>
   </div>
-</div>
+
+  <div class="form-group">
+    <%= f.submit class: 'btn btn-primary' %>
+  </div>
+
+  <% if !@setlist.new_record? %>
+    <%= link_to 'Delete Setlist', setlist_path(@setlist),
+      method: 'delete',
+      class: 'btn btn-error',
+      data: { confirm: "Are you sure you want to delete '#{@setlist.title}'?" }
+    %>
+  <% end %>
+<% end %>

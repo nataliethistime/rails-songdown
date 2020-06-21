@@ -1,17 +1,23 @@
-<div class="header">
-  <h1>Setlists</h1>
+<% content_for(:title, 'Setlists') %>
+
+<div class="columns">
+  <div class="column">
+    <div style="float: right;">
+      <%= link_to 'New Setlist', new_setlist_path, class: 'btn btn-primary' %>
+    </div>
+  </div>
 </div>
 
-<div class="content">
-  <div style="float: right;">
-    <%= link_to 'New Setlist', new_setlist_path, :class => 'pure-button pure-button-primary' %>
+<div class="columns">
+  <div class="column">
+    <h2>Sets</h2>
+
+    <ul>
+      <% @setlists.each do |setlist| %>
+        <li>
+          <%= link_to setlist.title, setlist_path(setlist) %>
+        </li>
+      <% end %>
+    </ul>
   </div>
-
-  <h2>Sets</h2>
-
-  <% @setlists.each do |setlist| %>
-    <div>
-      <%= link_to setlist.title, setlist_path(setlist), :class => 'fancy-link' %>
-    </div>
-  <% end %>
 </div>

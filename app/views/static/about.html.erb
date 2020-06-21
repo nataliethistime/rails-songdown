@@ -1,20 +1,16 @@
-<div class="header">
-  <h1>About</h1>
-</div>
+<% content_for(:title, 'About') %>
 
-<div class="content">
-  <div class="center-text">
-    <%= image_tag '1vasari.jpg', 
-      :alt => 'Image of 1vasari', 
-      :class => 'pure-img',
-      :id => 'profile_picture',
-      :style => 'margin: 0 auto;'
+<div class="columns">
+  <div class="column center-text">
+    <%= image_tag '1vasari.jpg',
+      alt: 'Image of 1vasari',
+      id: 'profile_picture',
+      style: 'margin: 0 auto;'
     %>
 
     <p>
-      Songdown is a creation of 
-      <a href="https://github.com/1vasari" target="_blank" class="fancy-link">1vasari</a>.
+      Songdown is a creation of
+      <a href="https://github.com/1vasari" target="_blank" rel="noopener noreferrer">1vasari</a>.
     </p>
   </div>
 </div>
-

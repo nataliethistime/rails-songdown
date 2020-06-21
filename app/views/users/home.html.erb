@@ -1,43 +1,45 @@
-<div class="header">
-  <h1>Home</h1>
+<% content_for(:title, 'Home') %>
+
+<div class="columns">
+  <div class="column">
+    <div style="text-align: center;">
+      <%= render 'songs/search' %>
+    </div>
+  </div>
 </div>
 
-<div class="content">
-  <div class="pure-g">
-    <div class="pure-u-1-1">
-      <div style="text-align: center;">
-        <%= render 'songs/search' %>
-      </div>
-    </div>
+<div class="columns">
+  <div class="column">
+    <h2>Most Popular</h2>
 
-    <div class="pure-u-1-2">
-      <h2>Most Popular</h2>
-
-      <div>
-        <% @top_songs.each do |song| %>
-          <div>
-            <%= link_to song.title, song, :class => 'fancy-link'%>
+    <ul class="menu">
+      <% @top_songs.each do |song| %>
+        <li class="menu-item">
+          <%= link_to song do %>
+            <%= song.title %>
             <span style="float: right;">
               <strong><%= song.artist %></strong>
             </span>
-          </div>
-        <% end %>
-      </div>
-    </div>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 
-    <div class="pure-u-1-2">
-      <h2>New</h2>
+  <div class="column">
+    <h2>New</h2>
 
-      <div>
-        <% @new_songs.each do |song| %>
-          <div>
-            <%= link_to song.title, song, :class => 'fancy-link'%>
+    <ul class="menu">
+      <% @new_songs.each do |song| %>
+        <li class="menu-item">
+          <%= link_to song do %>
+            <%= song.title %>
             <span style="float: right;">
               <strong><%= song.artist %></strong>
             </span>
-          </div>
-        <% end %>
-      </div>
-    </div>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
   </div>
 </div>

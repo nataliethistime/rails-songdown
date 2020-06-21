@@ -10,8 +10,6 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require pure
- *= require side-menu
  *= require_tree .
  *= require_self
  */
@@ -19,6 +17,7 @@
 body {
   /* Show the scroll bar to reduce jumping */
   overflow-y: scroll;
+  background-color: #e8e8e8;
 }
 
 .center-text {
@@ -31,8 +30,8 @@ body {
 
 hr {
   border-color: black;
-  border-width: 1px;
-  width: 65%;
+  border-width: 0.5px;
+  width: 100%;
 }
 
 textarea {
@@ -45,4 +44,8 @@ textarea {
   text-align: center;
   color: red;
   padding: 10px;
+}
+
+.title {
+  font-weight: 200;
 }

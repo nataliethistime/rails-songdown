@@ -2,7 +2,7 @@
 
 <html lang="en">
   <head>
-    <title>Songdown</title>
+    <title><%= [yield(:title), 'Songdown'].filter(&:present?).join(' | ') %></title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -10,6 +10,8 @@
     <meta name="turbolinks-cache-control" content="no-cache">
 
     <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Roboto+Mono' %>
+    <%= stylesheet_link_tag 'https://unpkg.com/spectre.css/dist/spectre.min.css' %>
+    <%= stylesheet_link_tag 'https://unpkg.com/spectre.css/dist/spectre-icons.min.css' %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
 
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -18,25 +20,28 @@
   </head>
 
   <body>
-    <div id="layout">
-      <%= render 'layouts/noscript_warning' %>
-      <%= render 'layouts/menu'%>
+    <%= render 'layouts/menu'%>
+
+    <div class="container grid-lg">
+      <div class="columns">
+        <div class="column">
+          <h1 class="title"><%= yield :title %></h1>
+          <hr />
+        </div>
+      </div>
 
       <% if notice %>
-        <div>
+        <div class="toast toast-success">
           <%= notice %>
         </div>
       <% end %>
       <% if alert %>
-        <div>
+        <div class="toast toast-warning">
           <%= alert %>
         </div>
       <% end %>
 
-      <div id="main">
-        <%= yield %>
-      </div>
-
+      <%= yield %>
       <%= render 'layouts/footer' %>
     </div>
   </body>
