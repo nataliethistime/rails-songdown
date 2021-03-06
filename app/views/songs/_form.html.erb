@@ -1,62 +1,74 @@
 <%= form_for @song do |f| %>
   <% if @song.new_record? %>
-    <%= link_to 'Back to Songs', songs_path, class: 'btn btn-primary' %>
+    <%= link_to 'Back to Songs', songs_path, class: 'button is-primary' %>
   <% else %>
-    <%= link_to 'Back to Song', song_path(@song), class: 'btn btn-primary' %>
+    <%= link_to 'Back to Song', song_path(@song), class: 'button is-primary' %>
   <% end %>
 
   <% if @song.errors.any? %>
-    <h2>Something went wrong:</h2>
-
-    <ul>
-      <% for error_message in @song.errors.full_messages %>
-        <li>
-          <%= error_message %>
-        </li>
-      <% end %>
-    </ul>
+    <div class="message is-danger">
+      <div class="message-body">
+        <h2>Something went wrong:</h2>
+        <ul>
+          <% for error_message in @song.errors.full_messages %>
+            <li>
+              <%= error_message %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
   <% end %>
 
-  <div class="form-group">
-    <%= f.label :artist, class: 'form-label' %>
-    <%= f.text_field :artist, placeholder: 'Artist', class: 'form-input' %>
+  <div class="field">
+    <%= f.label :artist, class: 'label' %>
+    <div class="control">
+      <%= f.text_field :artist, placeholder: 'Artist', class: 'input' %>
+    </div>
   </div>
 
-  <div class="form-group">
-    <%= f.label :title, class: 'form-label' %>
-    <%= f.text_field :title, placeholder: 'Title', class: 'form-input' %>
+  <div class="field">
+    <%= f.label :title, class: 'label' %>
+    <div class="contro.">
+      <%= f.text_field :title, placeholder: 'Title', class: 'input' %>
+    </div>
   </div>
 
-  <div class="form-group">
-    <%= f.label :youtube_url, 'YouTube URL', class: 'form-label' %>
+  <div class="field">
+    <%= f.label :youtube_url, 'YouTube URL', class: 'label' %>
     <%= f.text_field :youtube_url,
       autocomplete: 'off',
       placeholder: 'youtube.com/watch?v=123456789',
-      class: 'form-input'
+      class: 'input'
     %>
   </div>
 
-  <div class="form-group">
-    <%= f.label :key, class: 'form-label' %>
-    <%= f.select :key, song_keys, {}, class: 'form-select' %>
+  <div class="field">
+    <%= f.label :key, class: 'label' %>
+    <div class="control is-expanded">
+      <div class="select is-fullwidth">
+        <%= f.select :key, song_keys, {} %>
+      </div>
+    </div>
   </div>
 
-  <div class="form-group">
-    <%= f.label :song, class: 'form-label' %>
-    <%= f.text_area :content,
-      autocomplete: 'off',
-      class: 'songdown-editor',
-      class: 'form-input'
-    %>
+  <div class="field">
+    <%= f.label :song, class: 'label' %>
+    <div class="control">
+      <%= f.text_area :content,
+        autocomplete: 'off',
+        class: 'textarea songdown-editor'
+      %>
+    </div>
   </div>
 
-  <div class="form-group">
-    <%= f.submit class: 'btn btn-primary' %>
+  <div class="field">
+    <%= f.submit class: 'button is-primary' %>
 
     <% if params[:id] %>
       <%= link_to 'Delete Song', song_path(@song),
         method: :delete,
-        class: 'btn btn-error',
+        class: 'button is-danger is-outlined',
         data: { confirm: "Are you sure you want to delete '#{@song.title}'?" }
       %>
     <% end %>

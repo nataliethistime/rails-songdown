@@ -13,39 +13,3 @@
  *= require_tree .
  *= require_self
  */
-
-body {
-  /* Show the scroll bar to reduce jumping */
-  overflow-y: scroll;
-  background-color: #e8e8e8;
-}
-
-.center-text {
-  text-align: center;
-}
-
-.field_with_errors * {
-  border-color: red !important;
-}
-
-hr {
-  border-color: black;
-  border-width: 0.5px;
-  width: 100%;
-}
-
-textarea {
-  resize: none;
-  overflow-y: hidden;
-  min-height: 300px;
-}
-
-#noscript-warning {
-  text-align: center;
-  color: red;
-  padding: 10px;
-}
-
-.title {
-  font-weight: 200;
-}

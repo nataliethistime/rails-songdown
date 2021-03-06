@@ -10,39 +10,94 @@
     <meta name="turbolinks-cache-control" content="no-cache">
 
     <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Roboto+Mono' %>
-    <%= stylesheet_link_tag 'https://unpkg.com/spectre.css/dist/spectre.min.css' %>
-    <%= stylesheet_link_tag 'https://unpkg.com/spectre.css/dist/spectre-icons.min.css' %>
+    <%= stylesheet_link_tag 'https://unpkg.com/bulma@0.9.2/css/bulma.min.css' %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
 
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
     <%= csrf_meta_tags %>
+
+    <script language="javascript">
+      //
+      // Navbar burger button toggle
+      //
+      document.addEventListener('turbolinks:load', () => {
+        const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+        if ($navbarBurgers.length > 0) {
+          $navbarBurgers.forEach( el => {
+            el.addEventListener('click', () => {
+              const target = el.dataset.target;
+              const $target = document.getElementById(target);
+              el.classList.toggle('is-active');
+              $target.classList.toggle('is-active');
+            });
+          });
+        }
+      });
+    </script>
   </head>
 
   <body>
-    <%= render 'layouts/menu'%>
-
-    <div class="container grid-lg">
-      <div class="columns">
-        <div class="column">
-          <h1 class="title"><%= yield :title %></h1>
-          <hr />
+    <% if user_signed_in? %>
+      <nav class="navbar is-spaced is-dark" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <%= link_to home_path, class: 'navbar-item' do %>
+            <h1 class="is-size-4 has-text-white">Songdown</h1>
+          <% end %>
+          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="songdownnavbar">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
         </div>
+
+        <div class="navbar-menu" id="songdownnavbar">
+          <div class="navbar-start">
+            <%= link_to 'Home', home_path, class: 'navbar-item' %>
+            <%= link_to 'Songs', songs_path, class: 'navbar-item' %>
+            <%= link_to 'Setlists', setlists_path, class: 'navbar-item' %>
+            <%= link_to 'Settings', settings_path, class: 'navbar-item' %>
+            <%= link_to 'About', about_path, class: 'navbar-item' %>
+            <%= link_to 'Help', help_path, class: 'navbar-item' %>
+            <%= link_to 'Logout', destroy_session_path(current_user), method: :delete, class: 'navbar-item' %>
+          </div>
+        </div>
+      </nav>
+    <% end %>
+
+    <section class="section">
+      <div class="container">
+        <h1 class="title is-size-4"><%= yield :title %></h1>
+        <hr />
+
+        <% if notice %>
+          <div class="message is-success">
+            <div class="message-body">
+              <%= notice %>
+            </div>
+          </div>
+        <% end %>
+
+        <% if alert %>
+          <div class="message is-warning">
+            <div class="message-body">
+              <%= alert %>
+            </div>
+          </div>
+        <% end %>
+
+        <%= yield %>
+
+        <footer class="footer">
+          <div class="container has-text-centered">
+            <% if user_signed_in? %>
+              Logged in as <%= current_user.decorate :full_name %>
+            <% else %>
+              Songdown is a creation of <a href="https://github.com/1vasari" target="_blank" rel="noopener noreferrer">1vasari</a>.
+            <% end %>
+          </div>
+        </footer>
       </div>
-
-      <% if notice %>
-        <div class="toast toast-success">
-          <%= notice %>
-        </div>
-      <% end %>
-      <% if alert %>
-        <div class="toast toast-warning">
-          <%= alert %>
-        </div>
-      <% end %>
-
-      <%= yield %>
-      <%= render 'layouts/footer' %>
-    </div>
+    </section>
   </body>
 </html>

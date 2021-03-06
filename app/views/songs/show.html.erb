@@ -1,36 +1,40 @@
 <% content_for(:title, @song.decorate(:name)) %>
 
 <div class="columns">
-  <div class="column col-9" id="youtube-video">
+  <div class="column is-9" id="youtube-video">
     <%= embed_youtube(@song.youtube_url) %>
   </div>
 
-  <div class="column col-3" id="toolbox">
+  <div class="column is-3" id="toolbox">
     <p>
-      <%= link_to 'Edit Song', edit_song_path(@song), class: 'btn btn-primary' %>
+      <%= link_to 'Edit Song', edit_song_path(@song), class: 'button is-primary' %>
 
-      <span id="print_song_button" class="btn btn-primary">
+      <span id="print_song_button" class="button">
         Print Song
       </span>
     </p>
 
-    <%= form_for @song, method: 'get', html: { class: 'pure-form pure-form-stacked' } do |f| %>
+    <%= form_for @song, method: :get do |f| %>
 
-      <div class="form-group">
-        <%= f.label :key, class: 'form-label' %>
+      <div class="field">
+        <%= f.label :key, class: 'label' %>
 
-        <%=
-          select_tag(
-            :key,
-            options_for_select(song_keys, @song.key),
-            style: 'width: 100%',
-            onchange: %q!this.form.querySelector('input[type="submit"]').click()!,
-            class: 'form-select'
-          )
-        %>
-
-        <%= f.submit hidden: true %>
+        <div class="control is-expanded">
+          <div class="select is-fullwidth">
+            <%=
+              select_tag(
+                :key,
+                options_for_select(song_keys, @song.key),
+                style: 'width: 100%',
+                onchange: %q!this.form.querySelector('input[type="submit"]').click()!,
+                class: 'form-select'
+              )
+            %>
+          </div>
+        </div>
       </div>
+
+      <%= f.submit hidden: true %>
     <% end %>
 
     <p>

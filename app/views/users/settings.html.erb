@@ -1,25 +1,31 @@
 <% content_for(:title, 'Settings') %>
 
 <div class="columns">
-  <div class="column col-4">
+  <div class="column is-one-third">
     <%= form_for current_user, url: settings_path do |f| %>
-      <div class="form-group">
-        <%= f.label :username, class: 'form-label' %>
-        <%= f.text_field :username, class: 'form-input' %>
+      <div class="field">
+        <%= f.label :username, class: 'label' %>
+        <div class="control">
+          <%= f.text_field :username, class: 'input' %>
+        </div>
       </div>
 
-      <div class="form-group">
-        <%= f.label :first_name, class: 'form-label' %>
-        <%= f.text_field :first_name, class: 'form-input' %>
+      <div class="field">
+        <%= f.label :first_name, class: 'label' %>
+        <div class="control">
+          <%= f.text_field :first_name, class: 'input' %>
+        </div>
       </div>
 
-      <div class="form-group">
-        <%= f.label :last_name, class: 'form-label' %>
-        <%= f.text_field :last_name, class: 'form-input' %>
+      <div class="field">
+        <%= f.label :last_name, class: 'label' %>
+        <div class="control">
+          <%= f.text_field :last_name, class: 'input' %>
+        </div>
       </div>
 
-      <div class="form-group">
-        <%= f.submit 'Update Settings', class: 'btn btn-primary' %>
+      <div class="field">
+        <%= f.submit 'Update Settings', class: 'button is-primary' %>
       </div>
     <% end %>
   </div>
