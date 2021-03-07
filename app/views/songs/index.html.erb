@@ -2,34 +2,32 @@
 
 <div class="columns">
   <div class="column">
-    <div style="text-align: center;">
+    <%= link_to 'New Song', new_song_path, class: 'button is-primary' %>
+  </div>
+  <div class="column">
+    <div class="is-pulled-right">
       <%= render 'songs/search' %>
     </div>
   </div>
 </div>
 
 <div class="columns">
-  <div class="column">
-    <%= link_to 'New Song', new_song_path, class: 'btn btn-primary' %>
-  </div>
-</div>
-
-<div class="columns">
   <% @songs.keys.sort.each do |artist| %>
-    <div class="column col-3">
-      <ul class="menu">
-        <div class="tile">
-          <div class="tile-content">
-            <strong><%= artist %></strong>
-          </div>
+    <div class="column is-3">
+      <div class="card">
+        <header class="card-tile">
+          <p class="card-header-title"><%= artist %></p>
+        </header>
+        <div class="card-content p-0">
+          <aside class="menu">
+            <ul class="menu-list">
+              <% @songs[artist].each do |song| %>
+                <li><%= link_to song.title, song %></li>
+              <% end %>
+            </ul>
+          </aside>
         </div>
-        <div class="divider"></div>
-        <% @songs[artist].each do |song| %>
-          <li class="menu-item">
-            <%= link_to song.title, song %>
-          </li>
-        <% end %>
-      </ul>
+      </div>
     </div>
   <% end %>
 </div>

@@ -5,41 +5,42 @@
     <%= embed_youtube(@song.youtube_url) %>
   </div>
 
-  <div class="column is-3" id="toolbox">
-    <p>
+  <div class="column is-3">
+    <div class="block">
       <%= link_to 'Edit Song', edit_song_path(@song), class: 'button is-primary' %>
 
       <span id="print_song_button" class="button">
         Print Song
       </span>
-    </p>
+    </div>
 
-    <%= form_for @song, method: :get do |f| %>
+    <div class="block">
+      <%= form_for @song, method: :get do |f| %>
 
-      <div class="field">
-        <%= f.label :key, class: 'label' %>
+        <div class="field">
+          <%= f.label :key, class: 'label' %>
 
-        <div class="control is-expanded">
-          <div class="select is-fullwidth">
-            <%=
-              select_tag(
-                :key,
-                options_for_select(song_keys, @song.key),
-                style: 'width: 100%',
-                onchange: %q!this.form.querySelector('input[type="submit"]').click()!,
-                class: 'form-select'
-              )
-            %>
+          <div class="control is-expanded">
+            <div class="select is-fullwidth">
+              <%=
+                select_tag(
+                  :key,
+                  options_for_select(song_keys, @song.key),
+                  onchange: %q!this.form.querySelector('input[type="submit"]').click()!,
+                  class: 'form-select'
+                )
+              %>
+            </div>
           </div>
         </div>
-      </div>
 
-      <%= f.submit hidden: true %>
-    <% end %>
+        <%= f.submit hidden: true %>
+      <% end %>
+    </div>
 
-    <p>
+    <div class="block">
       <strong>Views:</strong> <%= @song.views %>
-    </p>
+    </div>
   </div>
 </div>
 

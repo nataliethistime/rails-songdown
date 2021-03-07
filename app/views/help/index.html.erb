@@ -1,20 +1,14 @@
-<div class="header">
-  <h1>Songdown Help</h1>
-</div>
+<% content_for(:title, 'Help') %>
 
 <div class="content">
-  <div class="pure-g">
-    <div class="pure-u-1-2">
-      <strong>Available help topics:</strong>
+  <strong>Available help topics:</strong>
 
-      <ul>
-        <li><%= link_to 'Songdown Syntax', help_songdown_syntax_path, :class => 'fancy-link' %></li>
-        <li><%= link_to 'Songdown Source Code', 'https://github.com/1vasari/rails-songdown', class: 'fancy-link', target: '_blank' %></li>
-      </ul>
-    </div>
+  <ul>
+    <li><%= link_to 'Songdown Syntax', help_songdown_syntax_path, :class => 'fancy-link' %></li>
+    <li><%= link_to 'Songdown Source Code', 'https://github.com/1vasari/rails-songdown', class: 'fancy-link', target: '_blank' %></li>
+  </ul>
 
-    <div class="pure-u-1-2">
-      <%= image_tag 'help.png', :class => 'pure-img' %>
-    </div>
+  <div class="">
+    <%= image_tag 'help.png', :class => 'pure-img' %>
   </div>
 </div>

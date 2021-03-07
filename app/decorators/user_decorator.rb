@@ -1,4 +1,4 @@
-class UserDecorator
+class UserDecorator < DecoratorBase
   def full_name(user)
     buffer = []
     if user.first_name.present?

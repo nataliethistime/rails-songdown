@@ -1,102 +1,105 @@
 <% content_for(:title, @setlist.title) %>
 
 <div class="columns">
-  <div class="column col-9">
+  <div class="column">
     <% if !@setlist.notes.empty? %>
-      <h2>Notes</h2>
-      <div style="white-space: pre;"><%= @setlist.notes %></div>
+      <h1 class="is-size-3">Notes</h1>
+      <div class="p-4" style="white-space: pre-wrap;"><%= @setlist.notes %></div>
+      <hr />
     <% end %>
   </div>
 
-  <div class="column col-3">
-    <%= link_to 'Edit', edit_setlist_path(@setlist), class: 'btn btn-primary' %>
+  <div class="column is-narrow">
+    <%= link_to 'Edit', edit_setlist_path(@setlist), class: 'button is-primary' %>
   </div>
 </div>
 
 <div class="columns">
   <div class="column">
-    <h2>Songs</h2>
+    <h1 class="is-size-3">Songs</h1>
 
-    <div class="card">
-      <div class="card-body">
-        <table class="table">
-          <thead>
-            <tr>
-              <th width="25%">Key</th>
-              <th>Song</th>
-              <th width="10%"></th>
-            </tr>
-          </thead>
+    <table class="table is-fullwidth">
+      <thead>
+        <tr>
+          <th width="25%">Key</th>
+          <th>Song</th>
+          <th width="10%"></th>
+        </tr>
+      </thead>
 
-          <tbody>
-            <% @setlist.items.find_each do |item| %>
-              <tr>
-                <td>
-                  <%= form_tag setlist_update_song_path(setlist_id: @setlist.id, song_id: item.id), class: 'pure-form', method: :get do %>
-                  <%= hidden_field_tag :song_id, item.id %>
-                    <%= select_tag(:key, options_for_select([
-                      ['C major / A minor', 'C'],
-                      ['Db major / Bb minor', 'Db'],
-                      ['D major / B minor', 'D'],
-                      ['Eb major / C minor', 'Eb'],
-                      ['E major / C# minor', 'E'],
-                      ['F major / D minor', 'F'],
-                      ['Gb major / Eb minor', 'Gb'],
-                      ['G major / E minor', 'G'],
-                      ['Ab major / F minor', 'Ab'],
-                      ['A major / F# minor', 'A'],
-                      ['Bb major / G minor', 'Bb'],
-                      ['B major / G# minor', 'B'],
-                    ], item.key), onchange: 'this.form.submit()', class: 'form-select') %>
-                  <% end %>
-                </td>
+      <tbody>
+        <% @setlist.items.find_each do |item| %>
+          <tr>
+            <td>
+              <%= form_tag setlist_update_song_path(setlist_id: @setlist.id, song_id: item.id), class: 'pure-form', method: :get do %>
+                <div class="control">
+                  <div class="select">
+                    <%= hidden_field_tag :song_id, item.id %>
+                      <%= select_tag(:key, options_for_select([
+                        ['C major / A minor', 'C'],
+                        ['Db major / Bb minor', 'Db'],
+                        ['D major / B minor', 'D'],
+                        ['Eb major / C minor', 'Eb'],
+                        ['E major / C# minor', 'E'],
+                        ['F major / D minor', 'F'],
+                        ['Gb major / Eb minor', 'Gb'],
+                        ['G major / E minor', 'G'],
+                        ['Ab major / F minor', 'Ab'],
+                        ['A major / F# minor', 'A'],
+                        ['Bb major / G minor', 'Bb'],
+                        ['B major / G# minor', 'B'],
+                      ], item.key), onchange: 'this.form.submit()', class: 'form-select') %>
+                    </div>
+                  </div>
+              <% end %>
+            </td>
 
-                <td>
-                  <%= link_to item.song.decorate(:name), song_path(id: item.song_id, key: item.key) %>
-                </td>
+            <td>
+              <%= link_to item.song.decorate(:name), song_path(id: item.song_id, key: item.key) %>
+            </td>
 
-                <td>
-                  <%= link_to 'Remove',
-                    setlist_songs_path(setlist_id: @setlist.id, id: item.id),
-                    method: 'delete',
-                    class: 'btn btn-error',
-                    data: { confirm: "Are you sure you want to remove '#{item.song.decorate :name}' from the setlist?" }
-                  %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+            <td>
+              <%= link_to 'Remove',
+                setlist_songs_path(setlist_id: @setlist.id, id: item.id),
+                method: 'delete',
+                class: 'button is-danger is-outlined',
+                data: { confirm: "Are you sure you want to remove '#{item.song.decorate :name}' from the setlist?" }
+              %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="column is-one-third">
+    <nav class="panel">
+      <p class="panel-heading">
+        Add a Song
+      </p>
+      <div class="panel-block">
+        <%= form_tag setlist_search_songs_path(@setlist), method: 'post', remote: true do %>
+          <div class="field has-addons">
+            <div class="control is-expanded">
+              <%= text_field_tag :query, '',
+                autocomplete: 'off',
+                placeholder: 'Enter title or artist',
+                class: 'input'
+              %>
+            </div>
+            <div class="control">
+              <%= submit_tag 'Search', class: 'button is-primary' %>
+            </div>
+          </div>
+        <% end %>
       </div>
-    </div>
+      <span id="search-results"></span>
+    </nav>
   </div>
 </div>
 
 <div class="columns">
-  <div class="column">
-    <h2>Add a Song</h2>
-
-    <%= form_tag setlist_search_songs_path(@setlist),
-      method: 'post',
-      remote: true,
-      class: 'pure-form custom-form' do
-    %>
-
-      <div class="input-group input-inline">
-        <%= text_field_tag :query, '',
-          autocomplete: 'off',
-          placeholder: 'Enter title or artist',
-          class: 'form-input'
-        %>
-
-        <%= submit_tag 'Search', class: 'btn btn-primary input-group-btn' %>
-      </div>
-    <% end %>
-  </div>
-</div>
-
-<div class="columns">
-  <div class="column col-6">
+  <div class="column is-half">
     <ul id="search-results" class="menu" style="display: none;"></ul>
   </div>
 </div>

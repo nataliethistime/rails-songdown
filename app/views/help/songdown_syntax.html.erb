@@ -1,34 +1,33 @@
-<div class="header">
-  <h1>Songdown Syntax</h1>
-</div>
+<% content_for(:title, 'Songdown Syntax') %>
 
-<div class="content">
-  <div class="pure-g">
-    <div class="pure-u-1-1">
-      Songs are written using a plaintext markup language. This means that rather than visually selecting and changing the look of text (i.e., select text, click "B" for bold) we use symbols inside the text. Here are some examples of how to use the Songdown syntax.
+<div class="columns is-centered">
+  <div class="column is-two-thirds">
+    <h1 class="is-size-3">Intro</h1>
+    <div class="block">
+      Songs are written using a plaintext markup language. This means that rather than visually
+      selecting and changing the look of text (i.e., select text, click "B" for bold) we use
+      symbols inside the text. Here are some examples of how to use it.
     </div>
 
-    <div class="pure-u-1-2">
-      <h2>Songdown code</h2>
-    </div>
-
-    <div class="pure-u-1-2">
-      <h2>Output</h2>
+    <div class="columns">
+      <div class="column">
+        <h1 class="is-size-3">Songdown code</h1>
+      </div>
+      <div class="column">
+        <h1 class="is-size-3">Output</h1>
+      </div>
     </div>
 
     <% @examples.each do |example| %>
-      <div class="pure-u-1-2">
-        <code style="white-space: pre-wrap;"><%= example.strip %></code>
+      <div class="columns">
+        <div class="column">
+          <pre style="white-space: pre-wrap;"><%= example.strip %></pre>
+        </div>
+        <div class="column">
+          <%= compile_songdown(example).html_safe %>
+        </div>
       </div>
-
-      <div class="pure-u-1-2">
-        <%= compile_songdown(example).html_safe %>
-      </div>
-
-      <div class="pure-u-1-1">
-        <hr />
-      </div>
+      <hr />
     <% end %>
   </div>
 </div>
-

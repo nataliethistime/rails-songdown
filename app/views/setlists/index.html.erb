@@ -1,23 +1,26 @@
 <% content_for(:title, 'Setlists') %>
 
-<div class="columns">
-  <div class="column">
-    <div style="float: right;">
-      <%= link_to 'New Setlist', new_setlist_path, class: 'btn btn-primary' %>
-    </div>
-  </div>
+<div class="block is-pulled-right">
+  <%= link_to 'New Setlist', new_setlist_path, class: 'button is-primary' %>
 </div>
 
-<div class="columns">
-  <div class="column">
-    <h2>Sets</h2>
-
-    <ul>
-      <% @setlists.each do |setlist| %>
-        <li>
-          <%= link_to setlist.title, setlist_path(setlist) %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-</div>
+<table class="table is-fullwidth">
+  <thead>
+    <tr>
+        <th>Name</th>
+        <th>Notes</th>
+        <th>Created</th>
+        <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @setlists.each do |setlist| %>
+      <tr>
+        <td><%= setlist.decorate(:title) %></td>
+        <td><%= setlist.decorate(:notes) %></td>
+        <td><%= setlist.decorate(:created_at_ago) %></td>
+        <td><%= link_to 'View', setlist_path(setlist) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

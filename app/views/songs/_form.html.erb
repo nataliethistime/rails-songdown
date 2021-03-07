@@ -1,9 +1,11 @@
 <%= form_for @song do |f| %>
-  <% if @song.new_record? %>
-    <%= link_to 'Back to Songs', songs_path, class: 'button is-primary' %>
-  <% else %>
-    <%= link_to 'Back to Song', song_path(@song), class: 'button is-primary' %>
-  <% end %>
+  <div class="block">
+    <% if @song.new_record? %>
+      <%= link_to 'Back to Songs', songs_path, class: 'button' %>
+    <% else %>
+      <%= link_to 'Back to Song', song_path(@song), class: 'button' %>
+    <% end %>
+  </div>
 
   <% if @song.errors.any? %>
     <div class="message is-danger">
@@ -72,5 +74,8 @@
         data: { confirm: "Are you sure you want to delete '#{@song.title}'?" }
       %>
     <% end %>
+    <p class="help">
+      Last updated: <%= @song.decorate(:updated_at_ago) %>
+    </p>
   </div>
 <% end %>

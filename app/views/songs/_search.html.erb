@@ -1,12 +1,14 @@
-<h2>Find a Song</h2>
-
-<%= form_tag songs_path, method: 'get' do %>
-  <div class="input-group input-inline">
-    <%= text_field_tag :query, params[:query] || '',
-      autocomplete: 'off',
-      placeholder: 'Enter query',
-      class: 'form-input'
-    %>
-    <%= submit_tag 'Search', class: 'btn btn-primary input-group-btn' %>
+<%= form_tag songs_path, method: :get do %>
+  <div class="field has-addons">
+    <div class="control">
+      <%= text_field_tag :query, params[:query] || '',
+        autocomplete: 'off',
+        placeholder: 'Find a song',
+        class: 'input'
+      %>
+    </div>
+    <div class="control">
+      <%= submit_tag 'Search', class: 'button is-primary' %>
+    </div>
   </div>
 <% end %>

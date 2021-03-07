@@ -1,0 +1,2 @@
+class SetlistDecorator < DecoratorBase
+end

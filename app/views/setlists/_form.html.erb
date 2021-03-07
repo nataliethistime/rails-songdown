@@ -1,41 +1,49 @@
 <%= form_for @setlist do |f| %>
-  <% if @setlist.new_record? %>
-    <%= link_to 'Back to Setlists', setlists_path, class: 'btn btn-primary' %>
-  <% else %>
-    <%= link_to 'Back to Setlist', setlist_path(@setlist), class: 'btn btn-primary' %>
-  <% end %>
+  <div class="block">
+    <% if @setlist.new_record? %>
+      <%= link_to 'Back to Setlists', setlists_path, class: 'button' %>
+    <% else %>
+      <%= link_to 'Back to Setlist', setlist_path(@setlist), class: 'button' %>
+    <% end %>
+  </div>
 
   <% if @setlist.errors.any? %>
-    <h2>Something went wrong:</h2>
-
-    <ul>
-      <% for error_message in @setlist.errors.full_messages %>
-        <li>
-          <%= error_message %>
-        </li>
-      <% end %>
-    </ul>
+    <div class="message is-danger">
+      <div class="message-body">
+        <h2>Something went wrong:</h2>
+        <ul>
+          <% for error_message in @setlist.errors.full_messages %>
+            <li>
+              <%= error_message %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
   <% end %>
 
-  <div class="form-group">
-    <%= f.label :title, class: 'form-label' %>
-    <%= f.text_field :title, placeholder: 'Title', class: 'form-input' %>
+  <div class="field">
+    <%= f.label :title, class: 'label' %>
+    <div class="control">
+      <%= f.text_field :title, class: 'input' %>
+    </div>
   </div>
 
-  <div class="form-group">
-    <%= f.label :notes, class: 'form-label' %>
-    <%= f.text_area :notes, class: 'form-input' %>
+  <div class="field">
+    <%= f.label :notes, class: 'label' %>
+    <div class="control">
+      <%= f.text_area :notes, class: 'textarea' %>
+    </div>
   </div>
 
-  <div class="form-group">
-    <%= f.submit class: 'btn btn-primary' %>
+  <div class="field">
+    <%= f.submit class: 'button is-primary' %>
+    <% if !@setlist.new_record? %>
+      <%= link_to 'Delete Setlist', setlist_path(@setlist),
+        method: 'delete',
+        class: 'button is-danger is-outlined',
+        data: { confirm: "Are you sure you want to delete '#{@setlist.title}'?" }
+      %>
+    <% end %>
   </div>
-
-  <% if !@setlist.new_record? %>
-    <%= link_to 'Delete Setlist', setlist_path(@setlist),
-      method: 'delete',
-      class: 'btn btn-error',
-      data: { confirm: "Are you sure you want to delete '#{@setlist.title}'?" }
-    %>
-  <% end %>
 <% end %>

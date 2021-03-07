@@ -2,7 +2,7 @@
 
 <div class="columns">
   <div class="column">
-    <div style="text-align: center;">
+    <div class="is-pulled-right">
       <%= render 'songs/search' %>
     </div>
   </div>
@@ -10,36 +10,38 @@
 
 <div class="columns">
   <div class="column">
-    <h2>Most Popular</h2>
-
-    <ul class="menu">
-      <% @top_songs.each do |song| %>
-        <li class="menu-item">
-          <%= link_to song do %>
-            <%= song.title %>
-            <span style="float: right;">
-              <strong><%= song.artist %></strong>
-            </span>
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
+    <aside class="menu">
+      <p class="menu-label">Frequently Played</p>
+      <ul class="menu-list">
+        <% @top_songs.each do |song| %>
+          <li>
+            <%= link_to song do %>
+              <div class="level">
+                <div class="level-item"><%= song.title %></div>
+                <div class="level-item has-text-weight-bold"><%= song.artist %></div>
+              </div>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </aside>
   </div>
 
   <div class="column">
-    <h2>New</h2>
-
-    <ul class="menu">
-      <% @new_songs.each do |song| %>
-        <li class="menu-item">
-          <%= link_to song do %>
-            <%= song.title %>
-            <span style="float: right;">
-              <strong><%= song.artist %></strong>
-            </span>
-          <% end %>
-        </li>
-      <% end %>
-    </ul>
+    <asice class="menu">
+      <p class="menu-label">New</p>
+      <ul class="menu-list">
+        <% @new_songs.each do |song| %>
+          <li>
+            <%= link_to song do %>
+              <div class="level">
+                <div class="level-item"><%= song.title %></div>
+                <div class="level-item has-text-weight-bold"><%= song.artist %></div>
+              </div>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </aside>
   </div>
 </div>
