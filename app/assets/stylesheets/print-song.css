@@ -2,3 +2,7 @@
  *= require songs
  *= require editor
  */
+
+body.mono {
+  font-family: 'Inconsolata', monospace;
+}

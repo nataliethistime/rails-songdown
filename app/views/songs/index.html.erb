@@ -4,14 +4,12 @@
   <div class="column">
     <%= link_to 'New Song', new_song_path, class: 'button is-primary' %>
   </div>
-  <div class="column">
-    <div class="is-pulled-right">
-      <%= render 'songs/search' %>
-    </div>
+  <div class="column is-narrow">
+    <%= render 'songs/search' %>
   </div>
 </div>
 
-<div class="columns">
+<div class="columns is-multiline">
   <% @songs.keys.sort.each do |artist| %>
     <div class="column is-3">
       <div class="card">

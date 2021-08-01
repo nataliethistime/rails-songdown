@@ -31,7 +31,7 @@
         <% @setlist.items.find_each do |item| %>
           <tr>
             <td>
-              <%= form_tag setlist_update_song_path(setlist_id: @setlist.id, song_id: item.id), class: 'pure-form', method: :get do %>
+              <%= form_tag setlist_update_song_path(setlist_id: @setlist.id, song_id: item.id), class: '', method: :get do %>
                 <div class="control">
                   <div class="select">
                     <%= hidden_field_tag :song_id, item.id %>

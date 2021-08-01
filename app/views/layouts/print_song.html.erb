@@ -6,14 +6,14 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Roboto+Mono',
+    <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Inconsolata&display=swap',
       'data-turbolinks-track' => true
     %>
     <%= stylesheet_link_tag 'print-song', media: 'all', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
 
-  <body>
+  <body class="mono">
     <%= yield %>
   </body>
 </html>
