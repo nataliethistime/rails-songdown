@@ -5,9 +5,8 @@ ruby '2.6.5'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '5.0.1'
 
-# Use PostgreSQL as our database
-# For some reason we need to use 0.20 to get it to work. See here: https://stackoverflow.com/a/44817108
-gem 'pg', '~> 0.20'
+# Sqlite database
+gem 'sqlite3', '1.3.13'
 
 # Use SCSS for stylesheets
 gem 'sass-rails'
